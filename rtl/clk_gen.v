@@ -1,3 +1,14 @@
+//====================================================
+// Project     : RTL to GDS of SPI Protocol
+// Author      : Agnibha Sarkar
+//
+// Revision    : v1.0
+// Last Updated: 23-06-2026
+//
+// Changes: None
+//====================================================
+
+
 `include "spi_define.v"
 
 //The arithmatic it SPI_clk = (SYS_clk)/ (2 * (divider + 1));
