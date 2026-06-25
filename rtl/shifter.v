@@ -3,9 +3,9 @@
 // Author      : Agnibha Sarkar
 //
 // Revision    : v1.0
-// Last Updated: 23-06-2026
+// Last Updated: 25-06-2026
 //
-// Changes: None
+// Changes: Added support for Mode 0 
 //====================================================
 
 `include "spi_define.v"

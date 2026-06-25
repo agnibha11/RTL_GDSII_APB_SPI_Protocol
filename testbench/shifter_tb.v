@@ -177,7 +177,7 @@ module tb_spi_mode0_msb;
         byte_sel  = 4'b0000;
 
         // Your current shifter uses len as actual length
-        len       = 8'd1;
+        len       = 8'd8;
 
         divider   = 16'd4;
 
@@ -190,13 +190,13 @@ module tb_spi_mode0_msb;
         rst = 1'b0;
 
         // MSB-first transfer
-        run_transfer(1'b0, 8'h01, 8'h00);
+        run_transfer(1'b0, 8'hAB, 8'hCD);
 
         // gap between transfers
         repeat (10) @(posedge clk);
 
         // LSB-first transfer
-        run_transfer(1'b1, 8'h00, 8'h01);
+        run_transfer(1'b1, 8'hEF, 8'h10);
 
         #50;
         $finish;
