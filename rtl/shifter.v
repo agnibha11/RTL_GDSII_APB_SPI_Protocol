@@ -3,14 +3,15 @@
 // Author      : Agnibha Sarkar
 //
 // Revision    : v1.0
-// Last Updated: 25-06-2026
+// First Updated: 25-06-2026
 //
 // Changes: Added support for Mode 0 
+// - Resolved Lint Issues  -  01-06-2026
 //====================================================
 
 `include "spi_define.v"
 
-module shifter(input clk_sys, reset, lsb, go, pos_edge, neg_edge, serial_in, SPI_clk, input [(`SPI_MAX_CHARS/`CPU_DATA_BUS_WIDTH)-1:0] latch, byte_sel, input [($clog2(`SPI_MAX_CHARS)):0] len, input [`CPU_DATA_BUS_WIDTH-1:0] parallel_in, output [`SPI_MAX_CHARS-1:0] parallel_out, output reg t_progress, serial_out, output last_bit);
+module shifter(input clk_sys, reset, lsb, go, pos_edge, neg_edge, serial_in, input [(`SPI_MAX_CHARS/`CPU_DATA_BUS_WIDTH)-1:0] latch, byte_sel, input [($clog2(`SPI_MAX_CHARS)):0] len, input [`CPU_DATA_BUS_WIDTH-1:0] parallel_in, output [`SPI_MAX_CHARS-1:0] parallel_out, output reg t_progress, serial_out, output last_bit);
 //lsb = 0 -> MSB first, else LSB first
 //latch -> select which bits of the 128 bit shift reg receives the parallel_in from CPU
 //byte_sel -> select whether 1, 2, 3 or 4 bytes of the 32 byte selected gets written (for word, half-word and byte CPU ops)
@@ -26,8 +27,6 @@ reg [($clog2(`SPI_MAX_CHARS)):0] counter; //used to track if operation complete
 
 //parallel data output
 assign parallel_out = IN_reg; // data for CPU;
-
-wire finished;
 
 assign last_bit = !(|counter);
 
@@ -46,8 +45,8 @@ always @(posedge clk_sys or posedge reset) begin
                 rx_bit_pos <= 0;
             end
             else begin
-                tx_bit_pos <= (len - 2); //the first bit is TXed moment t_progress starts
-                rx_bit_pos <= (len - 1); //upper bit truncated automatically
+                tx_bit_pos <= len[$clog2(`SPI_MAX_CHARS)-1:0] - 7'd2; //the first bit is TXed moment t_progress starts
+                rx_bit_pos <= len[$clog2(`SPI_MAX_CHARS)-1:0] - 7'd1; //upper bit truncated automatically
             end
         end
         else

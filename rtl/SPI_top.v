@@ -1,19 +1,20 @@
 //====================================================
 // Project     : RTL to GDS of SPI Protocol
-// Top Level   : APB4 SPI Top
 // Author      : Agnibha Sarkar
 //
 // Revision    : v1.0
-// Last Updated: 25-06-2026
+// First Updated: 25-06-2026
 //
 // Changes:
 // - Implemented APB4 interface
 // - Mode-0 only datapath (rx_negedge/tx_negedge removed)
+// - Changed top level file name for LINT warnings -  01-07-2026
+// - Removed SPI_clk to shifter for LINT Warnings  -  01-07-2026
 //====================================================
 
 `include "spi_define.v"
 
-module spi_top_apb4
+module spi_top
 (
     // APB4 interface
     input  wire PCLK, //bus clock
@@ -118,7 +119,6 @@ module spi_top_apb4
         .pos_edge    (pos_edge),
         .neg_edge    (neg_edge),
         .serial_in   (miso_pad_i),
-        .SPI_clk     (sclk_pad_o),
         .latch       (tx_latch),
         .byte_sel    (PSTRB),
         .len         (char_len),
@@ -172,10 +172,12 @@ module spi_top_apb4
                 divider[7:0] <= PWDATA[7:0];
             if (PSTRB[1])
                 divider[15:8] <= PWDATA[15:8];
+            /*
             if (PSTRB[2])
                 divider[23:16] <= PWDATA[23:16];
             if (PSTRB[3])
                 divider[31:24] <= PWDATA[31:24];
+                */
         end
     end
 

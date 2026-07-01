@@ -50,7 +50,6 @@ module tb_spi_mode0_msb;
         .pos_edge    (pos_edge),
         .neg_edge    (neg_edge),
         .serial_in   (serial_in),
-        .SPI_clk     (sclk),
         .latch       (latch),
         .byte_sel    (byte_sel),
         .len         (len),

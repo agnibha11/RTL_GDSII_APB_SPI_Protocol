@@ -1,0 +1,9 @@
+%Warning-DECLFILENAME: rtl/SPI_top.v:17: Filename 'SPI_top' does not match MODULE name: 'spi_top'
+module spi_top
+       ^~~~~~~
+                       ... Use "/* verilator lint_off DECLFILENAME */" and lint_on around source to disable this message.
+%Warning-UNUSED: rtl/SPI_top.v:23: Bits of signal are not used: 'PADDR'[1:0]
+                                 : ... In instance spi_top
+    input  wire [4:0] PADDR,  
+                      ^~~~~
+%Error: Exiting due to 2 warning(s)
