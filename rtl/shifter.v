@@ -7,6 +7,7 @@
 //
 // Changes: Added support for Mode 0 
 // - Resolved Lint Issues  -  01-06-2026
+// - Resolved register being driven by multiple driver issue (tx_pos, rx_pos, serial_out) - 02-06-2026
 //====================================================
 
 `include "spi_define.v"
@@ -49,8 +50,13 @@ always @(posedge clk_sys or posedge reset) begin
                 rx_bit_pos <= len[$clog2(`SPI_MAX_CHARS)-1:0] - 7'd1; //upper bit truncated automatically
             end
         end
-        else
+        else begin
             counter <= pos_edge ? counter - 1 : counter; //Down counter
+            if(neg_edge)
+              tx_bit_pos <= lsb ? tx_bit_pos + 1 : tx_bit_pos - 1;
+            else if(pos_edge)
+              rx_bit_pos <= lsb ? rx_bit_pos + 1 : rx_bit_pos - 1;   
+        end
     end
 end
 
@@ -58,11 +64,8 @@ end
 always @(posedge clk_sys or posedge reset) begin
     if(reset)
         t_progress <= 1'b0;
-    else if(go && !t_progress) begin
+    else if(go && !t_progress)
         t_progress <= 1'b1; //Activated
-        //Preload the serial_out with data for Slave
-        serial_out <= (lsb) ? OUT_reg[0] : OUT_reg[len-1];
-    end
     else if(t_progress && last_bit && neg_edge)
         t_progress <= 1'b0; //Deactivated //negedge to ensure last bit is TXed
 end
@@ -73,10 +76,11 @@ always @(posedge clk_sys or posedge reset) begin
         serial_out <= 1'b0;
         OUT_reg <= 0;
     end
+    else if(go && !t_progress)
+      serial_out <= (lsb) ? OUT_reg[0] : OUT_reg[len-1]; //Preload the serial_out with data for Slave
     else //TX at neg edge in Mode 0
         if(neg_edge && t_progress) begin
             serial_out <= OUT_reg[tx_bit_pos];
-            tx_bit_pos <= lsb ? tx_bit_pos + 1 : tx_bit_pos - 1;
         end
 end
 
@@ -128,9 +132,6 @@ always @(posedge clk_sys or posedge reset) begin
     else //RX at pos edge in Mode 0
         if(pos_edge && t_progress) begin
             IN_reg[rx_bit_pos] <= serial_in;
-            rx_bit_pos <= lsb ? rx_bit_pos + 1 : rx_bit_pos - 1;
         end
 end
-
-
 endmodule
