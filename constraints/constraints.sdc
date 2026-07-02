@@ -2,6 +2,9 @@
 # Project    : RTL to GDS of SPI Protocol
 # Author     : Agnibha Sarkar
 # First modified: 01-06-2026
+# 
+# Changes:
+# - Fixed syntax error in if statement  -  02-06-2026
 ############################################################
 
 set_units -time ns
@@ -45,7 +48,7 @@ set_clock_latency 0.2 [get_clocks $clk_io_name]
 # collect all non-clock inputs
 set non_clock_inputs [list]
 foreach input [all_inputs] {
-    if{$input != $clk_port} {
+    if { $input != $clk_port } {
         lappend non_clock_inputs $input
     }
 }
