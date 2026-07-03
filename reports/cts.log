@@ -43,7 +43,7 @@ Components of this program may be licensed under more restrictive licenses which
 [INFO CTS-0101]  Average sink wire length 176.65 um
 [INFO CTS-0102]  Path depth 3 - 3
 [INFO CTS-0207]  Dummy loads inserted 22
-[INFO CTS-0500] Runtime: 0.75s
+[INFO CTS-0500] Runtime: 0.77s
 [INFO DPL-0006] Core area: 20234.41 um^2, Instances area: 13036.25 um^2, Utilization: 64.4%
 [INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
 [INFO DPL-1101] Legalizing using diamond search.

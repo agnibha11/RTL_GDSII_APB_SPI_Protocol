@@ -1,7 +1,7 @@
 ############################################################
 # Project    : RTL to GDS of SPI Protocol
 # Author     : Agnibha Sarkar
-# First modified: 03-06-2026
+# First modified: 03-07-2026
 ############################################################
 
 # top level design name
