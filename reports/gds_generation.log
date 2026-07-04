@@ -1,0 +1,10 @@
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+OpenROAD 26Q2-2517-g7304ba78ad 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+FINAL DATABASE VERIFICATION
+Placement database verified.
+WRITING FINAL DEF FOR GDS STREAM-OUT
+GENERATING FINAL GDSII
+FINAL GDS GENERATED SUCCESSFULLY
