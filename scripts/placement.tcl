@@ -5,6 +5,7 @@
 #
 # Changes
 # - Added constraints to the IO pins for accurate arrangement  -  03-07-2026
+# - Placed IO pins properly around edges  -  04-07-2026
 ############################################################
 
 # top level design name
@@ -40,14 +41,12 @@ puts "PLACE I/O PINS"
 # PLace IO pins
 
 # define legal IO pin placement locations
+
 set_io_pin_constraint \
     -pin_names {PCLK PRESETn} \
     -region top:*
 
-#-----------------------------------------------------------
 # APB4 Interface (Left Edge)
-#-----------------------------------------------------------
-
 set_io_pin_constraint \
     -pin_names {
 
@@ -102,10 +101,8 @@ set_io_pin_constraint \
     } \
     -region left:*
 
-#-----------------------------------------------------------
-# APB Read Bus (Bottom Edge)
-#-----------------------------------------------------------
 
+# APB Read Bus (Bottom Edge)
 set_io_pin_constraint \
     -pin_names {
 
@@ -148,13 +145,33 @@ set_io_pin_constraint \
     } \
     -region bottom:*
 
-#-----------------------------------------------------------
 # SPI Interface (Right Edge)
-#-----------------------------------------------------------
-
 set_io_pin_constraint \
     -pin_names {
-
+        ss_pad_o[31]
+        ss_pad_o[30]
+        ss_pad_o[29]
+        ss_pad_o[28]
+        ss_pad_o[27]
+        ss_pad_o[26]
+        ss_pad_o[25]
+        ss_pad_o[24]
+        ss_pad_o[23]
+        ss_pad_o[22]
+        ss_pad_o[21]
+        ss_pad_o[20]
+        ss_pad_o[19]
+        ss_pad_o[18]
+        ss_pad_o[17]
+        ss_pad_o[16]
+        ss_pad_o[15]
+        ss_pad_o[14]
+        ss_pad_o[13]
+        ss_pad_o[12]
+        ss_pad_o[11]
+        ss_pad_o[10]
+        ss_pad_o[9]
+        ss_pad_o[8]
         ss_pad_o[7]
         ss_pad_o[6]
         ss_pad_o[5]
@@ -179,8 +196,35 @@ place_pins \
     -hor_layers {met3} \
     -ver_layers {met2} \
     -group_pins {PCLK PRESETn} \
+    -group_pins {ss_pad_o[31] ss_pad_o[30] ss_pad_o[29] ss_pad_o[28]} \
+    -group_pins {ss_pad_o[27] ss_pad_o[26] ss_pad_o[25] ss_pad_o[24]} \
+    -group_pins {ss_pad_o[23] ss_pad_o[22] ss_pad_o[21] ss_pad_o[20]} \
+    -group_pins {ss_pad_o[19] ss_pad_o[18] ss_pad_o[17] ss_pad_o[16]} \
+    -group_pins {ss_pad_o[15] ss_pad_o[14] ss_pad_o[13] ss_pad_o[12]} \
+    -group_pins {ss_pad_o[11] ss_pad_o[10] ss_pad_o[9] ss_pad_o[8]} \
+    -group_pins {ss_pad_o[7] ss_pad_o[6] ss_pad_o[5] ss_pad_o[4]} \
+    -group_pins {ss_pad_o[3] ss_pad_o[2] ss_pad_o[1] ss_pad_o[0]} \
+    -group_pins {sclk_pad_o mosi_pad_o miso_pad_i spi_int_o} \
     -group_pins {PSEL PENABLE PWRITE} \
-    -group_pins {ss_pad_o[7] ss_pad_o[6] ss_pad_o[5] ss_pad_o[4] ss_pad_o[3] ss_pad_o[2] ss_pad_o[1] ss_pad_o[0]} \
+    -group_pins {PWDATA[31] PWDATA[30] PWDATA[29] PWDATA[28]} \
+    -group_pins {PWDATA[27] PWDATA[26] PWDATA[25] PWDATA[24]} \
+    -group_pins {PWDATA[23] PWDATA[22] PWDATA[21] PWDATA[20]} \
+    -group_pins {PWDATA[19] PWDATA[18] PWDATA[17] PWDATA[16]} \
+    -group_pins {PWDATA[15] PWDATA[14] PWDATA[13] PWDATA[12]} \
+    -group_pins {PWDATA[11] PWDATA[10] PWDATA[9]  PWDATA[8]} \
+    -group_pins {PWDATA[7]  PWDATA[6]  PWDATA[5]  PWDATA[4]} \
+    -group_pins {PWDATA[3]  PWDATA[2]  PWDATA[1]  PWDATA[0]} \
+    -group_pins {PADDR[4] PADDR[3] PADDR[2] PADDR[1] PADDR[0]} \
+    -group_pins {PSTRB[3] PSTRB[2] PSTRB[1] PSTRB[0]} \
+    -group_pins {PRDATA[31] PRDATA[30] PRDATA[29] PRDATA[28]} \
+    -group_pins {PRDATA[27] PRDATA[26] PRDATA[25] PRDATA[24]} \
+    -group_pins {PRDATA[23] PRDATA[22] PRDATA[21] PRDATA[20]} \
+    -group_pins {PRDATA[19] PRDATA[18] PRDATA[17] PRDATA[16]} \
+    -group_pins {PRDATA[15] PRDATA[14] PRDATA[13] PRDATA[12]} \
+    -group_pins {PRDATA[11] PRDATA[10] PRDATA[9]  PRDATA[8]} \
+    -group_pins {PRDATA[7]  PRDATA[6]  PRDATA[5]  PRDATA[4]} \
+    -group_pins {PRDATA[3]  PRDATA[2]  PRDATA[1]  PRDATA[0]} \
+    -group_pins {PREADY PSLVERR} \
     -corner_avoidance 10 \
     -min_distance 2 \
     -write_pin_placement "$REPORT_DIR/pin_placement.txt"

@@ -20,37 +20,37 @@ Components of this program may be licensed under more restrictive licenses which
 [INFO CTS-0020]  Wire segment unit: 13600  dbu (13 um).
 [INFO CTS-0204] A clustering solution was found from clustering size of 20 and clustering diameter of 50.
 [INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.
-[INFO CTS-0019]  Total number of sinks after clustering: 24.
-[INFO CTS-0024]  Normalized sink region: [(0.862657, 1.1), (9.55396, 9.85912)].
-[INFO CTS-0025]     Width:  8.6913.
-[INFO CTS-0026]     Height: 8.7591.
+[INFO CTS-0019]  Total number of sinks after clustering: 27.
+[INFO CTS-0024]  Normalized sink region: [(0.668897, 1.0761), (9.61409, 9.8239)].
+[INFO CTS-0025]     Width:  8.9452.
+[INFO CTS-0026]     Height: 8.7478.
  Level 1
-    Direction: Vertical
-    Sinks per sub-region: 12
-    Sub-region size: 8.6913 X 4.3796
+    Direction: Horizontal
+    Sinks per sub-region: 14
+    Sub-region size: 4.4726 X 8.7478
 [INFO CTS-0034]     Segment length (rounded): 2.
 [INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
-[INFO CTS-0035]  Number of sinks covered: 24.
-[INFO CTS-0018]     Created 27 clock buffers.
+[INFO CTS-0035]  Number of sinks covered: 27.
+[INFO CTS-0018]     Created 30 clock buffers.
 [INFO CTS-0012]     Minimum number of buffers in the clock path: 3.
 [INFO CTS-0013]     Maximum number of buffers in the clock path: 3.
-[INFO CTS-0015]     Created 27 clock nets.
-[INFO CTS-0016]     Fanout distribution for the current clock = 3:1, 4:2, 6:1, 7:3, 8:2, 9:2, 10:4, 11:3, 12:3, 13:1, 14:1, 15:3..
+[INFO CTS-0015]     Created 30 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 5:2, 6:3, 7:5, 8:7, 9:4, 10:1, 11:1, 12:1, 13:2, 14:3..
 [INFO CTS-0017]     Max level of the clock tree: 1.
 [INFO CTS-0098] Clock net "PCLK"
-[INFO CTS-0099]  Sinks 251
-[INFO CTS-0100]  Leaf buffers 24
-[INFO CTS-0101]  Average sink wire length 176.65 um
-[INFO CTS-0102]  Path depth 3 - 3
-[INFO CTS-0207]  Dummy loads inserted 22
-[INFO CTS-0500] Runtime: 0.77s
-[INFO DPL-0006] Core area: 20234.41 um^2, Instances area: 13036.25 um^2, Utilization: 64.4%
+[INFO CTS-0099]  Sinks 254
+[INFO CTS-0100]  Leaf buffers 27
+[INFO CTS-0101]  Average sink wire length 175.12 um
+[INFO CTS-0102]  Path depth 2 - 3
+[INFO CTS-0207]  Dummy loads inserted 25
+[INFO CTS-0500] Runtime: 0.78s
+[INFO DPL-0006] Core area: 20234.41 um^2, Instances area: 13083.80 um^2, Utilization: 64.7%
 [INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
 [INFO DPL-1101] Legalizing using diamond search.
 Movements Summary
 ---------------------------------------
-Total cells:                    1315
-Diamond Move Success:           1315 (100.00%)
+Total cells:                    1321
+Diamond Move Success:           1321 (100.00%)
 Diamond Move Failure:              0
 Rip-up and replace Success:        0 (  0.00% of diamond failures)
 Rip-up and replace Failure:        0
@@ -59,11 +59,11 @@ Total Placement Failures:          0
 [INFO DPL-0500] Runtime: 0.01s
 Placement Analysis
 ---------------------------------
-total displacement        296.6 u
+total displacement        322.2 u
 average displacement        0.2 u
-max displacement            7.7 u
-original HPWL           34436.3 u
-legalized HPWL          34562.7 u
+max displacement            7.3 u
+original HPWL           34474.4 u
+legalized HPWL          34572.1 u
 delta HPWL                    0 %
 
 [INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove 
@@ -71,13 +71,13 @@ delta HPWL                    0 %
 [INFO RSZ-0505] Runtime: 0.07s
 [INFO RSZ-0033] No hold violations found.
 [INFO RSZ-0506] Runtime: 0.01s
-[INFO DPL-0006] Core area: 20234.41 um^2, Instances area: 13036.25 um^2, Utilization: 64.4%
+[INFO DPL-0006] Core area: 20234.41 um^2, Instances area: 13083.80 um^2, Utilization: 64.7%
 [INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
 [INFO DPL-1101] Legalizing using diamond search.
 Movements Summary
 ---------------------------------------
-Total cells:                    1315
-Diamond Move Success:           1315 (100.00%)
+Total cells:                    1321
+Diamond Move Success:           1321 (100.00%)
 Diamond Move Failure:              0
 Rip-up and replace Success:        0 (  0.00% of diamond failures)
 Rip-up and replace Failure:        0
@@ -89,26 +89,25 @@ Placement Analysis
 total displacement          0.0 u
 average displacement        0.0 u
 max displacement            0.0 u
-original HPWL           34562.7 u
-legalized HPWL          34562.7 u
+original HPWL           34572.1 u
+legalized HPWL          34572.1 u
 delta HPWL                    0 %
 
 CTS REPORT
 Total number of Clock Roots: 1.
-Total number of Buffers Inserted: 27.
-Total number of Clock Subnets: 27.
+Total number of Buffers Inserted: 30.
+Total number of Clock Subnets: 30.
 Total number of Sinks: 229.
 Cells used:
-  sky130_fd_sc_hd__clkbuf_4: 27
+  sky130_fd_sc_hd__clkbuf_4: 30
 Dummys used:
-  sky130_fd_sc_hd__bufinv_16: 3
+  sky130_fd_sc_hd__bufinv_16: 5
   sky130_fd_sc_hd__clkbuf_4: 2
-  sky130_fd_sc_hd__clkinv_1: 1
-  sky130_fd_sc_hd__clkinv_2: 1
-  sky130_fd_sc_hd__clkinv_4: 2
-  sky130_fd_sc_hd__clkinv_8: 3
-  sky130_fd_sc_hd__clkinvlp_4: 4
-  sky130_fd_sc_hd__inv_6: 5
+  sky130_fd_sc_hd__clkinv_1: 4
+  sky130_fd_sc_hd__clkinv_2: 3
+  sky130_fd_sc_hd__clkinv_4: 5
+  sky130_fd_sc_hd__clkinvlp_4: 3
+  sky130_fd_sc_hd__inv_6: 2
   sky130_fd_sc_hd__inv_8: 1
 Other reports
 wns max 0.00
@@ -126,33 +125,33 @@ Fanout     Cap    Slew   Delay    Time   Description
                           1.00    1.20 ^ input external delay
     67    0.34    0.00    0.00    1.20 ^ PRESETn (in)
                                          PRESETn (net)
-                  0.03    0.01    1.21 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24296/A (sky130_fd_sc_hd__clkbuf_1)
-    10    0.05    0.53    0.41    1.62 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24296/X (sky130_fd_sc_hd__clkbuf_1)
+                  0.04    0.02    1.22 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24296/A (sky130_fd_sc_hd__clkbuf_1)
+    10    0.06    0.73    0.55    1.77 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24296/X (sky130_fd_sc_hd__clkbuf_1)
                                          $abc$23333$new_n1693_ (net)
-                  0.53    0.00    1.62 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24385/A (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
-    10    0.07    0.81    0.67    2.30 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24385/X (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
+                  0.73    0.00    1.77 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24385/A (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
+    10    0.06    0.69    0.60    2.37 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24385/X (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
                                          $abc$23333$new_n1782_ (net)
-                  0.81    0.00    2.30 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24395/A (sky130_fd_sc_hd__clkbuf_1)
-     1    0.00    0.07    0.16    2.46 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24395/X (sky130_fd_sc_hd__clkbuf_1)
+                  0.69    0.00    2.37 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24395/A (sky130_fd_sc_hd__clkbuf_1)
+     1    0.00    0.07    0.16    2.54 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24395/X (sky130_fd_sc_hd__clkbuf_1)
                                          $abc$23333$auto$rtlil.cc:1969:NotGate$23302 (net)
-                  0.07    0.00    2.46 ^ $auto$simplemap.cc:496:simplemap_adff$15442/SET_B (sky130_fd_sc_hd__dfstp_2)
-                                  2.46   data arrival time
+                  0.07    0.00    2.54 ^ $auto$simplemap.cc:496:simplemap_adff$15442/SET_B (sky130_fd_sc_hd__dfstp_2)
+                                  2.54   data arrival time
 
                           5.00    5.00   clock APB_CLK (rise edge)
-                          0.73    5.73   clock network delay (propagated)
-                          0.00    5.73   clock reconvergence pessimism
-                                  5.73 ^ $auto$simplemap.cc:496:simplemap_adff$15442/CLK (sky130_fd_sc_hd__dfstp_2)
-                          0.16    5.89   library recovery time
-                                  5.89   data required time
+                          0.76    5.76   clock network delay (propagated)
+                          0.00    5.76   clock reconvergence pessimism
+                                  5.76 ^ $auto$simplemap.cc:496:simplemap_adff$15442/CLK (sky130_fd_sc_hd__dfstp_2)
+                          0.16    5.91   library recovery time
+                                  5.91   data required time
 -----------------------------------------------------------------------------
-                                  5.89   data required time
-                                 -2.46   data arrival time
+                                  5.91   data required time
+                                 -2.54   data arrival time
 -----------------------------------------------------------------------------
-                                  3.43   slack (MET)
+                                  3.38   slack (MET)
 
 
 Startpoint: PADDR[3] (input port clocked by vclk_APB_CLK)
-Endpoint: $auto$simplemap.cc:496:simplemap_adff$12197
+Endpoint: $auto$simplemap.cc:496:simplemap_adff$12189
           (rising edge-triggered flip-flop clocked by APB_CLK)
 Path Group: APB_CLK
 Path Type: max
@@ -165,41 +164,41 @@ Fanout     Cap    Slew   Delay    Time   Description
      1    0.00    0.00    0.00    1.20 ^ PADDR[3] (in)
                                          PADDR[3] (net)
                   0.00    0.00    1.20 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/A (sky130_fd_sc_hd__buf_2)
-    22    0.15    0.70    0.54    1.74 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/X (sky130_fd_sc_hd__buf_2)
+     8    0.06    0.27    0.25    1.45 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/X (sky130_fd_sc_hd__buf_2)
                                          $abc$23333$new_n980_ (net)
-                  0.70    0.01    1.75 ^ place19/A (sky130_fd_sc_hd__buf_4)
-    32    0.18    0.49    0.56    2.31 ^ place19/X (sky130_fd_sc_hd__buf_4)
+                  0.27    0.00    1.46 ^ place19/A (sky130_fd_sc_hd__buf_4)
+    46    0.26    0.71    0.64    2.10 ^ place19/X (sky130_fd_sc_hd__buf_4)
                                          net19 (net)
-                  0.49    0.02    2.33 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23584/C (sky130_fd_sc_hd__and3b_1)
-    11    0.08    0.72    0.71    3.04 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23584/X (sky130_fd_sc_hd__and3b_1)
+                  0.71    0.02    2.12 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23584/C (sky130_fd_sc_hd__and3b_1)
+    11    0.06    0.57    0.63    2.75 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23584/X (sky130_fd_sc_hd__and3b_1)
                                          $abc$23333$new_n981_ (net)
-                  0.72    0.00    3.04 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23585/SLEEP_B (sky130_fd_sc_hd__lpflow_inputiso0n_1)
-     4    0.02    0.16    0.31    3.34 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23585/X (sky130_fd_sc_hd__lpflow_inputiso0n_1)
+                  0.57    0.00    2.75 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23585/SLEEP_B (sky130_fd_sc_hd__lpflow_inputiso0n_1)
+     4    0.01    0.15    0.29    3.03 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23585/X (sky130_fd_sc_hd__lpflow_inputiso0n_1)
                                          $abc$23333$new_n982_ (net)
-                  0.16    0.00    3.34 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23605/B (sky130_fd_sc_hd__nand2_1)
-     9    0.06    0.43    0.38    3.72 v $abc$23333$auto$blifparse.cc:371:parse_blif$23605/Y (sky130_fd_sc_hd__nand2_1)
-                                         $abc$23333$new_n1002_ (net)
-                  0.43    0.01    3.73 v $abc$23333$auto$blifparse.cc:371:parse_blif$23615/S (sky130_fd_sc_hd__mux2_2)
-     1    0.00    0.05    0.41    4.13 v $abc$23333$auto$blifparse.cc:371:parse_blif$23615/X (sky130_fd_sc_hd__mux2_2)
-                                         $0\\ss[31:0][15] (net)
-                  0.05    0.00    4.13 v $auto$simplemap.cc:496:simplemap_adff$12197/D (sky130_fd_sc_hd__dfrtp_1)
-                                  4.13   data arrival time
+                  0.15    0.00    3.04 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23616/B (sky130_fd_sc_hd__nand2_1)
+     8    0.06    0.39    0.35    3.38 v $abc$23333$auto$blifparse.cc:371:parse_blif$23616/Y (sky130_fd_sc_hd__nand2_1)
+                                         $abc$23333$new_n1013_ (net)
+                  0.39    0.01    3.39 v $abc$23333$auto$blifparse.cc:371:parse_blif$23624/S (sky130_fd_sc_hd__mux2_2)
+     1    0.00    0.05    0.40    3.79 v $abc$23333$auto$blifparse.cc:371:parse_blif$23624/X (sky130_fd_sc_hd__mux2_2)
+                                         $0\\ss[31:0][7] (net)
+                  0.05    0.00    3.79 v $auto$simplemap.cc:496:simplemap_adff$12189/D (sky130_fd_sc_hd__dfrtp_1)
+                                  3.79   data arrival time
 
                           5.00    5.00   clock APB_CLK (rise edge)
                           0.72    5.72   clock network delay (propagated)
                           0.00    5.72   clock reconvergence pessimism
-                                  5.72 ^ $auto$simplemap.cc:496:simplemap_adff$12197/CLK (sky130_fd_sc_hd__dfrtp_1)
-                         -0.10    5.63   library setup time
-                                  5.63   data required time
+                                  5.72 ^ $auto$simplemap.cc:496:simplemap_adff$12189/CLK (sky130_fd_sc_hd__dfrtp_1)
+                         -0.10    5.62   library setup time
+                                  5.62   data required time
 -----------------------------------------------------------------------------
-                                  5.63   data required time
-                                 -4.13   data arrival time
+                                  5.62   data required time
+                                 -3.79   data arrival time
 -----------------------------------------------------------------------------
-                                  1.49   slack (MET)
+                                  1.83   slack (MET)
 
 
-Startpoint: PADDR[3] (input port clocked by vclk_APB_CLK)
-Endpoint: PRDATA[6] (output port clocked by vclk_APB_CLK)
+Startpoint: PADDR[4] (input port clocked by vclk_APB_CLK)
+Endpoint: PRDATA[1] (output port clocked by vclk_APB_CLK)
 Path Group: vclk_APB_CLK
 Path Type: max
 
@@ -208,28 +207,28 @@ Fanout     Cap    Slew   Delay    Time   Description
                   0.00    0.00    0.00   clock vclk_APB_CLK (rise edge)
                           0.20    0.20   clock network delay (ideal)
                           1.00    1.20 ^ input external delay
-     1    0.00    0.00    0.00    1.20 ^ PADDR[3] (in)
-                                         PADDR[3] (net)
-                  0.00    0.00    1.20 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/A (sky130_fd_sc_hd__buf_2)
-    22    0.15    0.70    0.54    1.74 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/X (sky130_fd_sc_hd__buf_2)
-                                         $abc$23333$new_n980_ (net)
-                  0.70    0.01    1.75 ^ place19/A (sky130_fd_sc_hd__buf_4)
-    32    0.18    0.49    0.56    2.31 ^ place19/X (sky130_fd_sc_hd__buf_4)
-                                         net19 (net)
-                  0.49    0.01    2.32 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23670/A (sky130_fd_sc_hd__lpflow_isobufsrc_1)
-     9    0.04    0.81    0.72    3.04 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23670/X (sky130_fd_sc_hd__lpflow_isobufsrc_1)
-                                         $abc$23333$new_n1067_ (net)
-                  0.81    0.00    3.04 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23673/A (sky130_fd_sc_hd__lpflow_inputiso0p_1)
-    10    0.06    0.56    0.59    3.63 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23673/X (sky130_fd_sc_hd__lpflow_inputiso0p_1)
-                                         $abc$23333$new_n1070_ (net)
-                  0.56    0.00    3.63 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23738/A2 (sky130_fd_sc_hd__a221oi_1)
-     1    0.02    0.22    0.31    3.94 v $abc$23333$auto$blifparse.cc:371:parse_blif$23738/Y (sky130_fd_sc_hd__a221oi_1)
-                                         $abc$23333$new_n1135_ (net)
-                  0.22    0.00    3.95 v $abc$23333$auto$blifparse.cc:371:parse_blif$23739/B (sky130_fd_sc_hd__nor2_1)
-     1    0.00    0.08    0.12    4.07 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23739/Y (sky130_fd_sc_hd__nor2_1)
-                                         PRDATA[6] (net)
-                  0.08    0.00    4.07 ^ PRDATA[6] (out)
-                                  4.07   data arrival time
+     2    0.03    0.00    0.00    1.20 ^ PADDR[4] (in)
+                                         PADDR[4] (net)
+                  0.00    0.00    1.20 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23368/A (sky130_fd_sc_hd__buf_2)
+    10    0.06    0.29    0.27    1.47 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23368/X (sky130_fd_sc_hd__buf_2)
+                                         $abc$23333$new_n765_ (net)
+                  0.29    0.00    1.47 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23671/A (sky130_fd_sc_hd__buf_2)
+    10    0.06    0.31    0.37    1.84 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23671/X (sky130_fd_sc_hd__buf_2)
+                                         $abc$23333$new_n1068_ (net)
+                  0.31    0.00    1.84 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23672/A (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
+    10    0.05    0.60    0.51    2.36 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23672/X (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
+                                         $abc$23333$new_n1069_ (net)
+                  0.60    0.00    2.36 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23684/A (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
+    10    0.05    0.55    0.50    2.86 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23684/X (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
+                                         $abc$23333$new_n1081_ (net)
+                  0.55    0.00    2.86 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23688/A (sky130_fd_sc_hd__nand3_1)
+     1    0.00    0.13    0.13    2.98 v $abc$23333$auto$blifparse.cc:371:parse_blif$23688/Y (sky130_fd_sc_hd__nand3_1)
+                                         $abc$23333$new_n1085_ (net)
+                  0.13    0.00    2.98 v $abc$23333$auto$blifparse.cc:371:parse_blif$23696/A2 (sky130_fd_sc_hd__a311oi_1)
+     1    0.02    0.69    0.66    3.64 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23696/Y (sky130_fd_sc_hd__a311oi_1)
+                                         PRDATA[1] (net)
+                  0.69    0.00    3.64 ^ PRDATA[1] (out)
+                                  3.64   data arrival time
 
                   0.00    5.00    5.00   clock vclk_APB_CLK (rise edge)
                           0.20    5.20   clock network delay (ideal)
@@ -238,9 +237,14 @@ Fanout     Cap    Slew   Delay    Time   Description
                                   4.20   data required time
 -----------------------------------------------------------------------------
                                   4.20   data required time
-                                 -4.07   data arrival time
+                                 -3.64   data arrival time
 -----------------------------------------------------------------------------
-                                  0.13   slack (MET)
+                                  0.56   slack (MET)
 
 
-Design area 13036 um^2 64% utilization.
+Design area 13084 um^2 65% utilization.
+[WARNING GUI-0066] Heat map "Estimated Congestion (RUDY)" has not been populated with data.
+[WARNING GUI-0066] Heat map "Routing Congestion" has not been populated with data.
+[WARNING GUI-0066] Heat map "IR Drop" has not been populated with data.
+[WARNING GUI-0066] Heat map "Pin Density" has not been populated with data.
+[WARNING GUI-0066] Heat map "Power Density" has not been populated with data.
