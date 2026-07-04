@@ -89,7 +89,7 @@ Number of nets:           1347
 #macroValidViaAp       = 0
 #macroNoAp             = 0
 [INFO DRT-0166] Complete pin access.
-[INFO DRT-0267] cpu time = 00:00:44, elapsed time = 00:00:44, memory = 238.85 (MB), peak = 238.21 (MB)
+[INFO DRT-0267] cpu time = 00:00:44, elapsed time = 00:00:44, memory = 238.18 (MB), peak = 237.35 (MB)
 [WARNING STA-0450] virtual clock vclk_APB_CLK can not be propagated.
 Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
 ---------------------------------------------------------------------
@@ -98,7 +98,7 @@ Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
 [WARNING RSZ-0104] Net PADDR[0] only has one pin. Check if it is intended to be dangling.
     final |     +0.0% |       0 |       0 |             0 |         0
 ---------------------------------------------------------------------
-[INFO RSZ-0504] Runtime: 0.12s
+[INFO RSZ-0504] Runtime: 0.11s
 [INFO DPL-0006] Core area: 20234.41 um^2, Instances area: 13083.80 um^2, Utilization: 64.7%
 [INFO DPL-0005] Diamond search max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.
 [INFO DPL-1101] Legalizing using diamond search.
@@ -159,7 +159,7 @@ Iteration |   Area    |  Resized |   WNS    | Endpt
     final |     -0.2% |       13 |    0.320 | PRDATA[4]
 ---------------------------------------------------
 [INFO RSZ-0141] Resized 13 instances.
-[INFO RSZ-0507] Runtime: 3.07s
+[INFO RSZ-0507] Runtime: 3.23s
 [INFO GRT-0012] Found 7 antenna violations.
 [INFO GRT-0302] Inserted 12 jumpers for 7 nets.
 [INFO GRT-0012] Found 0 antenna violations.

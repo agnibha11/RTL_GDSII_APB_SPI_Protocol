@@ -2,6 +2,9 @@
 # Project    : RTL to GDS of SPI Protocol
 # Author     : Agnibha Sarkar
 # First modified: 03-07-2026
+# 
+# Changes:
+#  -  Added congestion report after final routing  -  04-07-2026
 ############################################################
 
 # top level design name
@@ -42,7 +45,8 @@ pin_access
 # Global Routing
 global_route \
     -congestion_iterations 50 \
-    -allow_congestion
+    -allow_congestion \
+    -congestion_report_file "$REPORT_DIR/global_route_congestion.rpt"
 # allow congestion produces the best routing solution possible even if some congestions remain
 
 # openSTA now replaces the IDEAL clock with actual clock network
@@ -89,7 +93,6 @@ repair_timing \
 # thus reducing dynamic power, leakage power and cell area without violating timing
 
 global_route -end_incremental
-
 # repair antannea violations
 repair_antennas
 # in Sky130, this is done by inserting jumpers (vias) to reduce antenna ratio = (metal / gate) area
