@@ -115,4 +115,4 @@ write_guides $NETLIST_DIR/spi_top.route_guide
 write_db $NETLIST_DIR/global_route.odb
 write_def $NETLIST_DIR/spi_top_global_route.def
 
-save_image "$REPORT_DIR/global_route.png"
+save_image "$REPORT_DIR/images/global_route.png"

@@ -288,4 +288,4 @@ report_design_area
 write_db $NETLIST_DIR/placement.odb
 write_def $NETLIST_DIR/spi_top_placement.def
 
-save_image "$REPORT_DIR/placement.png"
+save_image "$REPORT_DIR/images/placement.png"
