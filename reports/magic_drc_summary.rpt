@@ -1,0 +1,6 @@
+        MAGIC DRC SUMMARY
+
+Top Cell          : spi_top
+DRC Style         : drc(full)
+Total Violations : 23
+DRC Status       : FAIL

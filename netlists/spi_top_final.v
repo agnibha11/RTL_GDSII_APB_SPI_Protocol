@@ -5623,9 +5623,10 @@ module spi_top (PCLK,
     .Q(\u_clgen.counter[15] ),
     .SET_B(\$abc$23333$auto$rtlil.cc:1969:NotGate$23332 ),
     .CLK(clknet_leaf_5_PCLK));
- sky130_fd_sc_hd__diode_2 ANTENNA_1 (.DIODE(PWDATA[6]));
+ sky130_fd_sc_hd__diode_2 ANTENNA_1 (.DIODE(PCLK));
  sky130_fd_sc_hd__diode_2 ANTENNA_2 (.DIODE(PWDATA[6]));
  sky130_fd_sc_hd__diode_2 ANTENNA_3 (.DIODE(PWDATA[6]));
+ sky130_fd_sc_hd__diode_2 ANTENNA_4 (.DIODE(PWDATA[6]));
  sky130_fd_sc_hd__fill_8 FILL0_0 ();
  sky130_fd_sc_hd__fill_2 FILL0_105 ();
  sky130_fd_sc_hd__fill_1 FILL0_107 ();
@@ -6141,11 +6142,10 @@ module spi_top (PCLK,
  sky130_fd_sc_hd__fill_1 FILL23_0 ();
  sky130_fd_sc_hd__fill_4 FILL23_112 ();
  sky130_fd_sc_hd__fill_1 FILL23_116 ();
- sky130_fd_sc_hd__fill_8 FILL23_134 ();
- sky130_fd_sc_hd__fill_4 FILL23_142 ();
- sky130_fd_sc_hd__fill_2 FILL23_146 ();
- sky130_fd_sc_hd__fill_8 FILL23_151 ();
- sky130_fd_sc_hd__fill_2 FILL23_159 ();
+ sky130_fd_sc_hd__fill_4 FILL23_134 ();
+ sky130_fd_sc_hd__fill_2 FILL23_138 ();
+ sky130_fd_sc_hd__fill_8 FILL23_152 ();
+ sky130_fd_sc_hd__fill_1 FILL23_160 ();
  sky130_fd_sc_hd__fill_4 FILL23_173 ();
  sky130_fd_sc_hd__fill_4 FILL23_181 ();
  sky130_fd_sc_hd__fill_1 FILL23_198 ();
@@ -6169,6 +6169,9 @@ module spi_top (PCLK,
  sky130_fd_sc_hd__fill_8 FILL23_61 ();
  sky130_fd_sc_hd__fill_1 FILL24_0 ();
  sky130_fd_sc_hd__fill_1 FILL24_133 ();
+ sky130_fd_sc_hd__fill_2 FILL24_140 ();
+ sky130_fd_sc_hd__fill_1 FILL24_142 ();
+ sky130_fd_sc_hd__fill_4 FILL24_145 ();
  sky130_fd_sc_hd__fill_1 FILL24_149 ();
  sky130_fd_sc_hd__fill_2 FILL24_151 ();
  sky130_fd_sc_hd__fill_4 FILL24_205 ();
@@ -6446,8 +6449,6 @@ module spi_top (PCLK,
  sky130_fd_sc_hd__fill_2 FILL32_187 ();
  sky130_fd_sc_hd__fill_1 FILL32_189 ();
  sky130_fd_sc_hd__fill_4 FILL32_218 ();
- sky130_fd_sc_hd__fill_2 FILL32_225 ();
- sky130_fd_sc_hd__fill_1 FILL32_227 ();
  sky130_fd_sc_hd__fill_8 FILL32_234 ();
  sky130_fd_sc_hd__fill_4 FILL32_24 ();
  sky130_fd_sc_hd__fill_4 FILL32_242 ();
@@ -6733,8 +6734,7 @@ module spi_top (PCLK,
  sky130_fd_sc_hd__fill_8 FILL40_164 ();
  sky130_fd_sc_hd__fill_2 FILL40_175 ();
  sky130_fd_sc_hd__fill_1 FILL40_177 ();
- sky130_fd_sc_hd__fill_4 FILL40_184 ();
- sky130_fd_sc_hd__fill_2 FILL40_188 ();
+ sky130_fd_sc_hd__fill_8 FILL40_182 ();
  sky130_fd_sc_hd__fill_1 FILL40_190 ();
  sky130_fd_sc_hd__fill_8 FILL40_20 ();
  sky130_fd_sc_hd__fill_8 FILL40_200 ();
@@ -7705,7 +7705,7 @@ module spi_top (PCLK,
  sky130_fd_sc_hd__clkinv_4 clkload9 (.A(clknet_leaf_24_PCLK));
  sky130_fd_sc_hd__buf_1 place10 (.A(\$abc$23333$new_n1528_ ),
     .X(net10));
- sky130_fd_sc_hd__buf_4 place11 (.A(\$abc$23333$new_n1593_ ),
+ sky130_fd_sc_hd__buf_2 place11 (.A(\$abc$23333$new_n1593_ ),
     .X(net11));
  sky130_fd_sc_hd__buf_1 place12 (.A(\$abc$23333$new_n1447_ ),
     .X(net12));
@@ -7717,7 +7717,7 @@ module spi_top (PCLK,
     .X(net15));
  sky130_fd_sc_hd__buf_4 place16 (.A(\$abc$23333$new_n1044_ ),
     .X(net16));
- sky130_fd_sc_hd__buf_1 place17 (.A(\$abc$23333$new_n1022_ ),
+ sky130_fd_sc_hd__buf_4 place17 (.A(\$abc$23333$new_n1022_ ),
     .X(net17));
  sky130_fd_sc_hd__buf_1 place18 (.A(\u_shift.t_progress ),
     .X(net18));

@@ -2,6 +2,8 @@
 # Project       : RTL to GDS of SPI Protocol
 # Author        : Agnibha Sarkar
 # First modified: 04-07-2026
+# Changes
+# - Switched to Magic for GDS generation to resolve DRVs  -  06-07-2026
 ############################################################
 
 # top level design name
@@ -13,11 +15,9 @@ set REPORT_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/reports"
 set NETLIST_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/netlists"
 set CONSTRAINTS_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/constraints"
 set SCRIPT_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/scripts"
-
-# KLayout files
-set KLAYOUT_SCRIPT "$openROAD/flow/util/def2stream.py"
-
-set KLAYOUT_TECH "$openROAD/flow/platforms/sky130hd/sky130hd.lyt"
+set TECH_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd.tlef"
+set SC_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef"
+set env(PDK_ROOT) "/media/agnibha/One/PDK/share/pdk"
 
 # Standard-cell GDS library
 set STD_CELL_GDS "$openROAD/flow/platforms/sky130hd/gds/sky130_fd_sc_hd.gds"
@@ -62,27 +62,69 @@ write_def \
 
 write_verilog $NETLIST_DIR/spi_top_final.v
 
-puts "GENERATING FINAL GDSII"
+puts "GENERATING FINAL GDSII USING MAGIC..."
 
-set KLAYOUT_CMD "/usr/bin/klayout"
+# 1. Define the absolute path to your Magic tech file
+set MAGIC_TECH_FILE "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/magic/sky130A.tech"
 
-set cmd [list \
-    $KLAYOUT_CMD \
-    -zz \
-    -rd "tech_file=$KLAYOUT_TECH" \
-    -rd "layer_map=" \
-    -rd "in_def=$NETLIST_DIR/spi_final.def" \
-    -rd "design_name=$DESIGN_NAME" \
-    -rd "in_files=$STD_CELL_GDS" \
-    -rd "seal_file=" \
-    -rd "out_file=$GDS_FILE" \
-    -rm $KLAYOUT_SCRIPT]
-
-
-set result [exec {*}$cmd]
-
-if {![file exists $GDS_FILE]} {
-    error "GDS generation failed."
+# Verify the tech file actually exists before running to avoid silent failures
+if {![file exists $MAGIC_TECH_FILE]} {
+    error "Critical Error: Magic tech file not found at $MAGIC_TECH_FILE"
 }
 
-puts "FINAL GDS GENERATED SUCCESSFULLY"
+set TECH_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd.tlef"
+set SC_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef"
+
+puts "GENERATING FINAL GDSII USING MAGIC..."
+
+# Create a temporary Magic script for stream-out
+set MAGIC_STREAMOUT_SCRIPT "$SCRIPT_DIR/magic_streamout.tcl"
+set magic_fd [open $MAGIC_STREAMOUT_SCRIPT w]
+
+# 1. Optimize Magic settings for stream-out (prevent scaling issues)
+puts $magic_fd "drc off"
+puts $magic_fd "gds readonly true"
+puts $magic_fd "gds rescale false"
+
+# 2. CRITICAL: Read the standard cell GDS *before* the DEF
+puts $magic_fd "gds read $STD_CELL_GDS"
+
+# 3. Read technology and macro LEFs
+puts $magic_fd "lef read $TECH_LEF"
+puts $magic_fd "lef read $SC_LEF"
+
+# 4. Read the DEF to place the cells and draw the routing
+puts $magic_fd "def read $NETLIST_DIR/spi_final.def"
+
+# 5. Load the top level cell
+puts $magic_fd "load $DESIGN_NAME"
+
+# 6. Write the final layout to GDS and forcefully quit
+puts $magic_fd "gds write $GDS_FILE"
+puts $magic_fd "quit -noprompt"
+close $magic_fd
+
+# 1. Define the absolute path to your Magic tech file
+set MAGIC_TECH_FILE "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/magic/sky130A.tech"
+
+# Verify the tech file actually exists before running to avoid silent failures
+if {![file exists $MAGIC_TECH_FILE]} {
+    error "Critical Error: Magic tech file not found at $MAGIC_TECH_FILE"
+}
+
+puts "Running Magic in the background. This might take a minute..."
+
+# 2. Update the exec command to point to the absolute path of the tech file
+set magic_status [catch {exec magic -dnull -noconsole -T $MAGIC_TECH_FILE < $MAGIC_STREAMOUT_SCRIPT} magic_output]
+
+# Print Magic's log directly to your terminal so you can see what it actually did
+puts "--- MAGIC CONSOLE OUTPUT ---"
+puts $magic_output
+puts "----------------------------"
+
+# Real verification check: Ensure the GDS exists and is NOT empty
+if {![file exists $GDS_FILE] || [file size $GDS_FILE] == 0} {
+    error "GDS generation failed! The output file is empty or missing."
+}
+
+puts "FINAL GDS GENERATED SUCCESSFULLY: $GDS_FILE ([file size $GDS_FILE] bytes)"

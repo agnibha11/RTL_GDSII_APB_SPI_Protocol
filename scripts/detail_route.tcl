@@ -2,6 +2,8 @@
 # Project       : RTL to GDS of SPI Protocol
 # Author        : Agnibha Sarkar
 # First modified: 04-07-2026
+# Changes
+#  -  Restrict signal routing to met1-met5, and clock routing to met3-met5  -  06-07-2026
 ############################################################
 
 # top level design name
@@ -39,6 +41,9 @@ source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
 # After CTS, the clock tree is physically built, so it has timings
 set_propagated_clock [all_clocks]
 
+# Restrict signal routing to met1-met5, and clock routing to met3-met5
+set_routing_layers -signal met1-met5 -clock met3-met5
+
 # Detailed routing
 detailed_route \
     -output_drc "$REPORT_DIR/detail_route_drc.rpt" \
@@ -54,6 +59,9 @@ detailed_route \
 # repair antenna violations
 if { [repair_antennas] } {
     puts "RE-RUN Detailed Routing after Antenna Repair"
+
+    # Restrict signal routing to met1-met5, and clock routing to met3-met5
+    set_routing_layers -signal met1-met5 -clock met3-met5
 
     detailed_route \
         -output_drc "$REPORT_DIR/detail_route_drc.rpt" \

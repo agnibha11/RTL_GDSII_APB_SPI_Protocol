@@ -142,8 +142,8 @@ add_pdn_stripe \
     -grid {grid} \
     -layer {met4} \
     -width {1.6} \
-    -pitch {27.14} \
-    -offset {13.57}
+    -pitch {27.20} \
+    -offset {13.60}
 # the offset is the starting point from the core boundary
 
 # create Metal5 Power Straps
@@ -154,15 +154,18 @@ add_pdn_stripe \
     -pitch {27.20} \
     -offset {13.60}
 
-# connect Metal1 rails to Metal4 straps using vias
+# met1 -> met4 needs the full stack: via1 (M1M2) + via2 (M2M3) + via3 (M3M4)
 add_pdn_connect \
     -grid {grid} \
-    -layers {met1 met4}
+    -layers {met1 met4} \
+    -fixed_vias {M1M2_PR M2M3_PR M3M4_PR}
 
-# connect Metal4 straps to Metal5 straps using vias
+# met4 -> met5
 add_pdn_connect \
     -grid {grid} \
-    -layers {met4 met5}
+    -layers {met4 met5} \
+    -fixed_vias {M4M5_PR}
+
 
 # generate the PDN
 pdngen

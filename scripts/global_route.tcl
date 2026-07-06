@@ -5,6 +5,7 @@
 # 
 # Changes:
 #  -  Added congestion report after final routing  -  04-07-2026
+#  -  Restrict signal routing to met1-met5, and clock routing to met3-met5  -  06-07-2026
 ############################################################
 
 # top level design name
@@ -41,6 +42,9 @@ source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
 
 # Check standard cell pin accessibility before routing
 pin_access
+
+# Restrict signal routing to met1-met5, and clock routing to met3-met5
+set_routing_layers -signal met1-met5 -clock met3-met5
 
 # Global Routing
 global_route \
