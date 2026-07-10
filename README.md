@@ -182,7 +182,7 @@ To ensure the SPI protocol logic is highly routable and free of localized anomal
 
 Following standard cell placement, Clock Tree Synthesis (CTS) is performed to distribute the system clock signal (`PCLK`) evenly across all sequential components in the design. The primary objective of this physical design phase is to minimize clock skew (arrival time differences between flip-flops) and insertion delay, while maintaining balanced transition times (slew) across the entire clock distribution network.
 
-![Clock Tree Structure and Buffer Distribution](reports/images/png)
+![Clock Tree Structure and Buffer Distribution](reports/images/cts.png)
 
 ### Clock Tree Synthesis Specifications & Configuration
 The clock tree is synthesized by constructing an H-Tree topology using OpenROAD's TritonCTS engine. This balanced geometric topology ensures that the path lengths from the clock root to all sequential sinks are as uniform as possible, structurally limiting skew before electrical tuning. 
@@ -193,7 +193,7 @@ To optimize power and wirelength, **Sink Clustering** was explicitly enabled. Th
 | :--- | :--- | :--- |
 | **Clock Net / Domain** | `PCLK` / `APB_CLK` | The global system clock net targeted for synthesis. |
 | **Total Clock Sinks** | `229` | The total number of flip-flop clock pins driven by the synthesized network. |
-| **Network Topology** | `H-Tree` | Geometric balancing strategy used to equalize latency across branches. |
+| **Network Topology** | `X-Tree` | Geometric balancing strategy used to equalize latency across branches. |
 | **Selected Clock Buffer** | `sky130_fd_sc_hd__clkbuf_4` | A balanced-drive strength clock buffer used exclusively for root, sink, and intermediate branching to maintain uniform delay characteristics. |
 | **Sink Clustering Strategy** | `Size: 20` / `Diameter: 50 um` | Spatial boundary constraint for grouping sinks to minimize local wire lengths, lowering both clock power and dynamic skew. |
 | **Post-CTS Design Area** | `13084 um^2` | Total active area strictly consumed by logic cells plus the newly inserted clock buffers. |
