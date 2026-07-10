@@ -4,7 +4,7 @@
 ![Tools](https://img.shields.io/badge/Tools-Yosys%20%7C%20OpenROAD-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-This repository details the complete RTL-to-GDSII physical design implementation of a configurable **Serial Peripheral Interface (SPI) Master** fully compliant with **AMBA APB4 protocol**. The design is implemented using the open-source SkyWater 130nm HD standard cell library, synthesized with Yosys, and physical design executed via the OpenROAD toolchain. The design supports single-frame transactions up to 128 bits, multiple slave select lines (32), and efficient APB4 register access.
+This repository details the complete RTL-to-GDSII physical design implementation of a configurable **Serial Peripheral Interface (SPI) Master** fully compliant with **AMBA APB4 protocol**. The design is implemented using the open-source SkyWater 130nm HD standard cell library, synthesized with Yosys, and physical design executed via the OpenROAD toolchain. The design supports single-frame transactions up to 128 bits, multiple slave select lines (32), and APB4 register access.
 
 ---
 
