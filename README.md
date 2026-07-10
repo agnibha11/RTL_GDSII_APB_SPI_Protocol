@@ -185,24 +185,33 @@ To ensure the SPI protocol logic is highly routable and free of localized anomal
 
 ## Clock Tree Synthesis (CTS)
 
-Following standard cell placement, Clock Tree Synthesis (CTS) is performed to distribute the system clock signal (`PCLK`) evenly across all sequential components in the design. The primary objective of this phase is to minimize clock skew and insertion delay while maintaining balanced transition times across the entire clock distribution network.
+Following standard cell placement, Clock Tree Synthesis (CTS) is performed to distribute the system clock signal (`PCLK`) evenly across all sequential components in the design. The primary objective of this physical design phase is to minimize clock skew (arrival time differences between flip-flops) and insertion delay, while maintaining balanced transition times (slew) across the entire clock distribution network.
 
 ![Clock Tree Structure and Buffer Distribution](reports/images/cts.png)
 
 ### Clock Tree Synthesis Specifications & Configuration
-The clock tree is synthesized by constructing an H-Tree topology using TritonCTS. This balanced geometric topology ensures that the path lengths from the clock root to all sequential sinks are as uniform as possible, structurally limiting skew.
+The clock tree is synthesized by constructing an H-Tree topology using OpenROAD's TritonCTS engine. This balanced geometric topology ensures that the path lengths from the clock root to all sequential sinks are as uniform as possible, structurally limiting skew before electrical tuning. 
+
+To optimize power and wirelength, **Sink Clustering** was explicitly enabled. This technique groups spatially proximate flip-flops (up to 20 sinks within a 50 um diameter) to be driven by a common localized buffer, significantly reducing the overall clock routing capacitance.
 
 | Parameter | Achieved Value | Description |
 | :--- | :--- | :--- |
-| **Clock Net Optimized** | `PCLK` | The global system clock net targeted for synthesis. |
+| **Clock Net / Domain** | `PCLK` / `APB_CLK` | The global system clock net targeted for synthesis. |
 | **Total Clock Sinks** | `229` | The total number of flip-flop clock pins driven by the synthesized network. |
 | **Network Topology** | `H-Tree` | Geometric balancing strategy used to equalize latency across branches. |
 | **Selected Clock Buffer** | `sky130_fd_sc_hd__clkbuf_4` | A balanced-drive strength clock buffer used exclusively for root, sink, and intermediate branching to maintain uniform delay characteristics. |
-| **Sink Clustering Size** | `20` | Maximum number of sequential sinks grouped into a local cluster driven by a single terminal buffer. |
-| **Max Cluster Diameter** | `50 um` | Spatial boundary constraint for grouping sinks to minimize local wire lengths and degradation of clock edges. |
-| **Post-CTS Design Area** | **`13084 um^2`** | Total active area after physical insertion of clock buffers and inverters. |
-| **Post-CTS Utilization** | **`65%`** | Final cell density resulting from network insertion, aligning exactly with the pre-allocated physical design targets. |
-| **Worst-Case Slack Margin** | **`+0.56 ns`** | Timing validation confirms all setup requirements are satisfied with a positive margin. |
+| **Sink Clustering Strategy** | `Size: 20` / `Diameter: 50 um` | Spatial boundary constraint for grouping sinks to minimize local wire lengths, lowering both clock power and dynamic skew. |
+| **Post-CTS Design Area** | `13084 um^2` | Total active area strictly consumed by logic cells plus the newly inserted clock buffers. |
+| **Post-CTS Utilization** | `65.0%` | Final cell density resulting from network insertion, reflecting a nominal ~3% area bump from the pre-CTS placement density (62.1%). |
+| **Timing Slack (WNS)** | `+0.56 ns` (MET) | Timing validation confirms all setup requirements are satisfied with a positive margin based on a 4.20 ns required / 3.64 ns arrival timeline. |
+
+### Network Optimization and Legalization Workflow
+The integration of the clock tree is not a single-step process; it follows a rigorous automated optimization loop defined in the configuration script to guarantee physical and electrical correctness:
+
+1. **Clock Inverter Optimization (`repair_clock_inverters`):** Redundant or back-to-back inverter chains present in the synthesized netlist are detected and removed to decrease unnecessary baseline latency and dynamic switching overhead.
+2. **CTS & Parasitic Extraction:** Following H-Tree synthesis and clustering, interconnect RC parasitics are estimated (`estimate_parasitics -placement`) to provide real-time latency and skew projections based on the updated cell layout.
+3. **Physical Legalization:** Newly inserted clock network buffers are floating. They are snapped onto standard cell site rows using detailed placement (`detailed_placement`), resolving physical overlaps while minimizing the displacement of nearby logic blocks.
+4. **Timing Repair (`repair_timing`):** The design undergoes automated timing repair to resolve any setup, hold, or slew violations introduced by the realistic clock network delays. The engine strictly matches structural footprints (`-match_cell_footprint`) during buffer resizing to prevent cascading layout disruptions.
 
 ### Post-CTS Spatial & Congestion Analysis
 To validate that the addition of the clock distribution network did not introduce localized routing blockages, cell crowding, or dynamic power issues, structural heatmaps are evaluated across the synchronized core grid:
@@ -210,14 +219,7 @@ To validate that the addition of the clock distribution network did not introduc
 | Routing Congestion | Pin Density | Power Density |
 | :---: | :---: | :---: |
 | ![CTS Congestion Heatmap](reports/images/heatmap_estimate_congestion_cts.png) | ![CTS Pin Density Heatmap](reports/images/heatmap_pin_density_cts.png) | ![CTS Power Density Heatmap](reports/images/heatmap_power_density_cts.png) |
-| **Post-CTS Routing Congestion:** Tracks localized track usage. The H-tree buffer distribution avoids routing bottlenecks, preserving standard cell routing channels for the subsequent global routing phase. | **Post-CTS Pin Density:** Maps the physical concentration of cell pins. The tool balances cell displacement during buffer placement, keeping localized pin availability well below routing failure thresholds. | **Post-CTS Power Density:** Illustrates the active power profile across the clock distribution network. Distributing the clock buffers symmetrically prevents concentrated current spikes along the primary supply grid. |
-
-### Network Optimization and Legalization Workflow
-The integration of the clock tree follows an automated optimization loop to guarantee physical and electrical correctness:
-1. **Clock Inverter Optimization:** Redundant or back-to-back inverter configurations are detected and removed early in the flow to decrease latency and dynamic switching overhead.
-2. **Parasitic Extraction Estimations:** Interconnect RC parasitics are computed after initial tree synthesis to provide real-time latency and skew projections based on the active cell layout.
-3. **Physical Legalization:** Newly inserted clock network elements are snapped onto standard cell site rows using detailed placement, resolving cell overlaps while minimizing displacement of nearby logic blocks.
-4. **Hold and Setup Time Correction:** The design undergoes automated timing repair steps to resolve any setup or hold time violations introduced by the newly inserted clock delays, matching structural footprints to maintain layout integrity.
+| **Post-CTS Routing Congestion (RUDY):** Tracks localized routing track usage. The symmetric buffer distribution and clustering successfully avoid routing bottlenecks, preserving standard cell routing channels for the global router. | **Post-CTS Pin Density:** Maps the physical concentration of cell pins. The detailed placement engine successfully absorbed the new clock buffers without exceeding localized pin availability thresholds. | **Post-CTS Power Density:** Illustrates the active power profile. Grouping sinks and distributing clock buffers symmetrically prevents concentrated current spikes along the primary VDD/VSS supply grid. |
 
 ## Global Routing & Design Optimization
 
