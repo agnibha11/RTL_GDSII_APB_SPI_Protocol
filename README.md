@@ -106,7 +106,7 @@ The physical design phase initiates with floorplanning, establishing the die dim
 ### Floorplan Specifications & Achieved Metrics
 The core dimensions and placement grid were initialized using OpenROAD to accommodate the synthesized netlist while reserving adequate routing resources.
 
-| Parameter | Configured Value | Industry Rationale |
+| Parameter | Configured Value | Description |
 | :--- | :--- | :--- |
 | **Aspect Ratio** | `1.0` (Square) | Ensures symmetric signal propagation and equalizes average wirelengths across the X and Y axes. |
 | **Target Utilization** | `65%` | A 65% density target provides a 35% whitespace buffer. This is critical in the 130nm node to absorb cell swelling during Clock Tree Synthesis (CTS) and mitigate congestion during detailed routing. |
@@ -147,7 +147,7 @@ Before placing the internal standard cells, the top-level input/output pins (suc
 ### Placement Quality & Achieved Metrics
 The detailed placement successfully legalized all instances using a diamond search algorithm, ensuring zero standard cell overlaps and minimizing displacement from their ideal global placement locations. 
 
-| Placement Metric | Achieved Value | Industry Context |
+| Placement Metric | Achieved Value | Description |
 | :--- | :--- | :--- |
 | **Total Standard Cells** | `1266` | The total count of logic gates, flip-flops, and tap cells physically mapped to the core. |
 | **Instance Area** | `12568.30 um^2` | The total silicon area strictly consumed by the standard cells. |
