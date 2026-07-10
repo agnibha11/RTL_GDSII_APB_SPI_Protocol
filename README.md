@@ -4,13 +4,13 @@
 ![Tools](https://img.shields.io/badge/Tools-Yosys%20%7C%20OpenROAD-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-This repository details the complete RTL-to-GDSII physical design implementation of a highly configurable **Serial Peripheral Interface (SPI) Master IP** fully compliant with **AMBA APB4 protocol**. The design is implemented using the open-source SkyWater 130nm HD standard cell library, synthesized with Yosys, and physical design executed via the OpenROAD application. The IP supports single-frame transactions up to 128 bits, multiple slave select lines (32), and efficient APB4 register access.
+This repository details the complete RTL-to-GDSII physical design implementation of a configurable **Serial Peripheral Interface (SPI) Master** fully compliant with **AMBA APB4 protocol**. The design is implemented using the open-source SkyWater 130nm HD standard cell library, synthesized with Yosys, and physical design executed via the OpenROAD toolchain. The design supports single-frame transactions up to 128 bits, multiple slave select lines (32), and efficient APB4 register access.
 
 ---
 
 ## 📁 RTL Architecture & Hardware Specifications
 
-The design logic is partitioned into clean, structural modules providing high performance, reconfigurability, and reliable synchronization. The entire hardware core runs on a single primary system clock (`PCLK`), with no secondary hardware clocks generated. Clock Domain Crossing (CDC) vulnerabilities are mitigated by generating synchronous strobe pulses for shift register operations.
+The entire hardware core runs on a single primary system clock (`PCLK`), with no secondary hardware clocks generated. Clock Domain Crossing (CDC) vulnerabilities are mitigated by generating synchronous strobe pulses for shift register operations.
 
 ### 📐 System Block Diagram
 The complete register-transfer level (RTL) architecture including the APB4 controller interface, internal control registers, clock divider, and 128-bit shift registers is illustrated in the complex schematic view below:
@@ -39,21 +39,21 @@ The top-level module (`spi_top`) implements a native APB4 slave wrapper. Registe
 | `miso_pad_i`| Input | 1-bit | SPI | Master In Slave Out data line. |
 | `spi_int_o` | Output | 1-bit | Interrupt | High-active transaction complete interrupt. |
 
-### ⏱️ Clock Generation & CDC Mitigation Strategy
+### ⏱️ Clock Generation & CDC Mitigation
 Reliable operation and complete avoidance of Clock Domain Crossing (CDC) issues are achieved by strictly generating synchronous *strobes* rather than distinct clocks for internal logic. All flip-flops drive exclusively off `PCLK`. The `clk_gen` module monitors an internal counter tracking against the 16-bit `divider` register value to assert single-cycle pulses (`pos_edge` and `neg_edge`).
 
 * **SPI Clock Generation:** The SPI Serial Clock output (`sclk_pad_o`) frequency $f_{\text{SCLK}}$ is derived from the main system clock $f_{\text{PCLK}}$ using the formula:
     $$f_{\text{SCLK}} = \frac{f_{\text{PCLK}}}{2 \times (\text{divider} + 1)}$$
 * **Safe Sampling & Launching:** outbound `mosi_pad_o` data bits are launched exclusively on the `neg_edge` strobe. Inbound `miso_pad_i` data bits are sampled exclusively on the `pos_edge` strobe.
 
-### 🏎️ 128-bit Datapath & Shifter Implementation
+### 🏎️ 128-bit Datapath & Shifter
 The core provides robust transaction support up to 128 bits per frame. Host CPU access is limited to 32-bit registers (TX_0-TX_3 and RX_0-RX_3). The `shifter.v` module implements complex logic to aggregate or distribute data between the standard APB interface and the wide internal shift registers.
 
-* **Multi-Driver Prevention:** A critical design requirement, verified during RTL coding, is the prevention of multi-driver scenarios where internal signals are driven from multiple `always` blocks. Inside `shifter.v`, all assignment logic for a given counter, shift register, or control bit is meticulously constrained within a **single synchronous procedural block**. This ensures that Yosys does not infer conflicting logic or bus contention during synthesis.
+* **Multi-Driver Prevention:** A critical design requirement, verified during RTL coding, is the prevention of multi-driver scenarios where internal signals are driven from multiple `always` blocks. Inside `shifter.v`, all assignment logic for a given counter, shift register, or control bit is constrained within a **single synchronous procedural block**. This ensures that Yosys does not infer conflicting logic or multiple drive for a single net during synthesis.
 * **Variable Bit Length support:** The configuration register CHAR_LEN (Bits 11:4 of SPI_CTRL) dynamically sets the exact number of bits per transaction, from 1 up to 128 bits. The datapath uses `PSTRB` byte lanes to enable specific 32-bit latches, allowing efficient partial word writes for smaller transfers.
 
-### 🔄 Transaction Lifecycle Management
-The transaction lifecycle is tightly controlled by handshakes between the register file and the shifter logic, primarily using `go`, `t_progress`, and `last_bit` signals.
+### 🔄 Transaction Lifecycle 
+The transaction lifecycle is tightly controlled by handshakes between the register file and the shifter logic, using `go`, `t_progress`, and `last_bit` signals.
 
 1.  **Initiation:** The host CPU pre-loads TX registers and sets the `GO` command flag (SPI_CTRL Bit 12).
 2.  **Execution:** The control logic asserts `t_progress` and latches CHAR_LEN into the decrement counter (`counter <= len`). The core automatically pre-loads the first bit onto `mosi_pad_o` with zero latency.
@@ -61,7 +61,7 @@ The transaction lifecycle is tightly controlled by handshakes between the regist
 4.  **Completion:** When the counter reaches zero (`last_bit` goes high), the core waits for the final trailing `neg_edge`, then de-asserts `t_progress`. It automatically clears the `GO` bit and fires the external `spi_int_o` high to alert the CPU.
 
 ### 🎛️ Control Register Mapping (`SPI_CTRL`)
-The 16-bit wide primary configuration register (at address offset `0x10`) is mapped as follows:
+The 16-bit wide primary configuration register in the top level module (at address offset `0x10`) is mapped as follows:
 
 | Bit Index | Field Flag | Reset | Functional Property |
 | :--- | :--- | :--- | :--- |
