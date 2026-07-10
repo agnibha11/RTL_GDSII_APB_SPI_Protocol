@@ -145,32 +145,43 @@ To connect this hierarchical grid seamlessly, custom via stacks are instantiated
 
 ## Standard Cell Placement & I/O Pin Assignment
 
-Following floorplanning and PDN synthesis, the standard cells synthesized by Yosys are physically placed onto the site rows of the core area. The placement phase is executed in two primary steps: Global Placement, which focuses on minimizing the total wirelength and preventing excessive routing congestion, followed by Detailed Placement, which legalizes the cells onto the actual placement grid to prevent overlaps.
+Following floorplanning and PDN synthesis, the standard cells synthesized by Yosys are physically placed onto the site rows of the core area. The placement phase is executed in a highly constrained, multi-stage process balancing two fundamentally conflicting physical design goals: **Timing Optimization** (which pulls communicating cells closer together to minimize interconnect delay) and **Routability/Congestion Optimization** (which spreads cells apart to prevent routing chokepoints and lower localized density).
 
 ![Detailed Standard Cell Placement](reports/images/placement.png)
 
 ### I/O Pin Placement Strategy
-Before placing the internal standard cells, the top-level input/output pins (such as the APB4 bus signals and SPI output pads) are strategically placed along the core boundaries. Pins are grouped by bus functionality (e.g., grouping `PWDATA` bits and `ss_pad_o` bits) and are primarily assigned to routing layers **Metal 2 (`met2`)** and **Metal 3 (`met3`)**. This layer selection keeps the outer boundary connections off the base metal layer, allowing standard cells to be placed closer to the boundary without DRC violations, while preserving upper metal layers for power and global routing.
+Before internal standard cells can be placed, the top-level I/O pins must be anchored to the core boundaries. As logged during the physical design initialization, pins are strategically grouped by functional bus to minimize wire crossings:
+* **Control & Clock Groups:** `[ PCLK PRESETn ]`
+* **SPI Interface Bundles:** Multi-bit buses are grouped sequentially (e.g., `[ ss_pad_o[31] ... ss_pad_o[28] ]`) to ensure ordered routing tracks.
+* **Layer Constraints:** Pins are explicitly constrained to intermediate routing layers **Metal 2 (met2)** and **Metal 3 (met3)**. This approach keeps dense boundary connections off the base metal layer (`met1`), allowing logic cells to be placed closer to the die edge without inducing Design Rule Check (DRC) violations, while reserving the thicker upper metals strictly for the PDN and global routing.
+
+### Global & Detailed Placement Workflow
+The core placement engine relies on OpenROAD to iteratively solve the physical layout:
+
+1. **Global Placement:** The engine performs a coarse, analytical placement using `-timing_driven` and `-routability_driven` algorithms. It evaluates initial RC parasitic estimates to keep critical APB-to-SPI timing paths short, while simultaneously spreading high-pin-count logic to respect a localized density target of **60%**.
+2. **Design Repair & HFNS:** A critical optimization pass (`repair_design`) resolves early electrical violations. High Fanout Nets (HFNS) are buffered, and gates are resized to fix maximum slew (transition time) and maximum capacitance limits introduced by the estimated wire lengths.
+3. **Detailed Placement (Legalization):** The floating instances from global placement are "snapped" to the nearest legal site rows. The engine utilizes a **diamond search algorithm** constrained to a maximum displacement of **+/- 500 sites horizontally and +/- 100 rows vertically** to resolve any overlapping instances without destroying the optimized global topology.
 
 ### Placement Quality & Achieved Metrics
-The detailed placement successfully legalized all instances using a diamond search algorithm, ensuring zero standard cell overlaps and minimizing displacement from their ideal global placement locations. 
+The detailed placement successfully legalized all standard cells with absolute precision. The log analysis confirms a **100.00% Diamond Move Success** rate (1,266/1,266 cells) requiring zero rip-up and replace fallbacks. Furthermore, the maximum, average, and total structural displacement measured exactly **0.0 um**, resulting in a **0% Delta HPWL** between global and detailed placement phases.
 
 | Placement Metric | Achieved Value | Description |
 | :--- | :--- | :--- |
-| **Total Standard Cells** | `1266` | The total count of logic gates, flip-flops, and tap cells physically mapped to the core. |
-| **Instance Area** | `12568.30 um^2` | The total silicon area strictly consumed by the standard cells. |
-| **Effective Utilization** | `62.1%` | The active density remains stable, leaving sufficient whitespace for clock tree buffers and routing detours. |
-| **Total HPWL** | `32905.3 um` | Half-Perimeter Wirelength. A critical metric indicating the estimated total routing length; lower values correspond to lower dynamic power and better timing. |
-| **Placement Legality** | `100% Success` | Zero placement failures or overlapping cells reported after detailed placement. |
-| **Timing (WNS / TNS)** | `0.00 ns` / `0.00 ns` | Worst Negative Slack and Total Negative Slack are clean at this stage, indicating no early setup/hold violations based on estimated wire delays. |
+| **Total Standard Cells** | `1266` | The complete structural netlist count (logic gates, flip-flops, and tap cells). |
+| **Instances Area** | `12568.30 um^2` | Total silicon footprint strictly consumed by placed standard cells. |
+| **Core Area** | `20234.41 um^2` | The total available placement grid area within the core boundaries. |
+| **Effective Utilization** | `62.1%` | Active logic density. Leaving roughly 38% whitespace is crucial to absorb clock tree buffers during CTS and to allow routing detours in detailed routing. |
+| **Total HPWL** | `32905.3 um` | Half-Perimeter Wirelength. A foundational metric indicating total estimated routing length. The tool successfully minimized this without causing congestion. |
+| **Placement Legality** | `100% Success` | Zero physical Design Rule Violations (overlaps) or placement failures reported post-legalization. |
+| **Timing (WNS / TNS)** | `0.00 ns` / `0.00 ns` | Worst Negative Slack and Total Negative Slack are clean based on placement-stage RC estimations, indicating no immediate setup/hold violations. |
 
 ### Congestion & Density Analysis
-To ensure the design is highly routable and free of localized thermal or congestion hotspots, several spatial density evaluations are performed across the core. The heatmaps below illustrate the distribution of these critical parameters:
+To ensure the SPI protocol logic is highly routable and free of localized anomalies, spatial density evaluations were executed. Congestion-driven placement proactively inflates the footprint of cells in heavily connected regions (acting as partial soft blockages) to force logic spreading. 
 
 | Routing Congestion | Pin Density | Power Density |
 | :---: | :---: | :---: |
 | ![Congestion Heatmap](reports/images/heatmap_estimate_congestion_placement.png) | ![Pin Density Heatmap](reports/images/heatmap_pindensity_placement.png) | ![Power Density Heatmap](reports/images/heatmap_power_density_placement.png) |
-| **Estimated Routing Congestion:** Highlights areas where the demand for routing tracks approaches the available supply. The placement tool successfully dispersed logic to prevent severe chokepoints, ensuring smooth detailed routing later in the flow. | **Standard Cell Pin Density:** Visualizes the concentration of input and output pins. An even distribution is crucial to prevent the router from failing to access specific standard cell pins in highly packed regions. | **Estimated Power Density:** Projects the spatial distribution of dynamic and static power consumption based on cell placement. An even power profile mitigates localized IR drop and thermal localized heating. |
+| **Estimated Routing Congestion (RUDY):** Highlights regions where routing track demand approaches supply. The `-routability_driven` flag successfully dispersed logic, guaranteeing zero unroutable chokepoints for the global router. | **Standard Cell Pin Density:** Maps the spatial concentration of I/O terminals. An even distribution ensures the detailed router will not fail when attempting to drop vias into localized standard cell pins. | **Estimated Power Density:** Projects dynamic and static power dissipation based on active logic placement. An even power profile prevents localized IR-drop (voltage sag) and thermal hotspots. |
 
 ## Clock Tree Synthesis (CTS)
 
