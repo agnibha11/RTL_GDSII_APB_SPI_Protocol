@@ -326,3 +326,64 @@ The final physical layout is subjected to structural analysis to ensure no therm
 | :---: | :---: | :---: |
 | ![Pin Density](reports/images/heatmap_pin_density_detailroute.png) | ![Placement Density](reports/images/heatmap_placement_density_detailroute.png) | ![Power Density](reports/images/heatmap_power_density_detailroute.png) |
 | **Global Pin Concentration:** Validates that detailed routing patches successfully accessed heavily packed standard cell terminal regions. | **Final Cell Density:** Confirms placement legality is maintained post-routing optimizations. | **Active Power Profile:** Maps final spatial power estimation considering actual routed parasitic wire capacitances. |
+
+## Physical Signoff & Power Integrity Analysis
+
+The final stage of the RTL-to-GDSII flow encompasses physical signoff, extraction, and power integrity validation. This phase transitions the structurally routed database into a strictly DRC-compliant layout ready for tapeout. Critical manufacturing yield checks, highly accurate 3D parasitic extractions, and static voltage drop simulations are executed to guarantee silicon success.
+
+![Physical Signoff Layout](reports/images/physical_signoff.png)
+
+### 1. Yield Optimization: Filler & Metal Insertion
+Before layout geometries can be extracted, the core must be fully populated to comply with foundry density rules and semiconductor manufacturing physics.
+
+* **Standard Cell Filler Insertion:** To prevent base-layer design rule violations (DRCs) and guarantee the electrical continuity of the N-well, P-substrate, and local `met1` power rails, non-functional standard cell fillers were inserted into all empty site row gaps. A total of **1,722 filler instances** (`sky130_fd_sc_hd__fill_X`) were snapped to the grid. A post-insertion legalization check verified **7,168 structural connections** with absolute zero placement conflicts.
+* **Metal Fill Generation (CMP Consistency):** To prevent metal dishing and ensure planar uniformity during Chemical-Mechanical Planarization (CMP), dummy metal fills were algorithmically generated using the platform's `fill.json` rules. Fills were populated exclusively on the active routing layer (`met1`), while base layers (`nwell`, `pwell`, `li1`, `mcon`) were explicitly bypassed per SkyWater 130nm process rules.
+
+### 2. Signoff Parasitic Extraction (RCX)
+To perform final timing signoff, the theoretical RC approximations used during routing are discarded. The OpenRCX extraction engine calculates exact interconnect resistance and coupling capacitance based on the physical geometries of the routed metal shapes and vias. 
+
+Governed by the `rcx_patterns.rules` technology file, the engine extracted the 3D parasitic network and generated the **Standard Parasitic Exchange Format (SPEF)** file (`spi_parasitics.spef`). This SPEF netlist is subsequently back-annotated into the OpenSTA engine for high-fidelity timing and power analysis.
+
+### 3. Signoff Timing & Power Profiling
+Evaluated against the back-annotated SPEF parasitics, the SPI Master macro demonstrated robust timing convergence. The design comfortably clears the 200 MHz system clock constraint with zero violations.
+
+| Timing Metric | Achieved Slack | Status |
+| :--- | :--- | :--- |
+| **Worst Negative Slack (WNS)** | `+1.9268 ns` | **MET** (No setup violations under max delay) |
+| **Total Negative Slack (TNS)** | `0.0000 ns` | **MET** |
+
+**Total Power Dissipation:** Based on the final switching activity and extracted wire capacitance, the total design power is estimated at **5.079 mW**. 
+
+| Logic Group | Internal Power | Switching Power | Leakage Power | Total Power | % of Total |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Sequential (Flip-Flops)** | 2.163 mW | 0.458 mW | 3.06 nW | 2.621 mW | 51.6% |
+| **Combinational Logic** | 0.449 mW | 0.644 mW | 2.28 nW | 1.093 mW | 21.5% |
+| **Clock Tree Network** | 0.604 mW | 0.761 mW | 0.27 nW | 1.365 mW | 26.9% |
+| **Total (System)** | **3.216 mW** | **1.864 mW** | **5.61 nW** | **5.079 mW** | **100.0%** |
+*Note: The high proportion of sequential and clock power is characteristic of a heavily synchronized, 128-bit shift-register-based SPI architecture.*
+
+### 4. Power Integrity: IR Drop & Electromigration (EM)
+A static voltage drop analysis was executed to validate the integrity of the Power Delivery Network (PDN). The OpenROAD `analyze_power_grid` engine evaluated the continuous VDD and VSS meshes against the localized current demands of the standard cells.
+
+* **Grid Connectivity:** `check_power_grid` confirmed 100% continuous electrical tracking from the external strap sources (`vsrc.loc`) down to every individual logic gate.
+* **Static IR Drop:** Operating at a nominal 1.80V supply, the extreme worst-case terminal voltage across the entire core dropped to just **1.79986 V**. This microscopic localized voltage sag of **~0.14 mV** unequivocally validates the massive over-provisioning of the top-level `met5` and intermediate `met4` power meshes.
+
+### 5. Final Core Area & Spatial Verification
+The physical signoff completes with the finalized spatial and density metrics, confirming the macro is within the prescribed boundary limits.
+
+* **Total Core Die Area:** `20,234.41 um^2`
+* **Active Logic Instance Area:** `12,568.30 um^2`
+* **Final Effective Utilization:** `62.1%` (excluding non-functional filler cells)
+
+#### Signoff Spatial Heatmaps
+The final structural heatmaps confirm uniform distribution across the completed database, ensuring no thermal anomalies or post-fill congestion issues.
+
+| Routing Congestion | Pin Density |
+| :---: | :---: |
+| ![Signoff Congestion](reports/images/heatmap_routing_congestion_physical_signoff.png) | ![Signoff Pin Density](reports/images/heatmap_pin_density_physical_signoff.png) |
+| **Final Routing Congestion:** Confirms zero track capacity violations post-metal fill. | **Final Pin Density:** Validates pin access remains strictly legal after detailing. |
+
+| Placement Density | Power Density |
+| :---: | :---: |
+| ![Signoff Placement Density](reports/images/heatmap_placement_density_physical_signoff.png) | ![Signoff Power Density](reports/images/heatmap_power_density_physical_signoff.png) |
+| **Global Placement Density:** Incorporates active logic and the 1,722 filler standard cells. | **Signoff Power Profile:** Maps final static and dynamic power across the exact physical layout. |
