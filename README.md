@@ -96,3 +96,41 @@ The synthesis flow checks the design through several automated steps:
 3.  **Technology Mapping:** Maps the design to the SkyWater 130nm HD logic gates.
 4.  **Gate-Level Optimization:** Integrates specialized components: structural latches (`cells_latch_hd.v`), clock-gating cells (`cells_clkgate_hd.v`), and physical constant tie cells (`sky130_fd_sc_hd__conb_1`) via `hilomap`.
 5.  **Netlist Export:** Generates the structural netlist (`spi_top_synth.v`) and outputs a final synthesis statistics report.
+
+6.  ## 📐 Floorplanning & Power Delivery Network (PDN)
+
+The physical design phase initiates with floorplanning, establishing the die dimensions, standard cell rows, and the foundational power architecture. The layout is optimized to balance density, routability, and power integrity.
+
+![Floorplan Layout](reports/images/floorplan.png)
+
+### 📊 Floorplan Specifications & Achieved Metrics
+The core dimensions and placement grid were initialized using OpenROAD to accommodate the synthesized netlist while reserving adequate routing resources.
+
+| Parameter | Configured Value | Industry Rationale |
+| :--- | :--- | :--- |
+| **Aspect Ratio** | `1.0` (Square) | Ensures symmetric signal propagation and equalizes average wirelengths across the X and Y axes. |
+| **Target Utilization** | `65%` | A 65% density target provides a 35% whitespace buffer. This is critical in the 130nm node to absorb cell swelling during Clock Tree Synthesis (CTS) and mitigate congestion during detailed routing. |
+| **Core Margins** | `15.0 um` (All sides) | Provides ample boundary clearance for robust IO pin placement, ring routing, and decoupling capacitor insertion. |
+| **Achieved Utilization** | **`63%`** | Actual standard cell density post-floorplanning, successfully meeting the target threshold. |
+| **Total Design Area** | **`12712 um^2`** | Final active core area required to map the SPI Master IP logic. |
+
+### 🛑 Tap Cell Insertion
+To prevent CMOS latch-up conditions, substrate tap cells (`sky130_fd_sc_hd__tapvpwrvgnd_1`) were systematically inserted across the standard cell rows at a strictly defined distance of **14.0 um**. This ensures the N-wells are securely tied to `VDD` and the P-substrate is tied to `VSS`, strictly satisfying SkyWater 130nm DRC maximum tap-distance rules. 
+
+### ⚡ Power Delivery Network (PDN) Architecture
+A robust PDN grid is synthesized to supply `VDD` and `VSS` to the standard cells while minimizing **IR drop** (voltage droop) and electromigration (EM) risks. The PDN leverages a hierarchical metal stack approach:
+
+1. **Layer 1: Standard Cell Rails (`met1`)**
+   * **Width:** `0.48 um` | **Pitch:** `5.44 um`
+   * **Strategy:** Created using the `-followpins` argument. Standard cell transistors in the Sky130 HD library have their power and ground pins located on Metal 1. These continuous rails perfectly align with the cell rows.
+2. **Layer 4: Intermediate Power Straps (`met4`)**
+   * **Width:** `1.60 um` | **Pitch:** `27.20 um`
+   * **Strategy:** Thick, low-resistance vertical and horizontal straps distribute power across the core. By pushing the intermediate grid up to `met4`, lower metal layers (`met2`, `met3`) are preserved entirely for dense, localized signal routing, drastically reducing routing congestion.
+3. **Layer 5: Top-Level Power Grid (`met5`)**
+   * **Width:** `1.60 um` | **Pitch:** `27.20 um`
+   * **Strategy:** The primary external power interface layer. Higher metal layers in the Sky130 stack have significantly lower sheet resistance. Creating a dense mesh at `met5` provides a low-impedance path from the external supply down to the core, minimizing global IR drop.
+
+### 🔗 Via Stack Configuration
+To connect this hierarchical grid, custom via stacks are instantiated to pull power from the top-level `met5` mesh down to the `met1` standard cells:
+* `via_4_5`: Drops power from `met5` to `met4`.
+* `via_1_4`: A full-stack via array bridging the intermediate straps directly to the cell rails (comprising stacked vias from M1→M2, M2→M3, and M3→M4).
