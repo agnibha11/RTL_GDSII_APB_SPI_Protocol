@@ -199,3 +199,52 @@ The integration of the clock tree follows an automated optimization loop to guar
 2. **Parasitic Extraction Estimations:** Interconnect RC parasitics are computed after initial tree synthesis to provide real-time latency and skew projections based on the active cell layout.
 3. **Physical Legalization:** Newly inserted clock network elements are snapped onto standard cell site rows using detailed placement, resolving cell overlaps while minimizing displacement of nearby logic blocks.
 4. **Hold and Setup Time Correction:** The design undergoes automated timing repair steps to resolve any setup or hold time violations introduced by the newly inserted clock delays, matching structural footprints to maintain layout integrity.
+
+## Global Routing & Design Optimization
+
+Following Clock Tree Synthesis, the physical design advances to Global Routing. The routing engine abstracts the core area into a grid of G-cells and algorithmically assigns coarse routing paths for all 1,347 electrical nets. This phase resolves large-scale interconnect topologies, mitigates routing congestion, and performs aggressive timing and power optimizations before detailed track assignment.
+
+![Global Routing Topology](reports/images/global_route.png)
+
+### Layer Allocation & Design Specifications
+To balance routing resources and satisfy rigorous performance constraints, hierarchical routing layer restrictions are enforced. Signal nets are distributed across lower and intermediate metals, while the critical clock network is elevated to thicker upper metals to minimize interconnect resistance and parasitic capacitance.
+
+| Parameter | Configuration / Metric |
+| :--- | :--- |
+| **Signal Routing Layers** | `met1` through `met5` |
+| **Clock Routing Layers** | `met3` through `met5` |
+| **Total Physical Components** | `1591` |
+| **Total Routed Nets** | `1347` |
+| **Top-Level I/O Terminals** | `118` |
+| **Die Boundary Dimensions** | `151.61 um x 151.61 um` |
+| **Congestion Iterations** | `50` |
+| **Standardized Transitions** | `M1M2_PR`, `M2M3_PR`, `M3M4_PR`, `M4M5_PR` |
+
+### Integrated Optimization Workflow
+Global routing is executed iteratively alongside static timing analysis (STA) and electrical rule checks to guarantee a structurally and electrically robust database:
+
+1. **Interconnect Parasitic Extraction:** Real-time RC parasitics are estimated across the global routing paths to drive timing-aware optimization algorithms.
+2. **Design Rule Violation (DRV) Repair:** The engine identifies and repairs maximum capacitance (`max_cap`) and maximum transition time (`max_tran`) violations on heavily loaded nets via automated buffer insertion and gate resizing.
+3. **Footprint-Matched Timing Repair:** Setup and hold timing violations exposed by the newly added wire delays are resolved. The tool swaps standard cells for alternative drive-strength variants that share the exact physical footprint, maintaining placement legality.
+4. **Power Recovery Optimization:** To optimize the Power-Performance-Area (PPA) envelope, the engine identifies timing paths with comfortable positive slack. High-drive, power-intensive cells on these paths are systematically downsized to lower-leakage variants without introducing new timing violations.
+
+### Antenna Effect Mitigation
+During the plasma etching stages of semiconductor fabrication, long exposed metal traces act as antennas, accumulating electrostatic charge. If a trace is connected exclusively to a highly sensitive MOSFET gate oxide, the accumulated potential can cause dielectric breakdown, destroying the transistor. 
+
+This layout strictly adheres to the SkyWater 130nm Foundry antenna rules. An automated antenna repair pass is executed to systematically reduce the **Antenna Ratio** (Area of Exposed Metal / Area of Connected Gate Oxide). The mitigation strategy utilizes **layer hopping** (jumper insertion), where excessively long routing tracks are broken and bridged through higher metal layers using vertical vias. Post-repair validation confirms **zero antenna violations** across the design, ensuring long-term silicon reliability.
+
+### Routing Guides Generation
+Upon completion of the global routing and optimization passes, the localized coarse paths are exported as routing guides (`spi_top.route_guide`). These geometric boundaries constrain the subsequent TritonRoute detailed routing engine, ensuring that final metal track assignments conform to the optimized global topology.
+
+### Spatial Analysis & Congestion Profiling
+Multi-variant structural heatmaps are generated post-routing to verify track utilization, standard cell density, and the active power profile across the core grid.
+
+| Estimated Congestion | Routing Track Congestion |
+| :---: | :---: |
+| ![Estimated Congestion](reports/images/heatmap_est_congestion_globalroute.png) | ![Routing Congestion](reports/images/heatmap_routing_congestion_globalroute.png) |
+| **Estimated Grid Congestion:** Highlights G-cells approaching maximum routing capacity. | **Routing Track Congestion:** Verifies physical interconnect distribution across active metal layers. |
+
+| Pin Density | Placement Density | Power Density |
+| :---: | :---: | :---: |
+| ![Pin Density](reports/images/heatmap_pin_density_globalroute.png) | ![Placement Density](reports/images/heatmap_placement_density_globalroute.png) | ![Power Density](reports/images/heatmap_power_density_globalroute.png) |
+| **Global Pin Concentration:** Maps logical terminal density to prevent localized routing blockages. | **Standard Cell Density:** Confirms placement legality and density constraints following footprint-matched resizing. | **Active Power Profile:** Monitors spatial power dissipation to preempt thermal or localized IR-drop anomalies. |
