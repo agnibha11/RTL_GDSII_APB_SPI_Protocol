@@ -387,3 +387,30 @@ The final structural heatmaps confirm uniform distribution across the completed 
 | :---: | :---: |
 | ![Signoff Placement Density](reports/images/heatmap_placement_density_physical_signoff.png) | ![Signoff Power Density](reports/images/heatmap_power_density_physical_signoff.png) |
 | **Global Placement Density:** Incorporates active logic and the 1,722 filler standard cells. | **Signoff Power Profile:** Maps final static and dynamic power across the exact physical layout. |
+
+## GDS Generation
+
+The final phase of the pipeline translates the abstract layout representations into a manufacturing-ready GDSII stream. Both the physical layout stream-out and the final Design Rule Checking (DRC) were performed using **Magic VLSI**. 
+
+![Final SPI Master GDSII Layout](reports/images/SPI_GDSII.png)
+
+### 1. GDSII Stream-Out
+To generate the monolithic GDSII database, Magic programmatically stitched the routed DEF layout (`spi_final.def`) coordinates to the physical sub-micron geometries of the SkyWater 130nm standard cells (`sky130_fd_sc_hd.gds`). 
+* **Layer Normalization:** Geometric interpretation during layout write-out was governed by the foundry mapping layer format (`cif istyle sky130(vendor)`), ensuring exact translation to the manufacturing mask layer data types.
+* **Database Output:** A complete, tapeout-ready layout database (`spi_top.gds`).
+
+### 2. Physical Design Rule Checking (DRC)
+To ensure the layout was entirely free of lithographic anomalies or manufacturing defects, the top-level cell hierarchy was fully expanded (`expand`) to audit physical interactions across all macro boundaries.
+* **Signoff Rule Deck:** The verification bypassed approximate cell-level checking in favor of foundry-grade signoff rules via `drc style drc(full)`.
+* **Geometric Precision:** True Euclidean spacing (`drc euclidean on`) was activated to accurately verify multi-angle spacing effects, non-manhattan geometry rules, and complex well-proximity interactions.
+
+### 3. Verification Results
+The physical verification flow terminated with a completely clean database profile, confirming total compliance with the physical layers of the targeted SkyWater 130nm node.
+
+```text
+        MAGIC DRC SUMMARY
+
+Top Cell          : spi_top
+DRC Style         : drc(full)
+Total Violations : 0
+DRC Status       : PASS
