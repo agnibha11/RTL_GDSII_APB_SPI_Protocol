@@ -12,12 +12,12 @@ This repository details the complete RTL-to-GDSII physical design implementation
 
 The entire hardware core runs on a single primary system clock (`PCLK`), with no secondary hardware clocks generated. Clock Domain Crossing (CDC) vulnerabilities are mitigated by generating synchronous strobe pulses for shift register operations.
 
-### 📐 System Block Diagram
+### System Block Diagram
 The complete register-transfer level (RTL) architecture including the APB4 controller interface, internal control registers, clock divider, and 128-bit shift registers is illustrated in the complex schematic view below:
 
 ![SPI Master APB4 RTL Architecture](reports/images/spi_rtl_architecture.png)
 
-### 🔌 APB4 Peripheral Interface & Top-Level Pins
+### APB4 Peripheral Interface & Top-Level Pins
 The top-level module (`spi_top`) implements a native APB4 slave wrapper. Register addressing is byte-addressable via `PADDR[4:2]`, mapping across eight 32-bit registers (TXx, RXx, CTRL, DIV).
 
 | Pin Name | Direction | Width | Protocol | Description |
@@ -39,20 +39,20 @@ The top-level module (`spi_top`) implements a native APB4 slave wrapper. Registe
 | `miso_pad_i`| Input | 1-bit | SPI | Master In Slave Out data line. |
 | `spi_int_o` | Output | 1-bit | Interrupt | High-active transaction complete interrupt. |
 
-### ⏱️ Clock Generation & CDC Mitigation
+### Clock Generation & CDC Mitigation
 Reliable operation and complete avoidance of Clock Domain Crossing (CDC) issues are achieved by strictly generating synchronous *strobes* rather than distinct clocks for internal logic. All flip-flops drive exclusively off `PCLK`. The `clk_gen` module monitors an internal counter tracking against the 16-bit `divider` register value to assert single-cycle pulses (`pos_edge` and `neg_edge`).
 
 * **SPI Clock Generation:** The SPI Serial Clock output (`sclk_pad_o`) frequency $f_{\text{SCLK}}$ is derived from the main system clock $f_{\text{PCLK}}$ using the formula:
     $$f_{\text{SCLK}} = \frac{f_{\text{PCLK}}}{2 \times (\text{divider} + 1)}$$
 * **Safe Sampling & Launching:** outbound `mosi_pad_o` data bits are launched exclusively on the `neg_edge` strobe. Inbound `miso_pad_i` data bits are sampled exclusively on the `pos_edge` strobe.
 
-### 🏎️ 128-bit Datapath & Shifter
+### 128-bit Datapath & Shifter
 The core provides robust transaction support up to 128 bits per frame. Host CPU access is limited to 32-bit registers (TX_0-TX_3 and RX_0-RX_3). The `shifter.v` module implements complex logic to aggregate or distribute data between the standard APB interface and the wide internal shift registers.
 
 * **Multi-Driver Prevention:** A critical design requirement, verified during RTL coding, is the prevention of multi-driver scenarios where internal signals are driven from multiple `always` blocks. Inside `shifter.v`, all assignment logic for a given counter, shift register, or control bit is constrained within a **single synchronous procedural block**. This ensures that Yosys does not infer conflicting logic or multiple drive for a single net during synthesis.
 * **Variable Bit Length support:** The configuration register CHAR_LEN (Bits 11:4 of SPI_CTRL) dynamically sets the exact number of bits per transaction, from 1 up to 128 bits. The datapath uses `PSTRB` byte lanes to enable specific 32-bit latches, allowing efficient partial word writes for smaller transfers.
 
-### 🔄 Transaction Lifecycle 
+### Transaction Lifecycle 
 The transaction lifecycle is tightly controlled by handshakes between the register file and the shifter logic, using `go`, `t_progress`, and `last_bit` signals.
 
 1.  **Initiation:** The host CPU pre-loads TX registers and sets the `GO` command flag (SPI_CTRL Bit 12).
@@ -60,7 +60,7 @@ The transaction lifecycle is tightly controlled by handshakes between the regist
 3.  **Shifting:** The core decrements the counter at every valid `pos_edge`. The shifter updates MOSI on `neg_edge` and samples MISO on `pos_edge`.
 4.  **Completion:** When the counter reaches zero (`last_bit` goes high), the core waits for the final trailing `neg_edge`, then de-asserts `t_progress`. It automatically clears the `GO` bit and fires the external `spi_int_o` high to alert the CPU.
 
-### 🎛️ Control Register Mapping (`SPI_CTRL`)
+### Control Register Mapping (`SPI_CTRL`)
 The 16-bit wide primary configuration register in the top level module (at address offset `0x10`) is mapped as follows:
 
 | Bit Index | Field Flag | Reset | Functional Property |
@@ -76,7 +76,7 @@ The 16-bit wide primary configuration register in the top level module (at addre
 
 ## 📑 Timing Constraints & Synthesis Methodology
 
-### ⏱️ Synopsys Design Constraints (SDC) Analysis
+### Synopsys Design Constraints (SDC) Analysis
 The performance and synthesis targets are explicitly defined in `constraints.sdc` using industry-standard commands. All external interfaces are constrained to realistic physical boundaries to model a real system environment.
 
 * **Primary Clock Period:** The design targets a fundamental system period constraint of **5.0 ns** (equivalent to **200 MHz**), defined on the input port `PCLK` under the logical identifier `APB_CLK`.
@@ -86,7 +86,7 @@ The performance and synthesis targets are explicitly defined in `constraints.sdc
     $$\text{Delay}_{\text{I/O}} = 5.0\,\text{ns} \times 0.20 = 1.0\,\text{ns}$$
     This configuration ensures that all peripheral input signals arrive within the 20% hold time window and all peripheral output signals stabilize within the 20% setup time window.
 
-### 🛠️ Synthesis Execution Workflow
+### Synthesis Execution Workflow
 Synthesis is executed via the Yosys open-source synthesis suite, as orchestrated by the `synthesis.tcl` script. The flow generates a technology-mapped gate-level netlist in the SkyWater 130nm HD (High Density) PDK platform using the target performance timing corner model: `sky130_fd_sc_hd__tt_025C_1v80.lib`.
 
 The synthesis flow checks the design through several automated steps:
@@ -103,7 +103,7 @@ The physical design phase initiates with floorplanning, establishing the die dim
 
 ![Floorplan Layout](reports/images/floorplan.png)
 
-### 📊 Floorplan Specifications & Achieved Metrics
+### Floorplan Specifications & Achieved Metrics
 The core dimensions and placement grid were initialized using OpenROAD to accommodate the synthesized netlist while reserving adequate routing resources.
 
 | Parameter | Configured Value | Industry Rationale |
@@ -112,12 +112,12 @@ The core dimensions and placement grid were initialized using OpenROAD to accomm
 | **Target Utilization** | `65%` | A 65% density target provides a 35% whitespace buffer. This is critical in the 130nm node to absorb cell swelling during Clock Tree Synthesis (CTS) and mitigate congestion during detailed routing. |
 | **Core Margins** | `15.0 um` (All sides) | Provides ample boundary clearance for robust IO pin placement, ring routing, and decoupling capacitor insertion. |
 | **Achieved Utilization** | **`63%`** | Actual standard cell density post-floorplanning, successfully meeting the target threshold. |
-| **Total Design Area** | **`12712 um^2`** | Final active core area required to map the SPI Master IP logic. |
+| **Total Design Area** | **`12712 um^2`** | Final active core area required to map the SPI Master logic. |
 
-### 🛑 Tap Cell Insertion
+### Tap Cell Insertion
 To prevent CMOS latch-up conditions, substrate tap cells (`sky130_fd_sc_hd__tapvpwrvgnd_1`) were systematically inserted across the standard cell rows at a strictly defined distance of **14.0 um**. This ensures the N-wells are securely tied to `VDD` and the P-substrate is tied to `VSS`, strictly satisfying SkyWater 130nm DRC maximum tap-distance rules. 
 
-### ⚡ Power Delivery Network (PDN) Architecture
+### Power Delivery Network (PDN) Architecture
 A robust PDN grid is synthesized to supply `VDD` and `VSS` to the standard cells while minimizing **IR drop** (voltage droop) and electromigration (EM) risks. The PDN leverages a hierarchical metal stack approach:
 
 1. **Layer 1: Standard Cell Rails (`met1`)**
@@ -130,7 +130,7 @@ A robust PDN grid is synthesized to supply `VDD` and `VSS` to the standard cells
    * **Width:** `1.60 um` | **Pitch:** `27.20 um`
    * **Strategy:** The primary external power interface layer. Higher metal layers in the Sky130 stack have significantly lower sheet resistance. Creating a dense mesh at `met5` provides a low-impedance path from the external supply down to the core, minimizing global IR drop.
 
-### 🔗 Via Stack Configuration
+### Via Stack Configuration
 To connect this hierarchical grid, custom via stacks are instantiated to pull power from the top-level `met5` mesh down to the `met1` standard cells:
 * `via_4_5`: Drops power from `met5` to `met4`.
 * `via_1_4`: A full-stack via array bridging the intermediate straps directly to the cell rails (comprising stacked vias from M1→M2, M2→M3, and M3→M4).
