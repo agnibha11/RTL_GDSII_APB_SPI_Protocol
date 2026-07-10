@@ -182,7 +182,7 @@ To ensure the SPI protocol logic is highly routable and free of localized anomal
 
 Following standard cell placement, Clock Tree Synthesis (CTS) is performed to distribute the system clock signal (`PCLK`) evenly across all sequential components in the design. The primary objective of this physical design phase is to minimize clock skew (arrival time differences between flip-flops) and insertion delay, while maintaining balanced transition times (slew) across the entire clock distribution network.
 
-![Clock Tree Structure and Buffer Distribution](reports/images/cts.png)
+![Clock Tree Structure and Buffer Distribution](reports/images/png)
 
 ### Clock Tree Synthesis Specifications & Configuration
 The clock tree is synthesized by constructing an H-Tree topology using OpenROAD's TritonCTS engine. This balanced geometric topology ensures that the path lengths from the clock root to all sequential sinks are as uniform as possible, structurally limiting skew before electrical tuning. 
