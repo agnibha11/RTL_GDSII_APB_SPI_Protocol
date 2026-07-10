@@ -178,11 +178,6 @@ The detailed placement successfully legalized all standard cells with absolute p
 ### Congestion & Density Analysis
 To ensure the SPI protocol logic is highly routable and free of localized anomalies, spatial density evaluations were executed. Congestion-driven placement proactively inflates the footprint of cells in heavily connected regions (acting as partial soft blockages) to force logic spreading. 
 
-| Routing Congestion | Pin Density | Power Density |
-| :---: | :---: | :---: |
-| ![Congestion Heatmap](reports/images/heatmap_estimate_congestion_placement.png) | ![Pin Density Heatmap](reports/images/heatmap_pindensity_placement.png) | ![Power Density Heatmap](reports/images/heatmap_power_density_placement.png) |
-| **Estimated Routing Congestion (RUDY):** Highlights regions where routing track demand approaches supply. The `-routability_driven` flag successfully dispersed logic, guaranteeing zero unroutable chokepoints for the global router. | **Standard Cell Pin Density:** Maps the spatial concentration of I/O terminals. An even distribution ensures the detailed router will not fail when attempting to drop vias into localized standard cell pins. | **Estimated Power Density:** Projects dynamic and static power dissipation based on active logic placement. An even power profile prevents localized IR-drop (voltage sag) and thermal hotspots. |
-
 ## Clock Tree Synthesis (CTS)
 
 Following standard cell placement, Clock Tree Synthesis (CTS) is performed to distribute the system clock signal (`PCLK`) evenly across all sequential components in the design. The primary objective of this physical design phase is to minimize clock skew (arrival time differences between flip-flops) and insertion delay, while maintaining balanced transition times (slew) across the entire clock distribution network.
@@ -212,14 +207,6 @@ The integration of the clock tree is not a single-step process; it follows a rig
 2. **CTS & Parasitic Extraction:** Following H-Tree synthesis and clustering, interconnect RC parasitics are estimated (`estimate_parasitics -placement`) to provide real-time latency and skew projections based on the updated cell layout.
 3. **Physical Legalization:** Newly inserted clock network buffers are floating. They are snapped onto standard cell site rows using detailed placement (`detailed_placement`), resolving physical overlaps while minimizing the displacement of nearby logic blocks.
 4. **Timing Repair (`repair_timing`):** The design undergoes automated timing repair to resolve any setup, hold, or slew violations introduced by the realistic clock network delays. The engine strictly matches structural footprints (`-match_cell_footprint`) during buffer resizing to prevent cascading layout disruptions.
-
-### Post-CTS Spatial & Congestion Analysis
-To validate that the addition of the clock distribution network did not introduce localized routing blockages, cell crowding, or dynamic power issues, structural heatmaps are evaluated across the synchronized core grid:
-
-| Routing Congestion | Pin Density | Power Density |
-| :---: | :---: | :---: |
-| ![CTS Congestion Heatmap](reports/images/heatmap_estimate_congestion_cts.png) | ![CTS Pin Density Heatmap](reports/images/heatmap_pin_density_cts.png) | ![CTS Power Density Heatmap](reports/images/heatmap_power_density_cts.png) |
-| **Post-CTS Routing Congestion (RUDY):** Tracks localized routing track usage. The symmetric buffer distribution and clustering successfully avoid routing bottlenecks, preserving standard cell routing channels for the global router. | **Post-CTS Pin Density:** Maps the physical concentration of cell pins. The detailed placement engine successfully absorbed the new clock buffers without exceeding localized pin availability thresholds. | **Post-CTS Power Density:** Illustrates the active power profile. Grouping sinks and distributing clock buffers symmetrically prevents concentrated current spikes along the primary VDD/VSS supply grid. |
 
 ## Global Routing & Design Optimization
 
@@ -256,19 +243,6 @@ This layout strictly adheres to the SkyWater 130nm Foundry antenna rules. An aut
 
 ### Routing Guides Generation
 Upon completion of the global routing and optimization passes, the localized coarse paths are exported as routing guides (`spi_top.route_guide`). These geometric boundaries constrain the subsequent TritonRoute detailed routing engine, ensuring that final metal track assignments conform to the optimized global topology.
-
-### Spatial Analysis & Congestion Profiling
-Multi-variant structural heatmaps are generated post-routing to verify track utilization, standard cell density, and the active power profile across the core grid.
-
-| Estimated Congestion | Routing Track Congestion |
-| :---: | :---: |
-| ![Estimated Congestion](reports/images/heatmap_est_congestion_globalroute.png) | ![Routing Congestion](reports/images/heatmap_routing_congestion_globalroute.png) |
-| **Estimated Grid Congestion:** Highlights G-cells approaching maximum routing capacity. | **Routing Track Congestion:** Verifies physical interconnect distribution across active metal layers. |
-
-| Pin Density | Placement Density | Power Density |
-| :---: | :---: | :---: |
-| ![Pin Density](reports/images/heatmap_pin_density_globalroute.png) | ![Placement Density](reports/images/heatmap_placement_density_globalroute.png) | ![Power Density](reports/images/heatmap_power_density_globalroute.png) |
-| **Global Pin Concentration:** Maps logical terminal density to prevent localized routing blockages. | **Standard Cell Density:** Confirms placement legality and density constraints following footprint-matched resizing. | **Active Power Profile:** Monitors spatial power dissipation to preempt thermal or localized IR-drop anomalies. |
 
 ## Detailed Routing
 
