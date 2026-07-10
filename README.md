@@ -168,7 +168,7 @@ To ensure the design is highly routable and free of localized thermal or congest
 
 Following standard cell placement, Clock Tree Synthesis (CTS) is performed to distribute the system clock signal (`PCLK`) evenly across all sequential components in the design. The primary objective of this phase is to minimize clock skew and insertion delay while maintaining balanced transition times across the entire clock distribution network.
 
-![Clock Tree Structure and Buffer Distribution](reports/images/cts.jpg)
+![Clock Tree Structure and Buffer Distribution](reports/images/cts.png)
 
 ### Clock Tree Synthesis Specifications & Configuration
 The clock tree is synthesized by constructing an H-Tree topology using TritonCTS. This balanced geometric topology ensures that the path lengths from the clock root to all sequential sinks are as uniform as possible, structurally limiting skew.
@@ -190,7 +190,7 @@ To validate that the addition of the clock distribution network did not introduc
 
 | Routing Congestion | Pin Density | Power Density |
 | :---: | :---: | :---: |
-| ![CTS Congestion Heatmap](reports/images/heatmap_estimate_congestion_cts.jpg) | ![CTS Pin Density Heatmap](reports/images/heatmap_pin_density_cts.jpg) | ![CTS Power Density Heatmap](reports/images/heatmap_power_density_cts.jpg) |
+| ![CTS Congestion Heatmap](reports/images/heatmap_estimate_congestion_cts.png) | ![CTS Pin Density Heatmap](reports/images/heatmap_pin_density_cts.png) | ![CTS Power Density Heatmap](reports/images/heatmap_power_density_cts.png) |
 | **Post-CTS Routing Congestion:** Tracks localized track usage. The H-tree buffer distribution avoids routing bottlenecks, preserving standard cell routing channels for the subsequent global routing phase. | **Post-CTS Pin Density:** Maps the physical concentration of cell pins. The tool balances cell displacement during buffer placement, keeping localized pin availability well below routing failure thresholds. | **Post-CTS Power Density:** Illustrates the active power profile across the clock distribution network. Distributing the clock buffers symmetrically prevents concentrated current spikes along the primary supply grid. |
 
 ### Network Optimization and Legalization Workflow
