@@ -223,7 +223,7 @@ To validate that the addition of the clock distribution network did not introduc
 
 ## Global Routing & Design Optimization
 
-Following Clock Tree Synthesis, the physical design advances to Global Routing. The routing engine abstracts the core area into a grid of G-cells and algorithmically assigns coarse routing paths for all 1,347 electrical nets. This phase resolves large-scale interconnect topologies, mitigates routing congestion, and performs aggressive timing and power optimizations before detailed track assignment.
+Following Clock Tree Synthesis, the physical design advances to Global Routing. The routing engine abstracts the core area into a grid of G-cells and algorithmically assigns coarse routing paths for all 1,347 electrical nets. This phase resolves large-scale interconnect topologies, mitigates routing congestion, and performs aggressive timing and power optimizations before detailed track assignment. The primary goal of this stage is to achieve design convergence with the best possible Quality of Results (QoR). By making an intelligent tradeoff between accuracy and runtime, the routing engine solves a large number of design violations quickly while reserving high-accuracy solver techniques for the most stubborn routing problems.
 
 ![Global Routing Topology](reports/images/global_route.png)
 
@@ -242,11 +242,11 @@ To balance routing resources and satisfy rigorous performance constraints, hiera
 | **Standardized Transitions** | `M1M2_PR`, `M2M3_PR`, `M3M4_PR`, `M4M5_PR` |
 
 ### Integrated Optimization Workflow
-Global routing is executed iteratively alongside static timing analysis (STA) and electrical rule checks to guarantee a structurally and electrically robust database:
+Global routing is executed iteratively alongside static timing analysis (STA) and electrical rule checks to guarantee a structurally and electrically robust database. Leveraging a scalable, solver-based approach, the engine concurrently optimizes multiple QoR metrics—including setup, hold, maximum transition, cell area, and power—through the following sequence:
 
-1. **Interconnect Parasitic Extraction:** Real-time RC parasitics are estimated across the global routing paths to drive timing-aware optimization algorithms.
+1. **Interconnect Parasitic Extraction:** Real-time RC parasitics are estimated across the global routing paths to drive timing-aware delay calculations and optimization algorithms.
 2. **Design Rule Violation (DRV) Repair:** The engine identifies and repairs maximum capacitance (`max_cap`) and maximum transition time (`max_tran`) violations on heavily loaded nets via automated buffer insertion and gate resizing.
-3. **Footprint-Matched Timing Repair:** Setup and hold timing violations exposed by the newly added wire delays are resolved. The tool swaps standard cells for alternative drive-strength variants that share the exact physical footprint, maintaining placement legality.
+3. **Footprint-Matched Timing Repair:** Setup and hold timing violations exposed by the newly added wire delays are resolved simultaneously. The tool swaps standard cells for alternative drive-strength variants that share the exact physical footprint, maintaining placement legality.
 4. **Power Recovery Optimization:** To optimize the Power-Performance-Area (PPA) envelope, the engine identifies timing paths with comfortable positive slack. High-drive, power-intensive cells on these paths are systematically downsized to lower-leakage variants without introducing new timing violations.
 
 ### Antenna Effect Mitigation
