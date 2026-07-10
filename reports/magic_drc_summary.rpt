@@ -2,5 +2,5 @@
 
 Top Cell          : spi_top
 DRC Style         : drc(full)
-Total Violations : 23
-DRC Status       : FAIL
+Total Violations : 0
+DRC Status       : PASS
