@@ -1,4 +1,4 @@
-# APB4-Interfaced SPI Master IP RTL-GDSII Flow
+# RTL-to-GDSII of APB4-Interfaced SPI (Serial Peripheral Interface) Master
 
 ![Technology](https://img.shields.io/badge/Technology-SkyWater130nm%20HD-blue)
 ![Tools](https://img.shields.io/badge/Tools-Yosys%20%7C%20OpenROAD-orange)
