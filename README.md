@@ -97,7 +97,7 @@ The synthesis flow checks the design through several automated steps:
 4.  **Gate-Level Optimization:** Integrates specialized components: structural latches (`cells_latch_hd.v`), clock-gating cells (`cells_clkgate_hd.v`), and physical constant tie cells (`sky130_fd_sc_hd__conb_1`) via `hilomap`.
 5.  **Netlist Export:** Generates the structural netlist (`spi_top_synth.v`) and outputs a final synthesis statistics report.
 
-6.  ## 📐 Floorplanning & Power Delivery Network (PDN)
+## 📐 Floorplanning & Power Delivery Network (PDN)
 
 The physical design phase initiates with floorplanning, establishing the die dimensions, standard cell rows, and the foundational power architecture. The layout is optimized to balance density, routability, and power integrity.
 
