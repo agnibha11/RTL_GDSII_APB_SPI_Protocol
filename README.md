@@ -279,7 +279,7 @@ A critical closed-loop optimization step is executed post-routing to guarantee m
 ### Physical Design Achievements & QoR (Quality of Results)
 The detailed routing log indicates a highly successful design convergence. The routing engine systematically reduced the violation count from thousands down to zero, culminating in a pristine, DRC-clean database ready for parasitic extraction and signoff.
 
-| Metric | Achieved Value | Industry Context |
+| Metric | Achieved Value | Description |
 | :--- | :--- | :--- |
 | **Total Wire Length** | `42,996 um` | The total physical length of all routed metal tracks across all layers (`met1` to `met5`). |
 | **Total Inserted Vias** | `10,019` | The total count of inter-layer vias required to traverse the routing grid. |
@@ -355,7 +355,7 @@ The final structural heatmaps confirm uniform distribution across the completed 
 
 | Estimated Congestion |
 | :---: |
-| ![Signoff Estimated Congestion](reports/images/heatmap_est_congestion_physical_signoff.jpg) |
+| ![Signoff Estimated Congestion](reports/images/heatmap_est_congestion_physical_signoff.png) |
 | **Estimated Congestion:** Tells us the theoretical routing demand versus available track capacity across the layout. It highlights potential hotspots where wire density might exceed routing resources, confirming that the cell placement logic successfully mitigated unroutable bottlenecks prior to detailed routing. |
 
 ## GDS Generation
