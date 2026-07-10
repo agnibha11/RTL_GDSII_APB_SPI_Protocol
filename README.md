@@ -134,3 +134,32 @@ A robust PDN grid is synthesized to supply `VDD` and `VSS` to the standard cells
 To connect this hierarchical grid, custom via stacks are instantiated to pull power from the top-level `met5` mesh down to the `met1` standard cells:
 * `via_4_5`: Drops power from `met5` to `met4`.
 * `via_1_4`: A full-stack via array bridging the intermediate straps directly to the cell rails (comprising stacked vias from M1→M2, M2→M3, and M3→M4).
+
+## Standard Cell Placement & I/O Pin Assignment
+
+Following floorplanning and PDN synthesis, the standard cells synthesized by Yosys are physically placed onto the site rows of the core area. The placement phase is executed in two primary steps: Global Placement, which focuses on minimizing the total wirelength and preventing excessive routing congestion, followed by Detailed Placement, which legalizes the cells onto the actual placement grid to prevent overlaps.
+
+![Detailed Standard Cell Placement](reports/images/placement.jpg)
+
+### I/O Pin Placement Strategy
+Before placing the internal standard cells, the top-level input/output pins (such as the APB4 bus signals and SPI output pads) are strategically placed along the core boundaries. Pins are grouped by bus functionality (e.g., grouping `PWDATA` bits and `ss_pad_o` bits) and are primarily assigned to routing layers **Metal 2 (`met2`)** and **Metal 3 (`met3`)**. This layer selection keeps the outer boundary connections off the base metal layer, allowing standard cells to be placed closer to the boundary without DRC violations, while preserving upper metal layers for power and global routing.
+
+### Placement Quality & Achieved Metrics
+The detailed placement successfully legalized all instances using a diamond search algorithm, ensuring zero standard cell overlaps and minimizing displacement from their ideal global placement locations. 
+
+| Placement Metric | Achieved Value | Industry Context |
+| :--- | :--- | :--- |
+| **Total Standard Cells** | `1266` | The total count of logic gates, flip-flops, and tap cells physically mapped to the core. |
+| **Instance Area** | `12568.30 um^2` | The total silicon area strictly consumed by the standard cells. |
+| **Effective Utilization** | `62.1%` | The active density remains stable, leaving sufficient whitespace for clock tree buffers and routing detours. |
+| **Total HPWL** | `32905.3 um` | Half-Perimeter Wirelength. A critical metric indicating the estimated total routing length; lower values correspond to lower dynamic power and better timing. |
+| **Placement Legality** | `100% Success` | Zero placement failures or overlapping cells reported after detailed placement. |
+| **Timing (WNS / TNS)** | `0.00 ns` / `0.00 ns` | Worst Negative Slack and Total Negative Slack are clean at this stage, indicating no early setup/hold violations based on estimated wire delays. |
+
+### Congestion & Density Analysis
+To ensure the design is highly routable and free of localized thermal or congestion hotspots, several spatial density evaluations are performed across the core. The heatmaps below illustrate the distribution of these critical parameters:
+
+| Routing Congestion | Pin Density | Power Density |
+| :---: | :---: | :---: |
+| ![Congestion Heatmap](reports/images/heatmap_estimate_congestion_placement.jpg) | ![Pin Density Heatmap](reports/images/heatmap_pindensity_placement.jpg) | ![Power Density Heatmap](reports/images/heatmap_power_density_placement.jpg) |
+| **Estimated Routing Congestion:** Highlights areas where the demand for routing tracks approaches the available supply. The placement tool successfully dispersed logic to prevent severe chokepoints, ensuring smooth detailed routing later in the flow. | **Standard Cell Pin Density:** Visualizes the concentration of input and output pins. An even distribution is crucial to prevent the router from failing to access specific standard cell pins in highly packed regions. | **Estimated Power Density:** Projects the spatial distribution of dynamic and static power consumption based on cell placement. An even power profile mitigates localized IR drop and thermal localized heating. |
