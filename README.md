@@ -139,7 +139,7 @@ To connect this hierarchical grid, custom via stacks are instantiated to pull po
 
 Following floorplanning and PDN synthesis, the standard cells synthesized by Yosys are physically placed onto the site rows of the core area. The placement phase is executed in two primary steps: Global Placement, which focuses on minimizing the total wirelength and preventing excessive routing congestion, followed by Detailed Placement, which legalizes the cells onto the actual placement grid to prevent overlaps.
 
-![Detailed Standard Cell Placement](reports/images/placement.jpg)
+![Detailed Standard Cell Placement](reports/images/placement.png)
 
 ### I/O Pin Placement Strategy
 Before placing the internal standard cells, the top-level input/output pins (such as the APB4 bus signals and SPI output pads) are strategically placed along the core boundaries. Pins are grouped by bus functionality (e.g., grouping `PWDATA` bits and `ss_pad_o` bits) and are primarily assigned to routing layers **Metal 2 (`met2`)** and **Metal 3 (`met3`)**. This layer selection keeps the outer boundary connections off the base metal layer, allowing standard cells to be placed closer to the boundary without DRC violations, while preserving upper metal layers for power and global routing.
