@@ -288,18 +288,9 @@ The detailed routing log indicates a highly successful design convergence. The r
 | **Timing Setup Slack (WNS)** | `+1.29 ns` | Positive setup slack confirms no max-delay violations exist under real, routed wire parasitics. The design safely meets the 200 MHz system clock constraint. |
 | **Timing Hold Slack (TNS)** | `0.00 ns` | Zero total negative slack validates that all structural buffering and track detours preserved hold-time integrity. |
 
-### Spatial Analysis & Post-Route Congestion Profiling
-The final physical layout is subjected to structural analysis to ensure no thermal hotspots or density anomalies exist before signoff extraction.
+## Physical Signoff & Power Integrity Analysis
 
-| Estimated vs. Actual Congestion | Routing Track Congestion |
-| :---: | :---: |
-| ![Estimated Congestion](reports/images/heatmap_est_congestion_detailroute.png) | ![Routing Congestion](reports/images/heatmap_routing_congestion_detailroute.png) |
-| **Estimated Grid Congestion:** Theoretical routing bottlenecks mapped just prior to physical metal assignment. | **Actual Routing Congestion:** Verifies uniform distribution of localized physical interconnects across the active core. |
-
-| Pin Density | Placement Density | Power Density |
-| :---: | :---: | :---: |
-| ![Pin Density](reports/images/heatmap_pin_density_detailroute.png) | ![Placement Density](reports/images/heatmap_placement_density_detailroute.png) | ![Power Density](reports/images/heatmap_power_density_detailroute.png) |
-| **Global Pin Concentration:** Validates that detailed routing patches successfully accessed heavily packed standard cell terminal regions. | **Final Cell Density:** Confirms placement legality is maintained post-routing optimizations. | **Active Power Profile:** Maps final spatial power estimation considering actual routed parasitic wire capacitances. |
+The final stage of the RTL-to-GDSII flow encompasses physical signoff, extraction, and power integrity validation. This phase transitions the structurally routed database into a strictly DRC-compliant layout ready for tapeout. Critical manufacturing yield checks, highly accurate 3D parasitic extractions, and static voltage drop simulations are executed to guarantee silicon success.
 
 ## Physical Signoff & Power Integrity Analysis
 
@@ -361,6 +352,11 @@ The final structural heatmaps confirm uniform distribution across the completed 
 | :---: | :---: |
 | ![Signoff Placement Density](reports/images/heatmap_placement_density_physical_signoff.png) | ![Signoff Power Density](reports/images/heatmap_power_density_physical_signoff.png) |
 | **Global Placement Density:** Incorporates active logic and the 1,722 filler standard cells. | **Signoff Power Profile:** Maps final static and dynamic power across the exact physical layout. |
+
+| Estimated Congestion |
+| :---: |
+| ![Signoff Estimated Congestion](reports/images/heatmap_est_congestion_physical_signoff.jpg) |
+| **Estimated Congestion:** Tells us the theoretical routing demand versus available track capacity across the layout. It highlights potential hotspots where wire density might exceed routing resources, confirming that the cell placement logic successfully mitigated unroutable bottlenecks prior to detailed routing. |
 
 ## GDS Generation
 
