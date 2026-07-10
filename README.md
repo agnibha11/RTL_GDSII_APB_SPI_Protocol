@@ -161,5 +161,5 @@ To ensure the design is highly routable and free of localized thermal or congest
 
 | Routing Congestion | Pin Density | Power Density |
 | :---: | :---: | :---: |
-| ![Congestion Heatmap](reports/images/heatmap_estimate_congestion_placement.jpg) | ![Pin Density Heatmap](reports/images/heatmap_pindensity_placement.jpg) | ![Power Density Heatmap](reports/images/heatmap_power_density_placement.jpg) |
+| ![Congestion Heatmap](reports/images/heatmap_estimate_congestion_placement.png) | ![Pin Density Heatmap](reports/images/heatmap_pindensity_placement.png) | ![Power Density Heatmap](reports/images/heatmap_power_density_placement.png) |
 | **Estimated Routing Congestion:** Highlights areas where the demand for routing tracks approaches the available supply. The placement tool successfully dispersed logic to prevent severe chokepoints, ensuring smooth detailed routing later in the flow. | **Standard Cell Pin Density:** Visualizes the concentration of input and output pins. An even distribution is crucial to prevent the router from failing to access specific standard cell pins in highly packed regions. | **Estimated Power Density:** Projects the spatial distribution of dynamic and static power consumption based on cell placement. An even power profile mitigates localized IR drop and thermal localized heating. |
