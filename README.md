@@ -272,45 +272,57 @@ Multi-variant structural heatmaps are generated post-routing to verify track uti
 
 ## Detailed Routing
 
-The final major physical implementation stage is **Detailed Routing**, where the coarse, grid-based topological paths generated during global routing are translated into exact, Design Rule Check (DRC)-compliant physical metal tracks and vias. While global routing prioritizes speed and macro-level congestion mitigation, detailed routing prioritizes exact accuracy and manufacturability. 
+The final major physical implementation stage is **Detailed Routing**, where the coarse, G-cell-based topological paths generated during global routing are translated into exact, Design Rule Check (DRC)-compliant physical metal tracks and vias. While global routing prioritizes speed and macro-level congestion mitigation, detailed routing prioritizes sub-micron precision and silicon manufacturability. 
 
-Leveraging the TritonRoute engine, this stage executes highly complex, gridless, solver-based pathfinding algorithms. It precisely connects all standard cell pins, macro terminals, and IO ports while navigating massive constraints such as minimum spacing, minimum area, via enclosures, and end-of-line (EOL) spacing rules enforced by the SkyWater 130nm technology LEF.
+Using the OpenROAD TritonRoute engine, this stage executes highly complex, solver-based pathfinding algorithms. The tool systematically connects all standard cell pins, macro terminals, and external I/O ports while strictly obeying complex manufacturing rules, including minimum spacing, minimum area, via enclosures, and end-of-line (EOL) spacing constraints defined in the SkyWater 130nm technology LEF.
 
 ![Detailed Routing Physical Layout](reports/images/detailed_route.png)
 
 ### Routing Layer Constraints & Tool Configurations
-To optimize the Power-Performance-Area (PPA) metric and ensure signal integrity, strict layer assignment constraints were passed to the routing engine. By confining clock signals to upper, thicker metal layers, the design minimizes clock insertion delay and dynamic power consumption.
+To optimize the overall Power-Performance-Area (PPA) envelope and ensure robust signal integrity, strict layer assignment constraints were passed to the routing engine. By confining the fast-switching clock signals to the upper, thicker metal layers, the design minimizes insertion delay and dynamic power consumption.
 
-| Parameter | Configuration / Output |
+| Parameter | Configuration / Constraint |
 | :--- | :--- |
 | **Routing Engine** | `TritonRoute` |
-| **Signal Routing Layers** | `met1` through `met5` |
-| **Clock Routing Layers** | `met3` through `met5` |
+| **Signal Routing Layers** | Restricted to `met1` through `met5` |
+| **Clock Routing Layers** | Restricted to `met3` through `met5` |
 | **Max Routing Iterations** | Requested: `100` $\rightarrow$ Tool Capped: `64` |
-| **Patch Cleanup** | Enabled (`-clean_patches`) |
+| **Patch Cleanup** | Enabled (`-clean_patches`) to eliminate redundant metal fragments |
 | **DRC Convergence Target** | `0` Violations |
 
 ### Guide Coverage & Heuristic Adherence
-Detailed routing is heavily constrained by the `route_guide` generated in the previous step. The routing engine attempts to keep all detailed wire segments strictly within these geometric bounds to prevent localized congestion that the global router already solved. 
+Detailed routing is heavily constrained by the `route_guide` boundaries generated during global routing. The engine attempts to keep all localized wire segments strictly within these geometric regions to preserve the congestion optimizations resolved in the previous stage. 
 
-The generated `guide_coverage.rpt` validates this heuristic adherence. For the vast majority of nets (e.g., control logic and shift register datapaths like `u_shift.IN_reg` and `ctrl`), TritonRoute achieved **100% guide coverage** on lower layers (`li1`, `met1`, `met2`), dynamically maneuvering around localized pin congestion only when absolutely necessary (e.g., transitioning to `met3` with partial coverage to avoid hard DRC violations).
+The generated `guide_coverage.rpt` validates this heuristic adherence. For the vast majority of critical nets (e.g., control logic and shift register datapaths like `u_shift.IN_reg` and `ctrl`), the detailed router successfully achieved **100% guide coverage** on lower layers (`li1`, `met1`, `met2`). The engine only dynamically maneuvered outside these boundaries when absolutely necessary to resolve localized pin access issues and avoid hard DRC violations.
 
 ### Post-Route Antenna Repair Optimization
-A critical closed-loop optimization step is executed post-routing to verify manufacturing reliability. 
+A critical closed-loop optimization step is executed post-routing to guarantee manufacturing reliability and yield. 
 
 1. **Antenna Ratio Verification:** The engine scans the fully routed database for long, continuous metal lines that could act as antennas during plasma etching.
-2. **Iterative Repair Loop:** If residual antenna violations exist despite the global router's earlier jumper insertions, a secondary `repair_antennas` pass is triggered.
-3. **Re-Routing:** If detailed routing patches or vias alter the antenna ratios, the script automatically triggers an incremental detailed route loop to seal the violations, ensuring the final layout is structurally impervious to gate-oxide breakdown.
+2. **Iterative Repair Loop:** If residual antenna violations are flagged despite the global router's earlier jumper insertions, a secondary `repair_antennas` pass is triggered.
+3. **Incremental Re-Routing:** Because detailed routing patches or inserted vias can alter the pre-calculated antenna ratios, the script automatically triggers an incremental detailed route loop to seal any newly created violations, ensuring the final layout is structurally impervious to gate-oxide breakdown.
+
+### Physical Design Achievements & QoR (Quality of Results)
+The detailed routing log indicates a highly successful design convergence. The routing engine systematically reduced the violation count from thousands down to zero, culminating in a pristine, DRC-clean database ready for parasitic extraction and signoff.
+
+| Metric | Achieved Value | Industry Context |
+| :--- | :--- | :--- |
+| **Total Wire Length** | `42,996 um` | The total physical length of all routed metal tracks across all layers (`met1` to `met5`). |
+| **Total Inserted Vias** | `10,019` | The total count of inter-layer vias required to traverse the routing grid. |
+| **Initial DRC Violations** | `1,338` | Violations present during the first routing iteration before spatial conflict resolution. |
+| **Final DRC Violations** | **`0`** | The design achieved 100% DRC compliance, passing all complex LEF rules. |
+| **Timing Setup Slack (WNS)** | `+1.29 ns` | Positive setup slack confirms no max-delay violations exist under real, routed wire parasitics. The design safely meets the 200 MHz system clock constraint. |
+| **Timing Hold Slack (TNS)** | `0.00 ns` | Zero total negative slack validates that all structural buffering and track detours preserved hold-time integrity. |
 
 ### Spatial Analysis & Post-Route Congestion Profiling
-The final physical layout is subjected to structural analysis to ensure no hotspots exist before signoff extraction.
+The final physical layout is subjected to structural analysis to ensure no thermal hotspots or density anomalies exist before signoff extraction.
 
 | Estimated vs. Actual Congestion | Routing Track Congestion |
 | :---: | :---: |
 | ![Estimated Congestion](reports/images/heatmap_est_congestion_detailroute.png) | ![Routing Congestion](reports/images/heatmap_routing_congestion_detailroute.png) |
-| **Estimated Grid Congestion:** Final check of theoretical routing bottlenecks against physical metal. | **Actual Routing Congestion:** Verifies uniform distribution of localized interconnects across the core. |
+| **Estimated Grid Congestion:** Theoretical routing bottlenecks mapped just prior to physical metal assignment. | **Actual Routing Congestion:** Verifies uniform distribution of localized physical interconnects across the active core. |
 
 | Pin Density | Placement Density | Power Density |
 | :---: | :---: | :---: |
 | ![Pin Density](reports/images/heatmap_pin_density_detailroute.png) | ![Placement Density](reports/images/heatmap_placement_density_detailroute.png) | ![Power Density](reports/images/heatmap_power_density_detailroute.png) |
-| **Global Pin Concentration:** Validates that final detailed routing patches successfully accessed all dense standard cell terminal regions. | **Final Cell Density:** Confirms legality post-routing optimizations. | **Active Power Profile:** Maps final spatial power estimation considering actual routed parasitic wire capacitances. |
+| **Global Pin Concentration:** Validates that detailed routing patches successfully accessed heavily packed standard cell terminal regions. | **Final Cell Density:** Confirms placement legality is maintained post-routing optimizations. | **Active Power Profile:** Maps final spatial power estimation considering actual routed parasitic wire capacitances. |
