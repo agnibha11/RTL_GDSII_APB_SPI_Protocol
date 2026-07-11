@@ -13,31 +13,30 @@ set REPORT_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/reports"
 set NETLIST_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/netlists"
 set CONSTRAINTS_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/constraints"
 set SCRIPT_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/scripts"
-set FILL_RULES \
-"$openROAD/flow/platforms/sky130hd/fill.json"
+set ASAP7_PLATFORM "$openROAD/flow/platforms/asap7"
 
 # constraints
-set SDC_FILE \
-"$CONSTRAINTS_DIR/constraints.sdc"
+set SDC_FILE "$CONSTRAINTS_DIR/constraints.sdc"
 
-set LIBERTY \
-"$openROAD/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
-# standard cell timing and power library
-if {![file exists $LIBERTY]} {
-    error "Liberty LEF not found: $LIBERTY"
-}
+set LIBERTY "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib"
+set SEQ_LIB_FILE "$ASAP7_PLATFORM/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib"
+
+if {![file exists $LIBERTY]} { error "Merged Liberty not found: $LIBERTY" }
+if {![file exists $SEQ_LIB_FILE]} { error "SEQ Liberty not found: $SEQ_LIB_FILE" }
 
 # load Global route database
 read_db $NETLIST_DIR/detailed_route.odb
 
 # read technology timing library
+# read technology timing library
+read_liberty $SEQ_LIB_FILE
 read_liberty $LIBERTY
 
 # load timing constraints
 read_sdc $SDC_FILE
 
 # load RC model for route timing constraints
-source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
+source "$openROAD/flow/platforms/asap7/setRC.tcl"
 
 # After CTS, the clock tree is physically built, so it has timings
 set_propagated_clock [all_clocks]
@@ -49,12 +48,7 @@ set_propagated_clock [all_clocks]
 filler_placement \
     -prefix FILL \
     -verbose \
-    { \
-        sky130_fd_sc_hd__fill_8 \
-        sky130_fd_sc_hd__fill_4 \
-        sky130_fd_sc_hd__fill_2 \
-        sky130_fd_sc_hd__fill_1 \
-    }
+    {FILLER*_ASAP7_75t_R}
 
 # verify filler placement for overlapping and legalization and row violations
 
@@ -64,12 +58,6 @@ puts "PLACEMENT VERIFICATION AFTER FILLER INSERTION"
 global_connect \
     -force \
     -verbose
-
-# Insert metal density fill
-density_fill \
-    -rules $FILL_RULES
-# This is needed during Chemical Mechanical Polishing (CMP), when oxide in sparse regions polishes faster than dense regions,
-# producing uneven wafers, thus metal fills insert floating dummy metals
 
 puts "PLACEMENT VERIFICATION AFTER METAL FILL"
 # final verification after metal fill
@@ -89,8 +77,7 @@ exec python3 \
 
 # OpenRCX Parasitics Extraction
 extract_parasitics \
-    -ext_model_file "$openROAD/flow/platforms/sky130hd/rcx_patterns.rules"
-
+    -ext_model_file "$openROAD/flow/platforms/asap7/rcx_patterns.rules"
 # write SPEF (Standard Parasitic Exchange Format)
 write_spef \
     $NETLIST_DIR/spi_parasitics.spef

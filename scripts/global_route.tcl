@@ -21,30 +21,32 @@ set CONSTRAINTS_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/constraints"
 set SDC_FILE \
 "$CONSTRAINTS_DIR/constraints.sdc"
 
-set LIBERTY \
-"$openROAD/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
-# standard cell timing and power library
-if {![file exists $LIBERTY]} {
-    error "Liberty LEF not found: $LIBERTY"
-}
+set ASAP7_PLATFORM "$openROAD/flow/platforms/asap7"
+
+set LIBERTY "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib"
+set SEQ_LIB_FILE "$ASAP7_PLATFORM/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib"
+
+if {![file exists $LIBERTY]} { error "Merged Liberty not found: $LIBERTY" }
+if {![file exists $SEQ_LIB_FILE]} { error "SEQ Liberty not found: $SEQ_LIB_FILE" }
 
 # load CTS database
 read_db $NETLIST_DIR/cts.odb
 
 # read technology timing library
+read_liberty $SEQ_LIB_FILE
 read_liberty $LIBERTY
 
 # load timing constraints
 read_sdc $SDC_FILE
 
 # load RC model for routing timing estimation
-source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
+source "$openROAD/flow/platforms/asap7/setRC.tcl"
 
 # Check standard cell pin accessibility before routing
 pin_access
 
-# Restrict signal routing to met1-met5, and clock routing to met3-met5
-set_routing_layers -signal met1-met5 -clock met3-met5
+# Restrict signal routing to met1-met7, and clock routing to met4-met7
+set_routing_layers -signal M1-M7 -clock M4-M7
 
 # Global Routing
 global_route \
@@ -98,8 +100,10 @@ repair_timing \
 
 global_route -end_incremental
 # repair antannea violations
-repair_antennas
-# in Sky130, this is done by inserting jumpers (vias) to reduce antenna ratio = (metal / gate) area
+
+repair_antennas -diode_only
+
+# ASAP7, this is done by inserting antenna diodes
 puts "ANTENNA REPORT"
 check_antennas
 

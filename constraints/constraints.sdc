@@ -7,7 +7,7 @@
 # - Fixed syntax error in if statement  -  02-06-2026
 ############################################################
 
-set_units -time ns
+set_units -time ps
 
 # primary clock name
 set clk_name APB_CLK
@@ -15,8 +15,8 @@ set clk_name APB_CLK
 # clock input port name
 set clk_port_name PCLK
 
-# target clock period (ns)
-set clk_period 5.0 
+# target clock period for 2.5 GHz frequency
+set clk_period 400
 
 # ip/op delay set to 20% of clock period
 set clk_io_pct 0.20
@@ -42,8 +42,8 @@ create_clock \
 # no port needed for this
 
 # clock latency
-set_clock_latency 0.2 [get_clocks $clk_name]
-set_clock_latency 0.2 [get_clocks $clk_io_name]
+set_clock_latency 200 [get_clocks $clk_name]
+set_clock_latency 200 [get_clocks $clk_io_name]
 
 # collect all non-clock inputs
 set non_clock_inputs [list]

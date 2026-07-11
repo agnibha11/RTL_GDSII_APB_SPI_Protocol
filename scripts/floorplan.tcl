@@ -21,27 +21,19 @@ set SYNTH_NETLIST \
 set SDC_FILE \
 "$CONSTRAINTS_DIR/constraints.sdc"
 
-# technology files
-set TECH_LEF \
-"$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd.tlef"
-#this contains technology widths like metal vias etc.
-if {![file exists $TECH_LEF]} {
-    error "Technology LEF not found: $TECH_LEF"
-}
-
-set SC_LEF \
-"$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef"
-# this containd standard cell dimensions and details
-if {![file exists $SC_LEF]} {
-    error "Standard Cell LEF not found: $SC_LEF"
-}
-
 set LIBERTY \
-"$openROAD/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
-# standard cell timing and power library
-if {![file exists $LIBERTY]} {
-    error "Liberty LEF not found: $LIBERTY"
-}
+"$::env(HOME)/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib"
+
+set ASAP7_PLATFORM "$openROAD/flow/platforms/asap7"
+
+set ASAP7_LIB_DIR "$ASAP7_PLATFORM/lib/NLDM"
+
+set TECH_LEF "$ASAP7_PLATFORM/lef/asap7_tech_1x_201209.lef"
+if {![file exists $TECH_LEF]} { error "Tech LEF not found: $TECH_LEF" }
+
+set SC_LEF "$ASAP7_PLATFORM/lef/asap7sc7p5t_28_R_1x_220121a.lef"
+if {![file exists $SC_LEF]} { error "Cell LEF not found: $SC_LEF" }
+
 
 #read the LEF file
 read_lef $TECH_LEF
@@ -64,20 +56,20 @@ read_sdc $SDC_FILE
 
 # initialize the floorplan
 initialize_floorplan \
-    -site unithd \
-    -utilization 60 \
+    -site asap7sc7p5t \
+    -utilization 70 \
     -aspect_ratio 1.0 \
-    -core_space 4
+    -core_space 1
 # core_space is to leave a margin of 2um on all four sides of die
-# utilization maintained at 60% means std cells occupy 60% of core area
+# utilization maintained at 70% means std cells and macros occupy 60% of core area
 
 # create the metal tracks for routing
-source "$openROAD/flow/platforms/sky130hd/make_tracks.tcl"
+source "$openROAD/flow/platforms/asap7/openRoad/make_tracks.tcl"
 
 # insert tapcells (fab requirement)
 tapcell \
     -distance 14 \
-    -tapcell_master "sky130_fd_sc_hd__tapvpwrvgnd_1"
+    -tapcell_master "TAPCELL_ASAP7_75t_R"
 # 14 means tap cell placed after every 14 placement sites
 
 # POWER DISTRIBUTION NETWORK
@@ -87,7 +79,7 @@ tapcell \
 add_global_connection \
     -net VDD \
     -inst_pattern .* \
-    -pin_pattern {^VPWR$} \
+    -pin_pattern {^VDD$} \
     -power
 
 # connect standard cell power pins
@@ -95,7 +87,7 @@ add_global_connection \
 add_global_connection \
     -net VSS \
     -inst_pattern .* \
-    -pin_pattern {^VGND$} \
+    -pin_pattern {^VSS$} \
     -ground
 
 # voltage bias for PMOS body (NWell)
@@ -121,51 +113,53 @@ set_voltage_domain \
     -power VDD \
     -ground VSS
 
-# define the power distribution grid
+# define the power distribution grid exposing the M5 layer
 define_pdn_grid \
     -name {grid} \
     -voltage_domains {CORE} \
-    -pins {met5}
-# the pdn grid has been exposed to the highest metal layer
+    -pins {M5}
+
+# Add a Core Ring around the boundary to tie all row ends together
+add_pdn_ring \
+    -grid {grid} \
+    -layers {M5 M4} \
+    -widths {0.216 0.216} \
+    -spacings {0.12} \
+    -core_offset {0.1}
 
 # create continuous metal layer 1 rails follwoing the aligned power pins of the standard cells
 # standard cell power pins are on Metal 1 as xtors are on Metal 1
 add_pdn_stripe \
     -grid {grid} \
-    -layer {met1} \
-    -width {0.48} \
-    -pitch {5.44} \
+    -layer {M1} \
+    -width {0.018} \
+    -pitch {0.54} \
     -offset {0} \
     -followpins
-# create wide Metal4 stripe for power
+
+# Vertical power straps on Metal 4
 add_pdn_stripe \
     -grid {grid} \
-    -layer {met4} \
-    -width {1.6} \
-    -pitch {27.20} \
-    -offset {13.60}
-# the offset is the starting point from the core boundary
+    -layer {M2} \
+    -width {0.018} \
+    -pitch {0.54} \
+    -offset {0} \
+    -followpins
+# offset is the starting point of the core boundary
 
-# create Metal5 Power Straps
+# Horizontal power straps on Metal 5
 add_pdn_stripe \
     -grid {grid} \
-    -layer {met5} \
-    -width {1.6} \
-    -pitch {27.20} \
-    -offset {13.60}
+    -layer {M5} \
+    -width {0.216} \
+    -spacing {0.12} \
+    -pitch {2.88} \
+    -offset {1.0} \
+    -extend_to_core_ring
 
-# met1 -> met4 needs the full stack: via1 (M1M2) + via2 (M2M3) + via3 (M3M4)
-add_pdn_connect \
-    -grid {grid} \
-    -layers {met1 met4} \
-    -fixed_vias {M1M2_PR M2M3_PR M3M4_PR}
-
-# met4 -> met5
-add_pdn_connect \
-    -grid {grid} \
-    -layers {met4 met5} \
-    -fixed_vias {M4M5_PR}
-
+add_pdn_connect -grid {grid} -layers {M1 M2}
+add_pdn_connect -grid {grid} -layers {M2 M5}
+add_pdn_connect -grid {grid} -layers {M4 M5}
 
 # generate the PDN
 pdngen
@@ -173,7 +167,7 @@ pdngen
 # generate the reports
 #check_power_grid
 
-#report_design_area
+report_design_area
 
 # Save the floorplan
 write_db $NETLIST_DIR/floorplan.odb

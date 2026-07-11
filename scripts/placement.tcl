@@ -17,12 +17,18 @@ set REPORT_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/reports"
 set NETLIST_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/netlists"
 set CONSTRAINTS_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/constraints"
 
-set LIBERTY \
-"$openROAD/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
-# standard cell timing and power library
-if {![file exists $LIBERTY]} {
-    error "Liberty LEF not found: $LIBERTY"
-}
+# constraints
+set SDC_FILE \
+"$CONSTRAINTS_DIR/constraints.sdc"
+
+set ASAP7_PLATFORM "$openROAD/flow/platforms/asap7"
+
+# standard cell timing and power libraries
+set LIBERTY "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib"
+set SEQ_LIB_FILE "$ASAP7_PLATFORM/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib"
+
+if {![file exists $LIBERTY]} { error "Merged Liberty not found: $LIBERTY" }
+if {![file exists $SEQ_LIB_FILE]} { error "SEQ Liberty not found: $SEQ_LIB_FILE" }
 
 puts "LOAD FLOORPLAN DATABASE"
 
@@ -30,11 +36,16 @@ puts "LOAD FLOORPLAN DATABASE"
 read_db $NETLIST_DIR/floorplan.odb
 
 # read technology information
+read_liberty $SEQ_LIB_FILE
 read_liberty $LIBERTY
+
+read_sdc $SDC_FILE
 
 # load RC model for placement timing estimations
 # used for estimating the delays of the interconnects
-source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
+source "$openROAD/flow/platforms/asap7/setRC.tcl"
+
+set_routing_layers -signal M1-M7 -clock M4-M7
 
 puts "PLACE I/O PINS"
 
@@ -193,8 +204,8 @@ set_io_pin_constraint \
     -region right:*
 
 place_pins \
-    -hor_layers {met3} \
-    -ver_layers {met2} \
+    -hor_layers {M2} \
+    -ver_layers {M3} \
     -group_pins {PCLK PRESETn} \
     -group_pins {ss_pad_o[31] ss_pad_o[30] ss_pad_o[29] ss_pad_o[28]} \
     -group_pins {ss_pad_o[27] ss_pad_o[26] ss_pad_o[25] ss_pad_o[24]} \
@@ -225,8 +236,8 @@ place_pins \
     -group_pins {PRDATA[7]  PRDATA[6]  PRDATA[5]  PRDATA[4]} \
     -group_pins {PRDATA[3]  PRDATA[2]  PRDATA[1]  PRDATA[0]} \
     -group_pins {PREADY PSLVERR} \
-    -corner_avoidance 10 \
-    -min_distance 2 \
+    -corner_avoidance 1 \
+    -min_distance 0.3 \
     -write_pin_placement "$REPORT_DIR/pin_placement.txt"
 # means the pins placed on the top and bottom edge are connected to met3 layer
 # means the pins placed on the right and left edge are connected to met2 layer
@@ -239,6 +250,10 @@ puts "ESTIMATE PARASITICS"
 # estimate interconnect parasitics
 estimate_parasitics -placement
 # this uses openSTA, and done for timing driven placement
+
+puts "APPLY CELL PADDING"
+# Mandatory for sub-10nm FinFET to prevent pin access DRC errors
+set_placement_padding -global -left 1 -right 1
 
 # GLOBAL PLACEMENT
 # this determines the physical location of every std cell in design

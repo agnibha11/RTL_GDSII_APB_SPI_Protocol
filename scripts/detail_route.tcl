@@ -19,30 +19,31 @@ set CONSTRAINTS_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/constraints"
 set SDC_FILE \
 "$CONSTRAINTS_DIR/constraints.sdc"
 
-set LIBERTY \
-"$openROAD/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
-# standard cell timing and power library
-if {![file exists $LIBERTY]} {
-    error "Liberty LEF not found: $LIBERTY"
-}
+set ASAP7_PLATFORM "$openROAD/flow/platforms/asap7"
 
+set LIBERTY "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib"
+set SEQ_LIB_FILE "$ASAP7_PLATFORM/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib"
+
+if {![file exists $LIBERTY]} { error "Merged Liberty not found: $LIBERTY" }
+if {![file exists $SEQ_LIB_FILE]} { error "SEQ Liberty not found: $SEQ_LIB_FILE" }
 # load Global route database
 read_db $NETLIST_DIR/global_route.odb
 
 # read technology timing library
+read_liberty $SEQ_LIB_FILE
 read_liberty $LIBERTY
 
 # load timing constraints
 read_sdc $SDC_FILE
 
 # load RC model for route timing constraints
-source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
+source "$openROAD/flow/platforms/asap7/setRC.tcl"
 
 # After CTS, the clock tree is physically built, so it has timings
 set_propagated_clock [all_clocks]
 
-# Restrict signal routing to met1-met5, and clock routing to met3-met5
-set_routing_layers -signal met1-met5 -clock met3-met5
+# Restrict signal routing to met1-met7, and clock routing to met4-met7
+set_routing_layers -signal M1-M7 -clock M4-M7
 
 # Detailed routing
 detailed_route \
@@ -56,21 +57,6 @@ detailed_route \
 # writes the maze-routing log
 # guide tells us how well TritonRoute followed the global routing guides
 
-# repair antenna violations
-if { [repair_antennas] } {
-    puts "RE-RUN Detailed Routing after Antenna Repair"
-
-    # Restrict signal routing to met1-met5, and clock routing to met3-met5
-    set_routing_layers -signal met1-met5 -clock met3-met5
-
-    detailed_route \
-        -output_drc "$REPORT_DIR/detail_route_drc.rpt" \
-        -output_maze "$REPORT_DIR/detailed_route_maze.log" \
-        -output_guide_coverage "$REPORT_DIR/guide_coverage.rpt" \
-        -droute_end_iter 100 \
-        -clean_patches \
-        -verbose 1
-}
 
 # Verify design is fully routed
 if { ![design_is_routed] } {

@@ -1,79 +1,81 @@
 
-21. Printing statistics.
+23. Printing statistics.
 
 === spi_top ===
 
-   Number of wires:               1605
-   Number of wire bits:           1705
-   Number of public wires:         592
-   Number of public wire bits:     692
+   Number of wires:               1855
+   Number of wire bits:           1955
+   Number of public wires:          71
+   Number of public wire bits:     171
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:               1308
-     sky130_fd_sc_hd__a211oi_1       4
-     sky130_fd_sc_hd__a21o_1         3
-     sky130_fd_sc_hd__a21oi_1       44
-     sky130_fd_sc_hd__a221oi_1       5
-     sky130_fd_sc_hd__a222oi_1       6
-     sky130_fd_sc_hd__a22o_1         1
-     sky130_fd_sc_hd__a22oi_1       22
-     sky130_fd_sc_hd__a2bb2oi_1      1
-     sky130_fd_sc_hd__a311oi_1       1
-     sky130_fd_sc_hd__a31oi_1        5
-     sky130_fd_sc_hd__a32oi_1        1
-     sky130_fd_sc_hd__and3_1         1
-     sky130_fd_sc_hd__and3b_1        1
-     sky130_fd_sc_hd__and4b_1        1
-     sky130_fd_sc_hd__buf_2         13
-     sky130_fd_sc_hd__buf_4          1
-     sky130_fd_sc_hd__buf_6          2
-     sky130_fd_sc_hd__clkbuf_1     182
-     sky130_fd_sc_hd__conb_1         2
-     sky130_fd_sc_hd__dfrtp_1      213
-     sky130_fd_sc_hd__dfstp_2       16
-     sky130_fd_sc_hd__inv_1          3
-     sky130_fd_sc_hd__lpflow_clkbufkapwr_1     59
-     sky130_fd_sc_hd__lpflow_clkbufkapwr_2      1
-     sky130_fd_sc_hd__lpflow_inputiso0n_1      7
-     sky130_fd_sc_hd__lpflow_inputiso0p_1      1
-     sky130_fd_sc_hd__lpflow_inputiso1p_1      1
-     sky130_fd_sc_hd__lpflow_isobufsrc_1      9
-     sky130_fd_sc_hd__mux2_2       195
-     sky130_fd_sc_hd__mux2i_1       32
-     sky130_fd_sc_hd__mux4_2         6
-     sky130_fd_sc_hd__nand2_1      142
-     sky130_fd_sc_hd__nand2b_1       8
-     sky130_fd_sc_hd__nand3_1       13
-     sky130_fd_sc_hd__nand3b_1       3
-     sky130_fd_sc_hd__nand4_1        4
-     sky130_fd_sc_hd__nand4b_1       2
-     sky130_fd_sc_hd__nor2_1       156
-     sky130_fd_sc_hd__nor2_2         1
-     sky130_fd_sc_hd__nor2b_1        2
-     sky130_fd_sc_hd__nor3_1        21
-     sky130_fd_sc_hd__nor3_2         1
-     sky130_fd_sc_hd__nor3b_1        3
-     sky130_fd_sc_hd__nor4_1         9
-     sky130_fd_sc_hd__o2111ai_1      1
-     sky130_fd_sc_hd__o211ai_1       2
-     sky130_fd_sc_hd__o21a_1         2
-     sky130_fd_sc_hd__o21ai_0       51
-     sky130_fd_sc_hd__o21ai_2        1
-     sky130_fd_sc_hd__o22ai_1        1
-     sky130_fd_sc_hd__o31a_2         1
-     sky130_fd_sc_hd__o31ai_1        2
-     sky130_fd_sc_hd__o32ai_1        1
-     sky130_fd_sc_hd__o41ai_1        1
-     sky130_fd_sc_hd__or2_2          3
-     sky130_fd_sc_hd__or3_1          6
-     sky130_fd_sc_hd__or3_2          1
-     sky130_fd_sc_hd__or3_4          2
-     sky130_fd_sc_hd__or4_1          3
-     sky130_fd_sc_hd__or4_2          1
-     sky130_fd_sc_hd__or4_4          1
-     sky130_fd_sc_hd__xnor2_1       11
-     sky130_fd_sc_hd__xor2_1        13
-
-   Chip area for module '\spi_top': 12374.368000
+   Number of cells:               1853
+     A2O1A1Ixp33_ASAP7_75t_R        29
+     A2O1A1O1Ixp25_ASAP7_75t_R       1
+     AND2x2_ASAP7_75t_R              7
+     AND3x1_ASAP7_75t_R              9
+     AND4x1_ASAP7_75t_R              6
+     AND5x1_ASAP7_75t_R              2
+     AND5x2_ASAP7_75t_R              1
+     AO21x1_ASAP7_75t_R             36
+     AO22x1_ASAP7_75t_R              2
+     AO32x1_ASAP7_75t_R              2
+     AOI211xp5_ASAP7_75t_R           3
+     AOI21xp33_ASAP7_75t_R          80
+     AOI221x1_ASAP7_75t_R            1
+     AOI221xp5_ASAP7_75t_R           1
+     AOI22xp33_ASAP7_75t_R           2
+     AOI311xp33_ASAP7_75t_R          7
+     AOI31xp67_ASAP7_75t_R           1
+     AOI321xp33_ASAP7_75t_R         22
+     BUFx2_ASAP7_75t_R             150
+     BUFx3_ASAP7_75t_R              24
+     BUFx4f_ASAP7_75t_R              3
+     BUFx6f_ASAP7_75t_R              4
+     DFFASRHQNx1_ASAP7_75t_R       229
+     HB1xp67_ASAP7_75t_R           231
+     INVx1_ASAP7_75t_R              10
+     INVx2_ASAP7_75t_R               2
+     INVx3_ASAP7_75t_R               1
+     INVx4_ASAP7_75t_R               1
+     INVxp33_ASAP7_75t_R            56
+     INVxp67_ASAP7_75t_R             1
+     NAND2x1_ASAP7_75t_R             1
+     NAND2x1p5_ASAP7_75t_R           1
+     NAND2xp33_ASAP7_75t_R          88
+     NAND2xp5_ASAP7_75t_R            6
+     NAND3x1_ASAP7_75t_R             8
+     NAND3x2_ASAP7_75t_R             1
+     NAND3xp33_ASAP7_75t_R          26
+     NAND4xp25_ASAP7_75t_R          17
+     NAND4xp75_ASAP7_75t_R          12
+     NAND5xp2_ASAP7_75t_R           21
+     NOR2x1_ASAP7_75t_R              6
+     NOR2x1p5_ASAP7_75t_R            1
+     NOR2xp33_ASAP7_75t_R           96
+     NOR2xp67_ASAP7_75t_R            1
+     NOR3x1_ASAP7_75t_R              4
+     NOR3x2_ASAP7_75t_R              1
+     NOR3xp33_ASAP7_75t_R           98
+     NOR4xp25_ASAP7_75t_R           10
+     NOR4xp75_ASAP7_75t_R            3
+     NOR5xp2_ASAP7_75t_R            27
+     O2A1O1Ixp33_ASAP7_75t_R        12
+     O2A1O1Ixp5_ASAP7_75t_R        117
+     OA211x2_ASAP7_75t_R             2
+     OA21x2_ASAP7_75t_R             19
+     OAI211xp5_ASAP7_75t_R          17
+     OAI21xp33_ASAP7_75t_R           9
+     OAI21xp5_ASAP7_75t_R           14
+     OAI22xp33_ASAP7_75t_R          19
+     OAI31xp67_ASAP7_75t_R           2
+     OAI32xp33_ASAP7_75t_R           7
+     OR2x2_ASAP7_75t_R              17
+     OR3x1_ASAP7_75t_R               9
+     OR4x1_ASAP7_75t_R               1
+     TIEHIx1_ASAP7_75t_R           230
+     TIELOx1_ASAP7_75t_R             1
+     XNOR2xp5_ASAP7_75t_R           12
+     XOR2xp5_ASAP7_75t_R            13
 

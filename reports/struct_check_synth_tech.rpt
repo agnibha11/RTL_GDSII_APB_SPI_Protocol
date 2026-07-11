@@ -1,73 +1,233 @@
 
-20. Executing CHECK pass (checking for obvious problems).
+22. Executing CHECK pass (checking for obvious problems).
 checking module spi_top..
-Warning: Wire spi_top.\ss_pad_o [31] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [30] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [29] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [28] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [27] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [26] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [25] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [24] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [23] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [22] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [21] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [20] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [19] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [18] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [17] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [16] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [15] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [14] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [13] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [12] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [11] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [10] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [9] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [8] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [7] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [6] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [5] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [4] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [3] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [2] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [1] is used but has no driver.
-Warning: Wire spi_top.\ss_pad_o [0] is used but has no driver.
-Warning: Wire spi_top.\spi_int_o is used but has no driver.
-Warning: Wire spi_top.\u_clgen.clk_out is used but has no driver.
-Warning: Wire spi_top.\u_shift.serial_out is used but has no driver.
-Warning: Wire spi_top.\PSLVERR is used but has no driver.
-Warning: Wire spi_top.\PREADY is used but has no driver.
-Warning: Wire spi_top.\PRDATA [31] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [30] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [29] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [28] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [27] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [26] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [25] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [24] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [23] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [22] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [21] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [20] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [19] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [18] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [17] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [16] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [15] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [14] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [13] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [12] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [11] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [10] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [9] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [8] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [7] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [6] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [5] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [4] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [3] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [2] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [1] is used but has no driver.
-Warning: Wire spi_top.\PRDATA [0] is used but has no driver.
-found and reported 69 problems.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23197 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23325 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23193 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23321 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23317 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23189 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23313 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23185 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23181 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23309 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23305 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23177 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23301 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23173 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23557 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23297 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23169 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23553 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23293 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23165 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23549 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23161 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23545 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23289 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23285 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23157 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23541 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23281 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23153 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23537 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23149 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23533 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23277 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23273 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23145 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23529 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23525 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23269 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23141 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23137 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23521 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23265 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23517 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23261 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23133 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23513 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23257 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23129 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23509 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23253 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23125 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23249 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23505 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23121 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23501 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23245 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23117 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23373 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23241 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23497 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23113 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23369 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23493 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23237 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23109 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23365 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23489 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23233 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23105 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23361 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23485 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23229 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23101 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23357 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23481 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23225 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23097 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23353 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23093 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23349 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23221 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23477 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23473 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23217 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23089 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23345 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23469 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23213 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23085 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23341 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23209 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23337 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23333 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23205 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23201 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23329 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23657 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23655 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23653 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23651 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23681 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23601 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23599 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23597 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23595 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23593 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23591 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23589 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23587 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23617 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23615 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23613 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23611 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23609 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23607 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23605 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23603 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23633 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23631 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23629 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23627 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23625 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23623 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23621 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23619 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23649 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23647 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23645 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23643 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23641 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23639 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23637 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23635 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23679 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23585 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23421 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23417 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23573 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23413 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23409 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23405 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23569 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23401 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23081 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23077 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23073 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23465 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23673 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23033 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23029 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23025 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23021 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23017 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23013 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23009 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23005 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23671 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23669 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23667 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23665 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23663 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23661 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23659 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23677 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23719 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23461 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23457 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23453 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23449 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23445 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23581 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23441 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23437 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23433 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23577 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23429 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23397 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23561 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23381 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23393 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23377 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23425 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23385 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23389 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23565 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23057 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23053 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23061 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23715 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23037 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23041 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23045 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23049 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23695 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23693 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23691 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23689 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23697 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23687 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23685 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23683 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23711 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23709 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23707 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23705 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23713 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23703 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23701 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23699 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23675 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23731 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23727 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23735 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23739 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23743 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23747 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23751 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23755 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23771 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23759 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23763 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23767 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23775 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23779 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23783 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23787 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23065 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23069 is used but has no driver.
+Warning: Wire spi_top.$abc$23791$auto$dfflibmap.cc:519:dfflibmap$23723 is used but has no driver.
+found and reported 229 problems.

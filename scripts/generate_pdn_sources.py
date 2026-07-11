@@ -51,13 +51,13 @@ parser.add_argument(
 parser.add_argument(
     "--voltage",
     type=float,
-    default=1.8,
+    default=0.7,
     help="Supply voltage."
 )
 
 parser.add_argument(
     "--layer",
-    default="met5",
+    default="M5",
     help="Routing layer to use."
 )
 

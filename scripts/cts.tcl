@@ -16,12 +16,18 @@ set CONSTRAINTS_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/constraints"
 # constraints
 set SDC_FILE \
 "$CONSTRAINTS_DIR/constraints.sdc"
+set ASAP7_PLATFORM "$openROAD/flow/platforms/asap7"
 
-set LIBERTY \
-"$openROAD/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
-# standard cell timing and power library
+# Path to your merged combinational library
+set LIBERTY "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib"
 if {![file exists $LIBERTY]} {
-    error "Liberty LEF not found: $LIBERTY"
+    error "Liberty not found: $LIBERTY"
+}
+
+# Path to the ASAP7 native sequential library
+set SEQ_LIB_FILE "$ASAP7_PLATFORM/lib/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.lib"
+if {![file exists $SEQ_LIB_FILE]} {
+    error "Sequential Liberty not found: $SEQ_LIB_FILE"
 }
 
 # load placed design database
@@ -29,13 +35,16 @@ read_db $NETLIST_DIR/placement.odb
 
 # read technology information
 read_liberty $LIBERTY
+read_liberty $SEQ_LIB_FILE
 
 # load timing constraints
 read_sdc $SDC_FILE
 
 # load RC model for placement timing estimations
 # used for estimating the delays of the interconnects
-source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
+source "$openROAD/flow/platforms/asap7/setRC.tcl"
+
+set_routing_layers -signal M1-M7 -clock M4-M7
 
 # removes unnecessary inverter pairs and chains to 
 repair_clock_inverters
@@ -44,9 +53,7 @@ repair_clock_inverters
 clock_tree_synthesis \
     -sink_clustering_enable \
     -repair_clock_nets \
-    -buf_list {sky130_fd_sc_hd__clkbuf_4} \
-    -sink_clustering_size 20 \
-    -sink_clustering_max_diameter 50
+    -buf_list {BUFx2_ASAP7_75t_R BUFx4_ASAP7_75t_R BUFx8_ASAP7_75t_R}
 
 # sink clustering groups nearby FFs and sinks into clusters and drives them
 # to lower skew less wirelength, fewer clock buffers, lower clock power
@@ -94,4 +101,4 @@ report_design_area
 write_db $NETLIST_DIR/cts.odb
 write_def $NETLIST_DIR/spi_top_cts.def
 
-save_image "$REPORT_DIR/cts.png"
+save_image "$REPORT_DIR/images/cts.png"

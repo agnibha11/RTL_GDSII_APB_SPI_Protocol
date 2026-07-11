@@ -3,7 +3,8 @@
 # Author        : Agnibha Sarkar
 # First modified: 04-07-2026
 # Changes
-# - Switched to Magic for GDS generation to resolve DRVs  -  06-07-2026
+# - Migrated from Sky130 to ASAP7  -  12-07-2026
+# - Switched from Magic to KLayout for ASAP7 GDS streamout  -  12-07-2026
 ############################################################
 
 # top level design name
@@ -15,116 +16,60 @@ set REPORT_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/reports"
 set NETLIST_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/netlists"
 set CONSTRAINTS_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/constraints"
 set SCRIPT_DIR "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/scripts"
-set TECH_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd.tlef"
-set SC_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef"
-set env(PDK_ROOT) "/media/agnibha/One/PDK/share/pdk"
 
-# Standard-cell GDS library
-set STD_CELL_GDS "$openROAD/flow/platforms/sky130hd/gds/sky130_fd_sc_hd.gds"
+# ASAP7 Paths
+set ASAP7_PLATFORM "$openROAD/flow/platforms/asap7"
+set TECH_LEF "$ASAP7_PLATFORM/lef/asap7_tech_1x_201209.lef"
+set SC_LEF "$ASAP7_PLATFORM/lef/asap7sc7p5t_28_R_1x_220121a.lef"
+set STD_CELL_GDS "$ASAP7_PLATFORM/gds/asap7sc7p5t_28_R_220121a.gds"
 
-# Final GDS output
-set GDS_FILE \
-"$NETLIST_DIR/GDSII/spi_top.gds"
+# Inputs and Outputs
+set DEF_FILE "$NETLIST_DIR/spi_physical_signoff.def"
+set GDS_FILE "$NETLIST_DIR/GDSII/${DESIGN_NAME}.gds"
+# 1. Create a KLayout Python Streamout Script
+set KLAYOUT_STREAMOUT_SCRIPT "$SCRIPT_DIR/klayout_streamout.py"
+set klayout_fd [open $KLAYOUT_STREAMOUT_SCRIPT w]
 
-# constraints
-set SDC_FILE \
-"$CONSTRAINTS_DIR/constraints.sdc"
+puts $klayout_fd "import pya"
+puts $klayout_fd "import os"
+puts $klayout_fd ""
+puts $klayout_fd "layout = pya.Layout()"
+puts $klayout_fd ""
+puts $klayout_fd "# Read the standard cell GDS first so the cell geometries exist in memory"
+puts $klayout_fd "layout.read(os.environ.get('STD_CELL_GDS'))"
+puts $klayout_fd ""
+puts $klayout_fd "# Load LEF files into the layout options so KLayout understands DEF vias and macros"
+puts $klayout_fd "opt = pya.LoadLayoutOptions()"
+puts $klayout_fd "opt.lefdef_config.lef_files = \[os.environ.get('TECH_LEF'), os.environ.get('SC_LEF')\]"
+puts $klayout_fd ""
+puts $klayout_fd "# Read the DEF file. KLayout maps DEF components to existing GDS cells."
+puts $klayout_fd "layout.read(os.environ.get('DEF_FILE'), opt)"
+puts $klayout_fd ""
+puts $klayout_fd "# Write the final layout to GDS"
+puts $klayout_fd "layout.write(os.environ.get('GDS_FILE'))"
+puts $klayout_fd "print('GDS Streamout completed by KLayout!')"
 
-set LIBERTY \
-"$openROAD/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
-# standard cell timing and power library
-if {![file exists $LIBERTY]} {
-    error "Liberty LEF not found: $LIBERTY"
+close $klayout_fd
+
+# 2. Pass variables to KLayout via the environment
+set env(STD_CELL_GDS) $STD_CELL_GDS
+set env(DEF_FILE) $DEF_FILE
+set env(GDS_FILE) $GDS_FILE
+set env(TECH_LEF) $TECH_LEF
+set env(SC_LEF) $SC_LEF
+
+puts "Running KLayout in the background to merge GDS. This might take a minute..."
+
+# 3. Execute KLayout in batch mode without a GUI
+set klayout_status [catch {exec klayout -b -zz -r $KLAYOUT_STREAMOUT_SCRIPT} klayout_output]
+
+puts "--- KLAYOUT CONSOLE OUTPUT ---"
+puts $klayout_output
+puts "------------------------------"
+
+# 4. Verify the GDS was generated
+if {[file exists $GDS_FILE]} {
+    puts "SUCCESS: Final GDS generated successfully at $GDS_FILE"
+} else {
+    error "CRITICAL ERROR: KLayout failed to generate the GDS."
 }
-
-# Load the final Physical Signoff database
-read_db $NETLIST_DIR/physical_signoff.odb
-
-# read technology timing library
-read_liberty $LIBERTY
-
-# load timing constraints
-read_sdc $SDC_FILE
-
-# load RC model for route timing constraints
-source "$openROAD/flow/platforms/sky130hd/setRC.tcl"
-
-puts "FINAL DATABASE VERIFICATION"
-
-check_placement
-
-puts "Placement database verified."
-
-puts "WRITING FINAL DEF FOR GDS STREAM-OUT"
-
-write_def \
-    $NETLIST_DIR/spi_final.def
-
-write_verilog $NETLIST_DIR/spi_top_final.v
-
-puts "GENERATING FINAL GDSII USING MAGIC..."
-
-# 1. Define the absolute path to your Magic tech file
-set MAGIC_TECH_FILE "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/magic/sky130A.tech"
-
-# Verify the tech file actually exists before running to avoid silent failures
-if {![file exists $MAGIC_TECH_FILE]} {
-    error "Critical Error: Magic tech file not found at $MAGIC_TECH_FILE"
-}
-
-set TECH_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd.tlef"
-set SC_LEF "$openROAD/flow/platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef"
-
-puts "GENERATING FINAL GDSII USING MAGIC..."
-
-# Create a temporary Magic script for stream-out
-set MAGIC_STREAMOUT_SCRIPT "$SCRIPT_DIR/magic_streamout.tcl"
-set magic_fd [open $MAGIC_STREAMOUT_SCRIPT w]
-
-# 1. Optimize Magic settings for stream-out (prevent scaling issues)
-puts $magic_fd "drc off"
-puts $magic_fd "gds readonly true"
-puts $magic_fd "gds rescale false"
-
-# 2. CRITICAL: Read the standard cell GDS *before* the DEF
-puts $magic_fd "gds read $STD_CELL_GDS"
-
-# 3. Read technology and macro LEFs
-puts $magic_fd "lef read $TECH_LEF"
-puts $magic_fd "lef read $SC_LEF"
-
-# 4. Read the DEF to place the cells and draw the routing
-puts $magic_fd "def read $NETLIST_DIR/spi_final.def"
-
-# 5. Load the top level cell
-puts $magic_fd "load $DESIGN_NAME"
-
-# 6. Write the final layout to GDS and forcefully quit
-puts $magic_fd "gds write $GDS_FILE"
-puts $magic_fd "quit -noprompt"
-close $magic_fd
-
-# 1. Define the absolute path to your Magic tech file
-set MAGIC_TECH_FILE "$::env(HOME)/Documents/Projects/RTL_GDS_SPI/magic/sky130A.tech"
-
-# Verify the tech file actually exists before running to avoid silent failures
-if {![file exists $MAGIC_TECH_FILE]} {
-    error "Critical Error: Magic tech file not found at $MAGIC_TECH_FILE"
-}
-
-puts "Running Magic in the background. This might take a minute..."
-
-# 2. Update the exec command to point to the absolute path of the tech file
-set magic_status [catch {exec magic -dnull -noconsole -T $MAGIC_TECH_FILE < $MAGIC_STREAMOUT_SCRIPT} magic_output]
-
-# Print Magic's log directly to your terminal so you can see what it actually did
-puts "--- MAGIC CONSOLE OUTPUT ---"
-puts $magic_output
-puts "----------------------------"
-
-# Real verification check: Ensure the GDS exists and is NOT empty
-if {![file exists $GDS_FILE] || [file size $GDS_FILE] == 0} {
-    error "GDS generation failed! The output file is empty or missing."
-}
-
-puts "FINAL GDS GENERATED SUCCESSFULLY: $GDS_FILE ([file size $GDS_FILE] bytes)"

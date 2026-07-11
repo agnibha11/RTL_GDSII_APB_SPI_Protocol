@@ -3,63 +3,48 @@ OpenROAD 26Q2-2517-g7304ba78ad
 Features included (+) or not (-): +GPU +GUI +Python
 This program is licensed under the BSD-3 license. See the LICENSE file for details.
 Components of this program may be licensed under more restrictive licenses which must be honored.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 13178, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 13211, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 13244, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 13277, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 13310, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 13343, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 13376, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 14772, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 14805, timing group from output port.
+[WARNING STA-1212] /home/agnibha/Documents/Projects/RTL_GDS_SPI/LIBERTY/asap7_merged_combo.lib line 14838, timing group from output port.
 [WARNING STA-0450] virtual clock vclk_APB_CLK can not be propagated.
-[INFO DPL-0001] Placed 1722 filler instances.
+[INFO DPL-0001] Placed 3390 filler instances.
 Filler usage:
-  sky130_fd_sc_hd__fill_1: 514
-  sky130_fd_sc_hd__fill_2: 508
-  sky130_fd_sc_hd__fill_4: 349
-  sky130_fd_sc_hd__fill_8: 351
+  FILLER_ASAP7_75t_R:    2911
+  FILLERxp5_ASAP7_75t_R:  479
 PLACEMENT VERIFICATION AFTER FILLER INSERTION
-[INFO ODB-0403] 7168 connections made, 0 conflicts skipped.
-[WARNING FIN-0010] Skipping layer nwell.
-[WARNING FIN-0010] Skipping layer pwell.
-[WARNING FIN-0010] Skipping layer li1.
-[WARNING FIN-0010] Skipping layer mcon.
-[INFO FIN-0003] Filling layer met1.
-[INFO FIN-0009] Filling 0 areas with non-OPC fill.
-[INFO FIN-0004] Total fills: 0.
-[WARNING FIN-0010] Skipping layer via.
-[INFO FIN-0003] Filling layer met2.
-[INFO FIN-0009] Filling 9 areas with non-OPC fill.
-[INFO FIN-0004] Total fills: 142.
-[WARNING FIN-0010] Skipping layer via2.
-[INFO FIN-0003] Filling layer met3.
-[INFO FIN-0009] Filling 48 areas with non-OPC fill.
-[INFO FIN-0004] Total fills: 989.
-[WARNING FIN-0010] Skipping layer via3.
-[INFO FIN-0003] Filling layer met4.
-[INFO FIN-0009] Filling 16 areas with non-OPC fill.
-[INFO FIN-0004] Total fills: 3624.
-[WARNING FIN-0010] Skipping layer via4.
-[INFO FIN-0003] Filling layer met5.
-[INFO FIN-0009] Filling 15 areas with non-OPC fill.
-[INFO FIN-0004] Total fills: 3929.
+[INFO ODB-0403] 6946 connections made, 0 conflicts skipped.
 PLACEMENT VERIFICATION AFTER METAL FILL
 Write POST_SIGNOFF database
 GENERATING PDNSIM VOLTAGE SOURCE FILE
-[INFO RCX-0435] Reading extraction model file /home/agnibha/OpenROAD-flow-scripts/flow/platforms/sky130hd/rcx_patterns.rules ...
+[INFO RCX-0435] Reading extraction model file /home/agnibha/OpenROAD-flow-scripts/flow/platforms/asap7/rcx_patterns.rules ...
 [INFO RCX-0434] Defined process_corner MinMax0 with ext_model_index 0 (using extRulesFile defaults)
 [INFO RCX-0436] RC segment generation spi_top (max_merge_res 50.0) ...
-[INFO RCX-0040] Final 5373 rc segments
+[INFO RCX-0040] Final 13255 rc segments
 [INFO RCX-0439] Coupling Cap extraction spi_top ...
 [INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
-[INFO RCX-0442] 52% of 11318 wires extracted
-[INFO RCX-0442] 100% of 11318 wires extracted
-[INFO RCX-0045] Extract 1347 nets, 6714 rsegs, 6714 caps, 13300 ccs
-[INFO RCX-0443] 1347 nets finished
+[INFO RCX-0442] 56% of 14766 wires extracted
+[INFO RCX-0442] 100% of 14766 wires extracted
+[INFO RCX-0045] Extract 1763 nets, 15011 rsegs, 15011 caps, 20866 ccs
+[INFO RCX-0443] 1763 nets finished
 POST ROUTE POWER REPORT
 Group                  Internal  Switching    Leakage      Total
                           Power      Power      Power      Power (Watts)
 ----------------------------------------------------------------
-Sequential           2.1628e-03 4.5832e-04 3.0607e-09 2.6212e-03  51.6%
-Combinational        4.4885e-04 6.4425e-04 2.2812e-09 1.0931e-03  21.5%
-Clock                6.0395e-04 7.6128e-04 2.7206e-10 1.3652e-03  26.9%
+Sequential           5.5951e-04 9.6399e-06 4.3627e-08 5.6919e-04  47.2%
+Combinational        2.9225e-05 7.0767e-05 6.0901e-08 1.0005e-04   8.3%
+Clock                2.9593e-04 2.4155e-04 8.6630e-09 5.3749e-04  44.5%
 Macro                0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00   0.0%
 Pad                  0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00   0.0%
 ----------------------------------------------------------------
-Total                3.2156e-03 1.8638e-03 5.6140e-09 5.0795e-03 100.0%
-                          63.3%      36.7%       0.0%
+Total                8.8467e-04 3.2196e-04 1.1319e-07 1.2067e-03 100.0%
+                          73.3%      26.7%       0.0%
 CHECK POWER GRID
 [INFO PSM-0040] All shapes on net VDD are connected.
 [INFO PSM-0040] All shapes on net VSS are connected.
@@ -69,35 +54,37 @@ IR DROP ANALYSIS
 ########## IR report #################
 Net              : VDD
 Corner           : default
-Total power      : 5.08e-03 W
-Supply voltage   : 1.80e+00 V
-Worstcase voltage: 1.80e+00 V
-Average voltage  : 1.80e+00 V
-Average IR drop  : 6.39e-05 V
-Worstcase IR drop: 4.10e-04 V
-Percentage drop  : 0.02 %
+Total power      : 1.21e-03 W
+Supply voltage   : 7.00e-01 V
+Worstcase voltage: 6.99e-01 V
+Average voltage  : 7.00e-01 V
+Average IR drop  : 1.02e-04 V
+Worstcase IR drop: 7.09e-04 V
+Percentage drop  : 0.10 %
 ######################################
 ########## EM analysis ###############
 Net                : VDD
 Corner             : default
-Maximum current    : 1.92e-04 A
-Average current    : 1.23e-05 A
-Number of resistors: 2051
+Maximum current    : 3.60e-05 A
+Average current    : 1.33e-06 A
+Number of resistors: 10780
 ######################################
 FINAL PHYSICAL SIGNOFF REPORTS
-Design area 13060 um^2 65% utilization.
+Design area 201 um^2 69% utilization.
 [INFO GRT-0279] Detailed route wire length by layer:
 Layer    Wire length  Percentage
 --------------------------------
-met1    17168.51um    39%
-met2    17692.54um    41%
-met3     6759.12um    15%
-met4     1222.44um     2%
-met5      133.40um     0%
+M1         82.96um     1%
+M2       1794.57um    28%
+M3       2547.43um    41%
+M4       1545.41um    24%
+M5        212.80um     3%
+M6         14.42um     0%
+M7          1.79um     0%
 --------------------------------
 POST ROUTE SETUP TIMING
 Startpoint: PRESETn (input port clocked by vclk_APB_CLK)
-Endpoint: $auto$simplemap.cc:496:simplemap_adff$15442
+Endpoint: $auto$simplemap.cc:496:simplemap_adff$11474
           (recovery check against rising-edge clock APB_CLK)
 Path Group: asynchronous
 Path Type: max
@@ -105,37 +92,37 @@ Path Type: max
 Fanout       Cap      Slew     Delay      Time   Description
 -------------------------------------------------------------------------------------
                     0.0000    0.0000    0.0000   clock vclk_APB_CLK (rise edge)
-                              0.2000    0.2000   clock network delay (ideal)
-                              1.0000    1.2000 ^ input external delay
-    67    0.3247    0.0000    0.0000    1.2000 ^ PRESETn (in)
+                            200.0000  200.0000   clock network delay (ideal)
+                             80.0000  280.0000 ^ input external delay
+    67   80.2207    0.0000    0.0000  280.0000 ^ PRESETn (in)
                                                  PRESETn (net)
-                    0.0411    0.0205    1.2205 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24296/A (sky130_fd_sc_hd__clkbuf_1)
-    10    0.0681    0.7882    0.5922    1.8127 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24296/X (sky130_fd_sc_hd__clkbuf_1)
-                                                 $abc$23333$new_n1693_ (net)
-                    0.7882    0.0010    1.8137 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24385/A (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
-    10    0.0637    0.7311    0.6292    2.4429 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24385/X (sky130_fd_sc_hd__lpflow_clkbufkapwr_1)
-                                                 $abc$23333$new_n1782_ (net)
-                    0.7311    0.0012    2.4441 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24395/A (sky130_fd_sc_hd__clkbuf_1)
-     1    0.0039    0.0633    0.1589    2.6030 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24395/X (sky130_fd_sc_hd__clkbuf_1)
-                                                 $abc$23333$auto$rtlil.cc:1969:NotGate$23302 (net)
-                    0.0633    0.0000    2.6030 ^ $auto$simplemap.cc:496:simplemap_adff$15442/SET_B (sky130_fd_sc_hd__dfstp_2)
-                                        2.6030   data arrival time
+                   43.8977   13.8482  293.8482 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23792/A (HB1xp67_ASAP7_75t_R)
+    10    5.8850   85.0916   59.0235  352.8717 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23792/Y (HB1xp67_ASAP7_75t_R)
+                                                 $abc$23791$new_n734_ (net)
+                   85.2534    2.1563  355.0280 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$25037/A (HB1xp67_ASAP7_75t_R)
+    10   10.4850  149.0018   92.4502  447.4781 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$25037/Y (HB1xp67_ASAP7_75t_R)
+                                                 $abc$23791$new_n1979_ (net)
+                  149.2222    3.3485  450.8267 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$25045/A (HB1xp67_ASAP7_75t_R)
+     1    1.1920   22.9133   45.5025  496.3292 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$25045/Y (HB1xp67_ASAP7_75t_R)
+                                                 $abc$23791$auto$rtlil.cc:1969:NotGate$23152 (net)
+                   22.9156    0.0883  496.4175 ^ $auto$simplemap.cc:496:simplemap_adff$11474/SETN (DFFASRHQNx1_ASAP7_75t_R)
+                                      496.4175   data arrival time
 
-                              5.0000    5.0000   clock APB_CLK (rise edge)
-                              0.7117    5.7117   clock network delay (propagated)
-                              0.0000    5.7117   clock reconvergence pessimism
-                                        5.7117 ^ $auto$simplemap.cc:496:simplemap_adff$15442/CLK (sky130_fd_sc_hd__dfstp_2)
-                              0.1563    5.8680   library recovery time
-                                        5.8680   data required time
+                            400.0000  400.0000   clock APB_CLK (rise edge)
+                             96.5364  496.5364   clock network delay (propagated)
+                              0.0000  496.5364   clock reconvergence pessimism
+                                      496.5364 ^ $auto$simplemap.cc:496:simplemap_adff$11474/CLK (DFFASRHQNx1_ASAP7_75t_R)
+                              8.8921  505.4284   library recovery time
+                                      505.4284   data required time
 -------------------------------------------------------------------------------------
-                                        5.8680   data required time
-                                       -2.6030   data arrival time
+                                      505.4284   data required time
+                                     -496.4175   data arrival time
 -------------------------------------------------------------------------------------
-                                        3.2650   slack (MET)
+                                        9.0109   slack (MET)
 
 
-Startpoint: PADDR[3] (input port clocked by vclk_APB_CLK)
-Endpoint: $auto$simplemap.cc:496:simplemap_adff$12189
+Startpoint: miso_pad_i (input port clocked by vclk_APB_CLK)
+Endpoint: $auto$simplemap.cc:496:simplemap_adff$11490
           (rising edge-triggered flip-flop clocked by APB_CLK)
 Path Group: APB_CLK
 Path Type: max
@@ -143,95 +130,89 @@ Path Type: max
 Fanout       Cap      Slew     Delay      Time   Description
 -------------------------------------------------------------------------------------
                     0.0000    0.0000    0.0000   clock vclk_APB_CLK (rise edge)
-                              0.2000    0.2000   clock network delay (ideal)
-                              1.0000    1.2000 ^ input external delay
-     1    0.0037    0.0000    0.0000    1.2000 ^ PADDR[3] (in)
-                                                 PADDR[3] (net)
-                    0.0001    0.0001    1.2001 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/A (sky130_fd_sc_hd__buf_1)
-     8    0.0560    0.6463    0.4799    1.6799 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/X (sky130_fd_sc_hd__buf_1)
-                                                 $abc$23333$new_n980_ (net)
-                    0.6463    0.0037    1.6837 ^ place19/A (sky130_fd_sc_hd__buf_4)
-    46    0.2780    0.7504    0.7100    2.3937 ^ place19/X (sky130_fd_sc_hd__buf_4)
-                                                 net19 (net)
-                    0.7538    0.0417    2.4355 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23584/C (sky130_fd_sc_hd__and3b_1)
-    11    0.0634    0.6117    0.6586    3.0940 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23584/X (sky130_fd_sc_hd__and3b_1)
-                                                 $abc$23333$new_n981_ (net)
-                    0.6117    0.0041    3.0981 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23585/SLEEP_B (sky130_fd_sc_hd__lpflow_inputiso0n_1)
-     4    0.0141    0.1503    0.2888    3.3869 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23585/X (sky130_fd_sc_hd__lpflow_inputiso0n_1)
-                                                 $abc$23333$new_n982_ (net)
-                    0.1503    0.0003    3.3872 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23616/B (sky130_fd_sc_hd__nand2_1)
-     8    0.0591    0.4132    0.3607    3.7479 v $abc$23333$auto$blifparse.cc:371:parse_blif$23616/Y (sky130_fd_sc_hd__nand2_1)
-                                                 $abc$23333$new_n1013_ (net)
-                    0.4135    0.0099    3.7578 v $abc$23333$auto$blifparse.cc:371:parse_blif$23624/S (sky130_fd_sc_hd__mux2_2)
-     1    0.0033    0.0489    0.4035    4.1613 v $abc$23333$auto$blifparse.cc:371:parse_blif$23624/X (sky130_fd_sc_hd__mux2_2)
-                                                 $0\\ss[31:0][7] (net)
-                    0.0489    0.0001    4.1614 v $auto$simplemap.cc:496:simplemap_adff$12189/D (sky130_fd_sc_hd__dfrtp_1)
-                                        4.1614   data arrival time
+                            200.0000  200.0000   clock network delay (ideal)
+                             80.0000  280.0000 ^ input external delay
+     2    1.6219    0.0000    0.0000  280.0000 ^ miso_pad_i (in)
+                                                 miso_pad_i (net)
+                    0.7743    0.2442  280.2442 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23833/A (BUFx2_ASAP7_75t_R)
+    10    6.7395   36.0413   25.4769  305.7212 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23833/Y (BUFx2_ASAP7_75t_R)
+                                                 $abc$23791$new_n775_ (net)
+                   36.7228    2.7546  308.4758 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23842/A (BUFx2_ASAP7_75t_R)
+    10    8.8250   44.2507   41.9374  350.4132 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23842/Y (BUFx2_ASAP7_75t_R)
+                                                 $abc$23791$new_n784_ (net)
+                   44.2981    0.8464  351.2596 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$24736/A (HB1xp67_ASAP7_75t_R)
+    10    6.1586   88.0032   61.3474  412.6070 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$24736/Y (HB1xp67_ASAP7_75t_R)
+                                                 $abc$23791$new_n1678_ (net)
+                   88.0098    0.4544  413.0614 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$24777/C (NOR5xp2_ASAP7_75t_R)
+     1    0.6357   41.0298   28.6570  441.7184 v $abc$23791$auto$blifparse.cc:371:parse_blif$24777/Y (NOR5xp2_ASAP7_75t_R)
+                                                 $abc$23791$new_n1719_ (net)
+                   41.0298    0.0510  441.7694 v $abc$23791$auto$blifparse.cc:371:parse_blif$24778/C (O2A1O1Ixp33_ASAP7_75t_R)
+     1    0.8524   39.2741   28.9236  470.6930 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$24778/Y (O2A1O1Ixp33_ASAP7_75t_R)
+                                                 $abc$23791$techmap\\u_shift.$0\\IN_reg[127:0][35] (net)
+                   39.2746    0.0747  470.7677 ^ $auto$simplemap.cc:496:simplemap_adff$11490/D (DFFASRHQNx1_ASAP7_75t_R)
+                                      470.7677   data arrival time
 
-                              5.0000    5.0000   clock APB_CLK (rise edge)
-                              0.7121    5.7121   clock network delay (propagated)
-                              0.0000    5.7121   clock reconvergence pessimism
-                                        5.7121 ^ $auto$simplemap.cc:496:simplemap_adff$12189/CLK (sky130_fd_sc_hd__dfrtp_1)
-                             -0.1027    5.6094   library setup time
-                                        5.6094   data required time
+                            400.0000  400.0000   clock APB_CLK (rise edge)
+                             96.2468  496.2468   clock network delay (propagated)
+                              0.0000  496.2468   clock reconvergence pessimism
+                                      496.2468 ^ $auto$simplemap.cc:496:simplemap_adff$11490/CLK (DFFASRHQNx1_ASAP7_75t_R)
+                            -22.2741  473.9727   library setup time
+                                      473.9727   data required time
 -------------------------------------------------------------------------------------
-                                        5.6094   data required time
-                                       -4.1614   data arrival time
+                                      473.9727   data required time
+                                     -470.7677   data arrival time
 -------------------------------------------------------------------------------------
-                                        1.4480   slack (MET)
+                                        3.2050   slack (MET)
 
 
-Startpoint: PADDR[3] (input port clocked by vclk_APB_CLK)
-Endpoint: PRDATA[0] (output port clocked by vclk_APB_CLK)
+Startpoint: PADDR[4] (input port clocked by vclk_APB_CLK)
+Endpoint: PRDATA[16] (output port clocked by vclk_APB_CLK)
 Path Group: vclk_APB_CLK
 Path Type: max
 
 Fanout       Cap      Slew     Delay      Time   Description
 -------------------------------------------------------------------------------------
                     0.0000    0.0000    0.0000   clock vclk_APB_CLK (rise edge)
-                              0.2000    0.2000   clock network delay (ideal)
-                              1.0000    1.2000 ^ input external delay
-     1    0.0037    0.0000    0.0000    1.2000 ^ PADDR[3] (in)
-                                                 PADDR[3] (net)
-                    0.0001    0.0001    1.2001 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/A (sky130_fd_sc_hd__buf_1)
-     8    0.0560    0.6463    0.4799    1.6799 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23583/X (sky130_fd_sc_hd__buf_1)
-                                                 $abc$23333$new_n980_ (net)
-                    0.6463    0.0037    1.6837 ^ place19/A (sky130_fd_sc_hd__buf_4)
-    46    0.2780    0.7504    0.7100    2.3937 ^ place19/X (sky130_fd_sc_hd__buf_4)
-                                                 net19 (net)
-                    0.7504    0.0047    2.3984 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23678/S0 (sky130_fd_sc_hd__mux4_2)
-     1    0.0100    0.1027    0.6273    3.0257 v $abc$23333$auto$blifparse.cc:371:parse_blif$23678/X (sky130_fd_sc_hd__mux4_2)
-                                                 $abc$23333$new_n1075_ (net)
-                    0.1027    0.0006    3.0263 v $abc$23333$auto$blifparse.cc:371:parse_blif$23679/B (sky130_fd_sc_hd__nand2_1)
-     1    0.0021    0.0942    0.0817    3.1079 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23679/Y (sky130_fd_sc_hd__nand2_1)
-                                                 $abc$23333$new_n1076_ (net)
-                    0.0942    0.0000    3.1079 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23680/B1 (sky130_fd_sc_hd__o21ai_0)
-     1    0.0051    0.1771    0.1108    3.2187 v $abc$23333$auto$blifparse.cc:371:parse_blif$23680/Y (sky130_fd_sc_hd__o21ai_0)
-                                                 $abc$23333$new_n1077_ (net)
-                    0.1771    0.0002    3.2189 v $abc$23333$auto$blifparse.cc:371:parse_blif$23681/C1 (sky130_fd_sc_hd__a221oi_1)
-     1    0.0161    0.5894    0.5321    3.7510 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23681/Y (sky130_fd_sc_hd__a221oi_1)
-                                                 $abc$23333$new_n1078_ (net)
-                    0.5894    0.0016    3.7526 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$23682/B (sky130_fd_sc_hd__nor2_1)
-     1    0.0018    0.0888    0.0657    3.8184 v $abc$23333$auto$blifparse.cc:371:parse_blif$23682/Y (sky130_fd_sc_hd__nor2_1)
-                                                 PRDATA[0] (net)
-                    0.0888    0.0000    3.8184 v PRDATA[0] (out)
-                                        3.8184   data arrival time
+                            200.0000  200.0000   clock network delay (ideal)
+                             80.0000  280.0000 ^ input external delay
+     4    4.9773    0.0000    0.0000  280.0000 ^ PADDR[4] (in)
+                                                 PADDR[4] (net)
+                    6.4775    2.0434  282.0434 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23874/A (INVxp67_ASAP7_75t_R)
+     4    3.1549   35.7432   19.6304  301.6738 v $abc$23791$auto$blifparse.cc:371:parse_blif$23874/Y (INVxp67_ASAP7_75t_R)
+                                                 $abc$23791$new_n816_ (net)
+                   35.7463    0.2029  301.8767 v place61/A (BUFx2_ASAP7_75t_R)
+    20   16.6589   66.8321   52.5565  354.4331 v place61/Y (BUFx2_ASAP7_75t_R)
+                                                 net61 (net)
+                   67.5479    3.9946  358.4278 v $abc$23791$auto$blifparse.cc:371:parse_blif$24386/B (NAND3x1_ASAP7_75t_R)
+     1    0.5917   27.0978   28.8485  387.2762 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$24386/Y (NAND3x1_ASAP7_75t_R)
+                                                 $abc$23791$new_n1328_ (net)
+                   27.0979    0.0460  387.3223 ^ place46/A (BUFx2_ASAP7_75t_R)
+    17   16.1537   80.3914   51.7010  439.0233 ^ place46/Y (BUFx2_ASAP7_75t_R)
+                                                 net46 (net)
+                   81.7426    5.8186  444.8419 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$24532/A2 (OAI22xp33_ASAP7_75t_R)
+     1    0.7669   34.9819   31.3965  476.2384 v $abc$23791$auto$blifparse.cc:371:parse_blif$24532/Y (OAI22xp33_ASAP7_75t_R)
+                                                 $abc$23791$new_n1474_ (net)
+                   34.9824    0.0705  476.3089 v $abc$23791$auto$blifparse.cc:371:parse_blif$24535/A2 (OA21x2_ASAP7_75t_R)
+     1    0.6836   10.6585   30.9320  507.2410 v $abc$23791$auto$blifparse.cc:371:parse_blif$24535/Y (OA21x2_ASAP7_75t_R)
+                                                 PRDATA[16] (net)
+                   10.6591    0.0890  507.3300 v PRDATA[16] (out)
+                                      507.3300   data arrival time
 
-                    0.0000    5.0000    5.0000   clock vclk_APB_CLK (rise edge)
-                              0.2000    5.2000   clock network delay (ideal)
-                              0.0000    5.2000   clock reconvergence pessimism
-                             -1.0000    4.2000   output external delay
-                                        4.2000   data required time
+                    0.0000  400.0000  400.0000   clock vclk_APB_CLK (rise edge)
+                            200.0000  600.0000   clock network delay (ideal)
+                              0.0000  600.0000   clock reconvergence pessimism
+                            -80.0000  520.0000   output external delay
+                                      520.0000   data required time
 -------------------------------------------------------------------------------------
-                                        4.2000   data required time
-                                       -3.8184   data arrival time
+                                      520.0000   data required time
+                                     -507.3300   data arrival time
 -------------------------------------------------------------------------------------
-                                        0.3816   slack (MET)
+                                       12.6700   slack (MET)
 
 
 POST ROUTE HOLD TIMING
 Startpoint: PRESETn (input port clocked by vclk_APB_CLK)
-Endpoint: $auto$simplemap.cc:496:simplemap_adff$12222
+Endpoint: $auto$simplemap.cc:496:simplemap_adff$12245
           (removal check against rising-edge clock APB_CLK)
 Path Group: asynchronous
 Path Type: min
@@ -239,29 +220,29 @@ Path Type: min
 Fanout       Cap      Slew     Delay      Time   Description
 -------------------------------------------------------------------------------------
                     0.0000    0.0000    0.0000   clock vclk_APB_CLK (rise edge)
-                              0.2000    0.2000   clock network delay (ideal)
-                              1.0000    1.2000 ^ input external delay
-    67    0.3247    0.0000    0.0000    1.2000 ^ PRESETn (in)
+                            200.0000  200.0000   clock network delay (ideal)
+                             80.0000  280.0000 ^ input external delay
+    67   63.2829    0.0000    0.0000  280.0000 ^ PRESETn (in)
                                                  PRESETn (net)
-                    0.0415    0.0208    1.2208 ^ $auto$simplemap.cc:496:simplemap_adff$12222/RESET_B (sky130_fd_sc_hd__dfrtp_1)
-                                        1.2208   data arrival time
+                   20.3402    6.4166  286.4166 ^ $auto$simplemap.cc:496:simplemap_adff$12245/SETN (DFFASRHQNx1_ASAP7_75t_R)
+                                      286.4166   data arrival time
 
                               0.0000    0.0000   clock APB_CLK (rise edge)
-                              0.7289    0.7289   clock network delay (propagated)
-                              0.0000    0.7289   clock reconvergence pessimism
-                                        0.7289 ^ $auto$simplemap.cc:496:simplemap_adff$12222/CLK (sky130_fd_sc_hd__dfrtp_1)
-                              0.3467    1.0756   library removal time
-                                        1.0756   data required time
+                            102.6834  102.6834   clock network delay (propagated)
+                              0.0000  102.6834   clock reconvergence pessimism
+                                      102.6834 ^ $auto$simplemap.cc:496:simplemap_adff$12245/CLK (DFFASRHQNx1_ASAP7_75t_R)
+                             27.0068  129.6902   library removal time
+                                      129.6902   data required time
 -------------------------------------------------------------------------------------
-                                        1.0756   data required time
-                                       -1.2208   data arrival time
+                                      129.6902   data required time
+                                     -286.4166   data arrival time
 -------------------------------------------------------------------------------------
-                                        0.1452   slack (MET)
+                                      156.7264   slack (MET)
 
 
-Startpoint: $auto$simplemap.cc:496:simplemap_adff$15457
+Startpoint: $auto$simplemap.cc:496:simplemap_adff$11454
             (rising edge-triggered flip-flop clocked by APB_CLK)
-Endpoint: $auto$simplemap.cc:496:simplemap_adff$15457
+Endpoint: $auto$simplemap.cc:496:simplemap_adff$11454
           (rising edge-triggered flip-flop clocked by APB_CLK)
 Path Group: APB_CLK
 Path Type: min
@@ -269,30 +250,27 @@ Path Type: min
 Fanout       Cap      Slew     Delay      Time   Description
 -------------------------------------------------------------------------------------
                               0.0000    0.0000   clock APB_CLK (rise edge)
-                              0.7156    0.7156   clock network delay (propagated)
-                    0.1271    0.0000    0.7156 ^ $auto$simplemap.cc:496:simplemap_adff$15457/CLK (sky130_fd_sc_hd__dfstp_2)
-     2    0.0077    0.0309    0.3955    1.1111 v $auto$simplemap.cc:496:simplemap_adff$15457/Q (sky130_fd_sc_hd__dfstp_2)
-                                                 u_clgen.counter[15] (net)
-                    0.0314    0.0002    1.1113 v $abc$23333$auto$blifparse.cc:371:parse_blif$24190/A (sky130_fd_sc_hd__nand2_1)
-     1    0.0023    0.0328    0.0445    1.1558 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24190/Y (sky130_fd_sc_hd__nand2_1)
-                                                 $abc$23333$new_n1587_ (net)
-                    0.0328    0.0001    1.1559 ^ $abc$23333$auto$blifparse.cc:371:parse_blif$24192/A2 (sky130_fd_sc_hd__o21ai_0)
-     1    0.0026    0.0433    0.0612    1.2170 v $abc$23333$auto$blifparse.cc:371:parse_blif$24192/Y (sky130_fd_sc_hd__o21ai_0)
-                                                 $abc$23333$techmap\\u_clgen.$0\\counter[15:0][15] (net)
-                    0.0433    0.0001    1.2171 v $auto$simplemap.cc:496:simplemap_adff$15457/D (sky130_fd_sc_hd__dfstp_2)
-                                        1.2171   data arrival time
+                             95.4061   95.4061   clock network delay (propagated)
+                   13.5552    0.0000   95.4061 ^ $auto$simplemap.cc:496:simplemap_adff$11454/CLK (DFFASRHQNx1_ASAP7_75t_R)
+     2    0.7573   18.9986   54.4561  149.8622 ^ $auto$simplemap.cc:496:simplemap_adff$11454/QN (DFFASRHQNx1_ASAP7_75t_R)
+                                                 $abc$23791$auto$dfflibmap.cc:519:dfflibmap$23069 (net)
+                   18.9995    0.0708  149.9331 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$24060/C (O2A1O1Ixp5_ASAP7_75t_R)
+     1    0.5112   10.9202   11.2245  161.1576 v $abc$23791$auto$blifparse.cc:371:parse_blif$24060/Y (O2A1O1Ixp5_ASAP7_75t_R)
+                                                 $abc$23791$techmap\\u_shift.$0\\serial_out[0:0] (net)
+                   10.9206    0.0373  161.1949 v $auto$simplemap.cc:496:simplemap_adff$11454/D (DFFASRHQNx1_ASAP7_75t_R)
+                                      161.1949   data arrival time
 
                               0.0000    0.0000   clock APB_CLK (rise edge)
-                              0.7156    0.7156   clock network delay (propagated)
-                              0.0000    0.7156   clock reconvergence pessimism
-                                        0.7156 ^ $auto$simplemap.cc:496:simplemap_adff$15457/CLK (sky130_fd_sc_hd__dfstp_2)
-                              0.0105    0.7261   library hold time
-                                        0.7261   data required time
+                            101.6709  101.6709   clock network delay (propagated)
+                             -6.2648   95.4061   clock reconvergence pessimism
+                                       95.4061 ^ $auto$simplemap.cc:496:simplemap_adff$11454/CLK (DFFASRHQNx1_ASAP7_75t_R)
+                             13.8937  109.2998   library hold time
+                                      109.2998   data required time
 -------------------------------------------------------------------------------------
-                                        0.7261   data required time
-                                       -1.2171   data arrival time
+                                      109.2998   data required time
+                                     -161.1949   data arrival time
 -------------------------------------------------------------------------------------
-                                        0.4910   slack (MET)
+                                       51.8951   slack (MET)
 
 
 Startpoint: $auto$simplemap.cc:496:simplemap_adff$11454
@@ -304,23 +282,26 @@ Path Type: min
 Fanout       Cap      Slew     Delay      Time   Description
 -------------------------------------------------------------------------------------
                               0.0000    0.0000   clock APB_CLK (rise edge)
-                              0.7251    0.7251   clock network delay (propagated)
-                    0.1190    0.0000    0.7251 ^ $auto$simplemap.cc:496:simplemap_adff$11454/CLK (sky130_fd_sc_hd__dfrtp_1)
-     2    0.0118    0.1147    0.4014    1.1265 ^ $auto$simplemap.cc:496:simplemap_adff$11454/Q (sky130_fd_sc_hd__dfrtp_1)
-                                                 u_shift.serial_out (net)
-                    0.1147    0.0003    1.1268 ^ mosi_pad_o (out)
-                                        1.1268   data arrival time
+                             95.4061   95.4061   clock network delay (propagated)
+                   13.5552    0.0000   95.4061 ^ $auto$simplemap.cc:496:simplemap_adff$11454/CLK (DFFASRHQNx1_ASAP7_75t_R)
+     2    0.7573   18.9986   54.4561  149.8622 ^ $auto$simplemap.cc:496:simplemap_adff$11454/QN (DFFASRHQNx1_ASAP7_75t_R)
+                                                 $abc$23791$auto$dfflibmap.cc:519:dfflibmap$23069 (net)
+                   18.9989    0.0426  149.9048 ^ $abc$23791$auto$blifparse.cc:371:parse_blif$23796/A (INVxp33_ASAP7_75t_R)
+     1    0.1716    9.4228   10.1520  160.0568 v $abc$23791$auto$blifparse.cc:371:parse_blif$23796/Y (INVxp33_ASAP7_75t_R)
+                                                 mosi_pad_o (net)
+                    9.4228    0.0088  160.0656 v mosi_pad_o (out)
+                                      160.0656   data arrival time
 
                     0.0000    0.0000    0.0000   clock vclk_APB_CLK (rise edge)
-                              0.2000    0.2000   clock network delay (ideal)
-                              0.0000    0.2000   clock reconvergence pessimism
-                             -1.0000   -0.8000   output external delay
-                                       -0.8000   data required time
+                            200.0000  200.0000   clock network delay (ideal)
+                              0.0000  200.0000   clock reconvergence pessimism
+                            -80.0000  120.0000   output external delay
+                                      120.0000   data required time
 -------------------------------------------------------------------------------------
-                                       -0.8000   data required time
-                                       -1.1268   data arrival time
+                                      120.0000   data required time
+                                     -160.0656   data arrival time
 -------------------------------------------------------------------------------------
-                                        1.9268   slack (MET)
+                                       40.0656   slack (MET)
 
 
 POST ROUTE TIMING REPORTS
@@ -330,11 +311,17 @@ POWER REPORT
 Group                  Internal  Switching    Leakage      Total
                           Power      Power      Power      Power (Watts)
 ----------------------------------------------------------------
-Sequential           2.1628e-03 4.5832e-04 3.0607e-09 2.6212e-03  51.6%
-Combinational        4.4885e-04 6.4425e-04 2.2812e-09 1.0931e-03  21.5%
-Clock                6.0395e-04 7.6128e-04 2.7206e-10 1.3652e-03  26.9%
+Sequential           5.5951e-04 9.6399e-06 4.3627e-08 5.6919e-04  47.2%
+Combinational        2.9225e-05 7.0767e-05 6.0901e-08 1.0005e-04   8.3%
+Clock                2.9593e-04 2.4155e-04 8.6630e-09 5.3749e-04  44.5%
 Macro                0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00   0.0%
 Pad                  0.0000e+00 0.0000e+00 0.0000e+00 0.0000e+00   0.0%
 ----------------------------------------------------------------
-Total                3.2156e-03 1.8638e-03 5.6140e-09 5.0795e-03 100.0%
-                          63.3%      36.7%       0.0%
+Total                8.8467e-04 3.2196e-04 1.1319e-07 1.2067e-03 100.0%
+                          73.3%      26.7%       0.0%
+[WARNING GUI-0066] Heat map "Estimated Congestion (RUDY)" has not been populated with data.
+[WARNING GUI-0066] Heat map "Routing Congestion" has not been populated with data.
+[WARNING GUI-0066] Heat map "IR Drop" has not been populated with data.
+[WARNING GUI-0066] Heat map "Pin Density" has not been populated with data.
+[WARNING GUI-0066] Heat map "Placement Density" has not been populated with data.
+[WARNING GUI-0066] Heat map "Power Density" has not been populated with data.
