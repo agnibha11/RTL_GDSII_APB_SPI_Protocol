@@ -29,3 +29,4 @@ Components of this program may be licensed under more restrictive licenses which
 [INFO PDN-0001] Inserting grid: grid
 [INFO PDN-0500] Runtime: 0.01s
 Design area 210 um^2 72% utilization.
+[WARNING GUI-0066] Heat map "Power Density" has not been populated with data.
