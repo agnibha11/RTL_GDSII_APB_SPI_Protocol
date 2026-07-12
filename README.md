@@ -197,7 +197,7 @@ Post-placement the design sits at **~197 µm² instance area, ~67% utilization**
 
 ## Clock Tree Synthesis (TritonCTS)
 
-`cts.tcl` builds a balanced H-tree over the single `PCLK` domain, then legalizes and repairs timing.
+`cts.tcl` builds a balanced X-tree over the single `PCLK` domain, then legalizes and repairs timing.
 
 ![Clock Tree](reports/images/cts.png)
 
