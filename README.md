@@ -148,7 +148,7 @@ The floorplan is auto-sized from a target utilization of **70%** at a **1:1 aspe
 | Instances | 1853 |
 | Effective utilization | ~71% |
 
-At this node the whole SPI Master fits in a **~371 µm² die** — a striking illustration of FinFET density; the identical logic occupied thousands of µm² on Sky130.
+At this node the whole SPI Master fits in a **~371 µm² die** — a striking illustration of FinFET density; the identical logic occupied 2100 µm² on Sky130.
 
 ### Tap Cells
 
