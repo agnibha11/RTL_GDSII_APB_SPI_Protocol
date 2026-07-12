@@ -4,7 +4,6 @@
 ![Track](https://img.shields.io/badge/Standard%20Cell-7.5T%20RVT-lightgrey)
 ![Clock](https://img.shields.io/badge/Fmax-2.5%20GHz-red)
 ![Tools](https://img.shields.io/badge/Flow-Yosys%20%7C%20OpenROAD%20%7C%20KLayout-orange)
-![DRC](https://img.shields.io/badge/DRC-Clean%20(0%20violations)-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 This repository documents a full RTL-to-GDSII implementation of a configurable **Serial Peripheral Interface (SPI) Master**, wrapped in a native **AMBA APB4** slave interface, taken all the way from Verilog to a manufacturing-ready GDSII stream.
