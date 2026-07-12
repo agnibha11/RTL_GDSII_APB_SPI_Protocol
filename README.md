@@ -4,11 +4,14 @@
 ![Track](https://img.shields.io/badge/Standard%20Cell-7.5T%20RVT-lightgrey)
 ![Clock](https://img.shields.io/badge/Fmax-2.5%20GHz-red)
 ![Tools](https://img.shields.io/badge/Flow-Yosys%20%7C%20OpenROAD%20%7C%20KLayout-orange)
+![DRC](https://img.shields.io/badge/DRC-Clean%20(0%20violations)-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 This repository documents a full RTL-to-GDSII implementation of a configurable **Serial Peripheral Interface (SPI) Master**, wrapped in a native **AMBA APB4** slave interface, taken all the way from Verilog to a manufacturing-ready GDSII stream.
 
-The design closes timing at a **400 ps clock period — a 2.5 GHz system clock** — on the **ASAP7 7nm predictive FinFET PDK**, with a completely DRC-clean layout and healthy positive slack on every path group.
+The headline result: the design closes timing at a **400 ps clock period — a 2.5 GHz system clock** — on the **ASAP7 7nm predictive FinFET PDK**, with a completely DRC-clean layout and healthy positive slack on every path group.
+
+An earlier version of this project targeted the SkyWater 130nm planar node. It has since been **re-implemented on ASAP7**, a 7.5-track, 7nm FinFET process. Moving from a 130nm planar node to a 7nm FinFET node is not a cosmetic change — it touches the standard-cell library, the supply voltage (1.8 V → 0.7 V), the metal stack (5 layers → 9 layers), the routing rules, the sign-off methodology, and the achievable clock frequency. The whole flow was ported and re-tuned accordingly. Synthesis is handled by **Yosys** (with **ABC** for mapping), physical implementation by **OpenROAD**, and GDS stream-out by **KLayout**.
 
 ---
 
@@ -345,6 +348,25 @@ A worst-case droop of **~0.71 mV on a 0.7 V rail** (0.10%) confirms the mesh is 
 The static IR-drop heatmap below maps the voltage across the entire VDD mesh. The near-uniform colouring — the whole core sitting within a fraction of a millivolt of the ideal 0.7 V — is the visual confirmation of that 0.10% figure: there are no localised hotspots, no starved regions, and no need to reinforce the grid.
 
 ![VDD IR-Drop Heatmap](reports/images/heatmap_IR_drop_physical_signoff.png)
+
+### Sign-off Spatial Heatmaps
+
+The remaining sign-off heatmaps confirm that the finished database is uniform across the board — no congestion pockets after metal fill, no illegal pin access, and a power profile that tracks the placement without hotspots.
+
+| Routing Congestion | Pin Density |
+| :---: | :---: |
+| ![Signoff Congestion](reports/images/heatmap_routing_congestion_physical_signoff.png) | ![Signoff Pin Density](reports/images/heatmap_pin_density_physical_signoff.png) |
+| Track-capacity usage after fill — zero overflow tiles remain. | Pin-access density stays legal after detailed routing and filler insertion. |
+
+| Placement Density | Power Density |
+| :---: | :---: |
+| ![Signoff Placement Density](reports/images/heatmap_placement_density_physical_signoff.png) | ![Signoff Power Density](reports/images/heatmap_power_density_physical_signoff.png) |
+| Cell density including the 3390 filler cells, spread evenly across the core. | Static + dynamic power mapped onto the final layout, dominated by the clocked datapath. |
+
+| Estimated Congestion |
+| :---: |
+| ![Signoff Estimated Congestion](reports/images/heatmap_est_congestion_physical_signoff.png) |
+| Predicted routing demand versus available track capacity — highlights where wire density approaches the limit and confirms placement kept the design routable before detailed routing. |
 
 ---
 
