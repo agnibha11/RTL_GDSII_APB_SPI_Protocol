@@ -1,23 +1,19 @@
 # RTL-to-GDSII of an APB4-Interfaced SPI Master on the ASAP7 7nm FinFET Node
 
 ![Technology](https://img.shields.io/badge/Technology-ASAP7%207nm%20FinFET-blue)
-![Track](https://img.shields.io/badge/Standard%20Cell-7.5T%20RVT-lightgrey)
 ![Clock](https://img.shields.io/badge/Fmax-2.5%20GHz-red)
 ![Tools](https://img.shields.io/badge/Flow-Yosys%20%7C%20OpenROAD%20%7C%20KLayout-orange)
-![DRC](https://img.shields.io/badge/DRC-Clean%20(0%20violations)-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 This repository documents a full RTL-to-GDSII implementation of a configurable **Serial Peripheral Interface (SPI) Master**, wrapped in a native **AMBA APB4** slave interface, taken all the way from Verilog to a manufacturing-ready GDSII stream.
 
-The headline result: the design closes timing at a **400 ps clock period — a 2.5 GHz system clock** — on the **ASAP7 7nm predictive FinFET PDK**, with a completely DRC-clean layout and healthy positive slack on every path group.
+The design closes timing at a **400 ps clock period — a 2.5 GHz system clock** — on the **ASAP7 7nm predictive FinFET PDK**, with a completely DRC-clean layout and healthy positive slack on every path group.
 
-An earlier version of this project targeted the SkyWater 130nm planar node. It has since been **re-implemented on ASAP7**, a 7.5-track, 7nm FinFET process. Moving from a 130nm planar node to a 7nm FinFET node is not a cosmetic change — it touches the standard-cell library, the supply voltage (1.8 V → 0.7 V), the metal stack (5 layers → 9 layers), the routing rules, the sign-off methodology, and the achievable clock frequency. The whole flow was ported and re-tuned accordingly. Synthesis is handled by **Yosys** (with **ABC** for mapping), physical implementation by **OpenROAD**, and GDS stream-out by **KLayout**.
+An earlier version of this project targeted the SkyWater 130nm planar node. It has since been **re-implemented on ASAP7**, a 7.5-track, 7nm FinFET process. Synthesis is handled by **Yosys** (with **ABC** for mapping), physical implementation by **OpenROAD**, and GDS stream-out by **KLayout**.
 
 ---
 
 ## Why ASAP7 / 7nm FinFET
-
-The migration from Sky130 to ASAP7 is the main story of this revision, so it's worth stating plainly what the node buys us:
 
 - **FinFET electrostatics.** The tri-gate FinFET structure wraps the gate around a thin silicon fin on three sides. That gives dramatically tighter channel control, sharper sub-threshold slope, and far lower leakage per unit drive than a planar 130nm transistor. In practice this is what lets the design run an order of magnitude faster while still sipping power.
 - **Frequency headroom.** On Sky130 the design ran at a 5 ns period (200 MHz). On ASAP7 the same RTL closes at a **400 ps period — 2.5 GHz**, a 12.5× frequency jump for essentially the same architecture. The gate delays in the 7nm library are small enough that even long combinational cones through the shift datapath fit comfortably inside 400 ps.
