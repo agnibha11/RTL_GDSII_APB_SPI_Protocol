@@ -433,19 +433,6 @@ The DRC report is empty and the final summary reads **0 violations — PASS**. T
 | DRC sign-off | TritonRoute |
 | PDK | ASAP7 (`asap7sc7p5t`, 7.5-track RVT) |
 
-## Repository Layout
-
-```
-rtl/                SPI_top.v, shifter.v, clk_gen.v, spi_define.v
-constraints/        constraints.sdc, abc.constr, vsrc.loc (generated)
-scripts/            synthesis, floorplan, placement, cts,
-                    global_route, detail_route, physical_signoff,
-                    gds_generation, verification_signoff (.tcl)
-                    generate_pdn_sources.py
-reports/            logs, timing/DRC/IR/EM reports, images/
-netlists/           synthesized netlist, ODB/DEF checkpoints, GDSII/
-```
-
 ---
 
 *Author: Agnibha Sarkar · RTL-to-GDSII of an APB4 SPI Master on ASAP7 7nm FinFET.*
