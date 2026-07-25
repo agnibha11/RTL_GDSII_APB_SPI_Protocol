@@ -9,11 +9,6 @@ This repository documents a full RTL-to-GDSII implementation of a configurable *
 
 The design closes timing at a **400 ps clock period — a 2.5 GHz system clock** — on the **ASAP7 7nm predictive FinFET PDK**, with a completely DRC-clean layout and healthy positive slack on every path group.
 
-<p align="center">
-  <img src="reports/images/RTL/spi_architecture.png" alt="SPI RTL Architecture" width="900">
-</p>
-
-
 An earlier version of this project targeted the SkyWater 130nm planar node. It has since been **re-implemented on ASAP7**, a 7.5-track, 7nm FinFET process. Synthesis is handled by **Yosys** (with **ABC** for mapping), physical implementation by **OpenROAD**, and GDS stream-out by **KLayout**.
 
 ---
