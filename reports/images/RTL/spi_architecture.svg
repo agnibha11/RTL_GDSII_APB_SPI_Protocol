@@ -30,7 +30,7 @@
 <text x="623" y="659.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">ie</text>
 <text x="420" y="532" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ctrl[15:0]</text>
 <text x="330" y="805" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ctrl[15:0]</text>
-<text x="406.828125" y="555" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">CONTROL REGISTER   ctrl[15:0]</text>
+<text x="406.828125" y="555" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">CONTROL REGISTER</text>
 <rect x="280" y="702" width="334" height="50" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
 <text x="290.4375" y="730.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">ASS</text>
 <text x="290.4375" y="696" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">15</text>
@@ -87,9 +87,8 @@
 <text x="696.3125" y="948" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">APB READ DATA MUX</text>
 <text x="696.3125" y="970" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">PADDR[4:2]  -&gt;  PRDATA[31:0]</text>
 <text x="696.3125" y="984.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve"> 0-3   rx[31:0] / rx[63:32] / rx[95:64] / rx[127:96]</text>
-<text x="696.3125" y="998.4000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">  4    { 16'b0, ctrl[15:0] }        5   { 16'b0, divider[15:0] }</text>
-<text x="696.3125" y="1012.6000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">  6    { 0, ss[31:0] }              7   { 30'b0, last_bit, tip }</text>
-<text x="696.3125" y="1041.0000000000002" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">PRDATA = 32'b0 when apb_read is low</text>
+<text x="696.3125" y="998.4000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">  4    ctrl[15:0]          5    divider[15:0]</text>
+<text x="696.3125" y="1012.6000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">  6    ss[31:0]            7    { last_bit, tip }</text>
 <rect x="1214" y="130" width="430" height="300" fill="#ffffff" stroke="#000000" stroke-width="1.9"/>
 <text x="1223" y="163.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PCLK</text>
 <text x="1223" y="193.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PRESETn</text>
@@ -100,7 +99,7 @@
 <text x="1635" y="303.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">sclk_pad_o</text>
 <text x="1300" y="425" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">pos_edge</text>
 <text x="1420" y="425" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">neg_edge</text>
-<text x="1437.578125" y="152" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">clk_gen   (u_clgen)</text>
+<text x="1437.578125" y="152" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">Clock Generator</text>
 <text x="1437.578125" y="174" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">16-bit down counter 'counter'</text>
 <text x="1437.578125" y="188.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">reload = divider on !enable or counter==0</text>
 <text x="1437.578125" y="202.39999999999998" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">cnt_zero = (counter == 0)</text>
@@ -125,7 +124,7 @@
 <text x="1635" y="623.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">miso_pad_i</text>
 <text x="1300" y="474" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">pos_edge</text>
 <text x="1420" y="474" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">neg_edge</text>
-<text x="1437.578125" y="497" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">shifter   (u_shift)</text>
+<text x="1437.578125" y="497" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">Shifter</text>
 <text x="1437.578125" y="676" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">tx_bit_pos[6:0] / rx_bit_pos[6:0]</text>
 <text x="1437.578125" y="689.49" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">counter[7:0]   bits remaining</text>
 <text x="1437.578125" y="702.98" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">TX launched on neg_edge</text>
@@ -169,8 +168,6 @@
 <text x="1369.84375" y="946" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ss_pad_o =</text>
 <text x="1369.84375" y="959.49" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve"> ~( (ss &amp; {32{tip &amp; ass}})</text>
 <text x="1369.84375" y="972.98" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">  | (ss &amp; {32{~ass}}) )</text>
-<text x="1369.84375" y="986.47" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ASS=1: assert only while tip</text>
-<text x="1369.84375" y="999.96" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">active low at the pad</text>
 <rect x="1214" y="1030" width="430" height="170" fill="#ffffff" stroke="#000000" stroke-width="1.9"/>
 <text x="1223" y="1058.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PCLK</text>
 <text x="1223" y="1083.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PRESETn</text>
@@ -182,8 +179,7 @@
 <text x="1600" y="1042" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">apb_read</text>
 <text x="1426.140625" y="1052" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">INTERRUPT LOGIC</text>
 <text x="1426.140625" y="1074" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">set   : ie &amp; tip &amp; last_bit &amp; neg_edge</text>
-<text x="1426.140625" y="1088.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">clear : apb_read  (next APB read cycle)</text>
-<text x="1426.140625" y="1102.4" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">async reset drives spi_int_o low</text>
+<text x="1426.140625" y="1088.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">clear : apb_read</text>
 <rect x="224" y="52" width="1456" height="1198" fill="none" stroke="#000000" stroke-width="2.2" stroke-dasharray="9 6"/>
 <text x="240" y="1236" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#000000" text-anchor="start" xml:space="preserve">spi_top</text>
 <text x="206" y="174.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="12.0" fill="#000000" text-anchor="end" xml:space="preserve">PSEL</text>
