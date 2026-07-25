@@ -24,21 +24,31 @@
 <text x="438.421875" y="295.4100000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">  gated by apb_write &amp; !tip</text>
 <rect x="262" y="520" width="370" height="290" fill="#ffffff" stroke="#000000" stroke-width="1.9"/>
 <text x="623" y="563.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">go</text>
-<text x="623" y="591.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">lsb</text>
-<text x="623" y="619.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">char_len[7:0]</text>
-<text x="623" y="727.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">ass</text>
-<text x="623" y="755.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">ie</text>
+<text x="623" y="587.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">lsb</text>
+<text x="623" y="611.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">char_len[7:0]</text>
+<text x="623" y="635.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">ass</text>
+<text x="623" y="659.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">ie</text>
 <text x="420" y="532" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ctrl[15:0]</text>
 <text x="330" y="805" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ctrl[15:0]</text>
-<text x="406.828125" y="555" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">CONTROL REGISTER  ctrl[15:0]</text>
-<text x="406.828125" y="577" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">bit      field      function</text>
-<text x="406.828125" y="591.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">[15]     ASS        auto slave select</text>
-<text x="406.828125" y="605.4000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">[14]     IE         interrupt enable</text>
-<text x="406.828125" y="619.6000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">[13]     LSB        1 = LSB first</text>
-<text x="406.828125" y="633.8000000000002" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">[12]     GO         start transfer</text>
-<text x="406.828125" y="648.0000000000002" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">[11:4]   CHAR_LEN   frame length 1..128</text>
-<text x="406.828125" y="662.2000000000003" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">[3:0]    --         reserved</text>
-<text x="406.828125" y="690.6000000000004" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">GO self-clears on tip &amp; last_bit &amp; neg_edge</text>
+<text x="406.828125" y="555" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">CONTROL REGISTER   ctrl[15:0]</text>
+<rect x="280" y="702" width="334" height="50" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
+<text x="290.4375" y="730.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">ASS</text>
+<text x="290.4375" y="696" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">15</text>
+<line x1="300.875" y1="702" x2="300.875" y2="752" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="311.3125" y="730.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">IE</text>
+<text x="311.3125" y="696" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">14</text>
+<line x1="321.75" y1="702" x2="321.75" y2="752" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="332.1875" y="730.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">LSB</text>
+<text x="332.1875" y="696" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">13</text>
+<line x1="342.625" y1="702" x2="342.625" y2="752" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="353.0625" y="730.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">GO</text>
+<text x="353.0625" y="696" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">12</text>
+<line x1="363.5" y1="702" x2="363.5" y2="752" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="447.0" y="730.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">CHAR_LEN</text>
+<text x="447.0" y="696" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">11:4</text>
+<line x1="530.5" y1="702" x2="530.5" y2="752" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="572.25" y="730.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">reserved</text>
+<text x="572.25" y="696" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">3:0</text>
 <rect x="726" y="130" width="330" height="340" fill="#ffffff" stroke="#000000" stroke-width="1.9"/>
 <text x="735" y="163.24" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.0" fill="#000000" text-anchor="start" xml:space="preserve">PCLK</text>
 <text x="735" y="193.24" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.0" fill="#000000" text-anchor="start" xml:space="preserve">PRESETn</text>
@@ -103,12 +113,12 @@
 <text x="1223" y="493.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PCLK</text>
 <text x="1223" y="523.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PRESETn</text>
 <text x="1223" y="563.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">go</text>
-<text x="1223" y="591.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">lsb</text>
-<text x="1223" y="619.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">char_len[7:0]</text>
-<text x="1223" y="643.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">tip</text>
-<text x="1223" y="671.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">last_bit</text>
-<text x="1223" y="699.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">rx[127:0]</text>
-<text x="1223" y="793.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">tx_latch[3:0]</text>
+<text x="1223" y="587.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">lsb</text>
+<text x="1223" y="611.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">char_len[7:0]</text>
+<text x="1223" y="683.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">tip</text>
+<text x="1223" y="707.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">last_bit</text>
+<text x="1223" y="731.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">rx[127:0]</text>
+<text x="1223" y="767.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">tx_latch[3:0]</text>
 <text x="1223" y="823.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PWDATA[31:0]</text>
 <text x="1223" y="853.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">PSTRB[3:0]</text>
 <text x="1635" y="563.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="end" xml:space="preserve">mosi_pad_o</text>
@@ -116,18 +126,40 @@
 <text x="1300" y="474" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">pos_edge</text>
 <text x="1420" y="474" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">neg_edge</text>
 <text x="1437.578125" y="497" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15.0" font-weight="bold" fill="#000000" text-anchor="middle" xml:space="preserve">shifter   (u_shift)</text>
-<text x="1437.578125" y="519" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">OUT_reg[127:0]   TX shift register</text>
-<text x="1437.578125" y="533.2" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">IN_reg[127:0]    RX shift register</text>
-<text x="1437.578125" y="547.4000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">tx_bit_pos[6:0] / rx_bit_pos[6:0]</text>
-<text x="1437.578125" y="561.6000000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">counter[7:0]     bits remaining</text>
-<text x="1437.578125" y="590.0000000000002" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">one register pair serves 1..128 bits</text>
-<text x="1437.578125" y="604.2000000000003" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">TX launched on neg_edge</text>
-<text x="1437.578125" y="618.4000000000003" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">RX sampled  on pos_edge   (Mode 0)</text>
-<text x="1437.578125" y="646.8000000000004" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">latch[3:0] + byte_sel[3:0] pick the</text>
-<text x="1437.578125" y="661.0000000000005" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">32-bit slot written by the CPU</text>
-<text x="1437.578125" y="689.4000000000005" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">last_bit   = (counter == 0)</text>
-<text x="1437.578125" y="703.6000000000006" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">t_progress set by go, cleared by</text>
-<text x="1437.578125" y="717.8000000000006" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="10.0" fill="#000000" text-anchor="middle" xml:space="preserve">last_bit &amp; neg_edge</text>
+<text x="1437.578125" y="676" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">tx_bit_pos[6:0] / rx_bit_pos[6:0]</text>
+<text x="1437.578125" y="689.49" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">counter[7:0]   bits remaining</text>
+<text x="1437.578125" y="702.98" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">TX launched on neg_edge</text>
+<text x="1437.578125" y="716.47" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">RX sampled  on pos_edge  (Mode 0)</text>
+<text x="1437.578125" y="729.96" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">latch[3:0] + byte_sel[3:0] pick the slot</text>
+<text x="1437.578125" y="743.45" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">last_bit = (counter == 0)</text>
+<text x="1437.578125" y="756.94" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">t_progress set by go, cleared by</text>
+<text x="1437.578125" y="770.4300000000001" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">last_bit &amp; neg_edge</text>
+<text x="1438" y="528" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">OUT_reg[127:0]   TX  -&gt;  mosi</text>
+<rect x="1328" y="534" width="220" height="42" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
+<text x="1355.5" y="554.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">TX_3</text>
+<text x="1355.5" y="567.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[127:96]</text>
+<line x1="1383.0" y1="534" x2="1383.0" y2="576" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="1410.5" y="554.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">TX_2</text>
+<text x="1410.5" y="567.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[95:64]</text>
+<line x1="1438.0" y1="534" x2="1438.0" y2="576" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="1465.5" y="554.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">TX_1</text>
+<text x="1465.5" y="567.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[63:32]</text>
+<line x1="1493.0" y1="534" x2="1493.0" y2="576" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="1520.5" y="554.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">TX_0</text>
+<text x="1520.5" y="567.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[31:0]</text>
+<text x="1438" y="604" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">IN_reg[127:0]    RX  &lt;-  miso</text>
+<rect x="1328" y="610" width="220" height="42" fill="#ffffff" stroke="#000000" stroke-width="1.6"/>
+<text x="1355.5" y="630.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">RX_3</text>
+<text x="1355.5" y="643.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[127:96]</text>
+<line x1="1383.0" y1="610" x2="1383.0" y2="652" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="1410.5" y="630.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">RX_2</text>
+<text x="1410.5" y="643.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[95:64]</text>
+<line x1="1438.0" y1="610" x2="1438.0" y2="652" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="1465.5" y="630.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">RX_1</text>
+<text x="1465.5" y="643.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[63:32]</text>
+<line x1="1493.0" y1="610" x2="1493.0" y2="652" stroke="#000000" stroke-width="1.4" stroke-linecap="square"/>
+<text x="1520.5" y="630.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="8.5" fill="#000000" text-anchor="middle" xml:space="preserve">RX_0</text>
+<text x="1520.5" y="643.0" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="7.5" fill="#000000" text-anchor="middle" xml:space="preserve">[31:0]</text>
 <rect x="1214" y="902" width="346" height="113" fill="#ffffff" stroke="#000000" stroke-width="1.9"/>
 <text x="1223" y="948.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">ss[31:0]</text>
 <text x="1223" y="975.42" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="start" xml:space="preserve">tip</text>
@@ -239,9 +271,9 @@
 <line x1="632" y1="330" x2="726" y2="330" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="726,330 717.0,324.8 717.0,335.2" fill="#000000"/>
 <line x1="632" y1="360" x2="712" y2="360" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<line x1="712" y1="360" x2="712" y2="790" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<line x1="712" y1="790" x2="1214" y2="790" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<polygon points="1214,790 1205.0,784.8 1205.0,795.2" fill="#000000"/>
+<line x1="712" y1="360" x2="712" y2="764" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="712" y1="764" x2="1214" y2="764" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="1214,764 1205.0,758.8 1205.0,769.2" fill="#000000"/>
 <line x1="330" y1="470" x2="330" y2="480" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="330" y1="480" x2="240" y2="480" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="240" y1="480" x2="240" y2="940" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
@@ -278,16 +310,16 @@
 <line x1="1136" y1="560" x2="1136" y2="340" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="1136" y1="340" x2="1214" y2="340" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,340 1205.0,334.8 1205.0,345.2" fill="#000000"/>
-<line x1="632" y1="588" x2="1214" y2="588" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<polygon points="1214,588 1205.0,582.8 1205.0,593.2" fill="#000000"/>
-<line x1="632" y1="616" x2="1214" y2="616" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<polygon points="1214,616 1205.0,610.8 1205.0,621.2" fill="#000000"/>
-<line x1="632" y1="724" x2="1150" y2="724" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<line x1="1150" y1="724" x2="1150" y2="999" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="632" y1="584" x2="1214" y2="584" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="1214,584 1205.0,578.8 1205.0,589.2" fill="#000000"/>
+<line x1="632" y1="608" x2="1214" y2="608" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="1214,608 1205.0,602.8 1205.0,613.2" fill="#000000"/>
+<line x1="632" y1="632" x2="1150" y2="632" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="1150" y1="632" x2="1150" y2="999" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="1150" y1="999" x2="1214" y2="999" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,999 1205.0,993.8 1205.0,1004.2" fill="#000000"/>
-<line x1="632" y1="752" x2="1164" y2="752" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<line x1="1164" y1="752" x2="1164" y2="1105" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="632" y1="656" x2="1164" y2="656" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="1164" y1="656" x2="1164" y2="1105" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="1164" y1="1105" x2="1214" y2="1105" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,1105 1205.0,1099.8 1205.0,1110.2" fill="#000000"/>
 <line x1="1300" y1="430" x2="1300" y2="462" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
@@ -301,11 +333,11 @@
 <line x1="1108" y1="446" x2="1108" y2="1180" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="1108" y1="1180" x2="1214" y2="1180" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,1180 1205.0,1174.8 1205.0,1185.2" fill="#000000"/>
-<line x1="1214" y1="640" x2="1178" y2="640" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<polygon points="1184,640 1193.0,634.8 1193.0,645.2" fill="#000000"/>
-<line x1="1178" y1="640" x2="1178" y2="1130" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<circle cx="1178" cy="640" r="3.6" fill="#000000"/>
-<line x1="1178" y1="640" x2="1178" y2="370" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="1214" y1="680" x2="1178" y2="680" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="1184,680 1193.0,674.8 1193.0,685.2" fill="#000000"/>
+<line x1="1178" y1="680" x2="1178" y2="1130" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="1178" cy="680" r="3.6" fill="#000000"/>
+<line x1="1178" y1="680" x2="1178" y2="370" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="1178" y1="370" x2="1214" y2="370" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,370 1205.0,364.8 1205.0,375.2" fill="#000000"/>
 <circle cx="1178" cy="972" r="3.6" fill="#000000"/>
@@ -313,43 +345,45 @@
 <polygon points="1214,972 1205.0,966.8 1205.0,977.2" fill="#000000"/>
 <line x1="1178" y1="1130" x2="1214" y2="1130" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,1130 1205.0,1124.8 1205.0,1135.2" fill="#000000"/>
-<line x1="1178" y1="640" x2="642" y2="640" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<circle cx="920" cy="640" r="3.6" fill="#000000"/>
-<line x1="920" y1="640" x2="920" y2="470" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="1178" y1="680" x2="642" y2="680" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="920" cy="680" r="3.6" fill="#000000"/>
+<line x1="920" y1="680" x2="920" y2="470" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="920,470 914.8,479.0 925.2,479.0" fill="#000000"/>
-<line x1="920" y1="640" x2="920" y2="900" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="920" y1="680" x2="920" y2="900" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="920,900 914.8,891.0 925.2,891.0" fill="#000000"/>
-<line x1="642" y1="640" x2="642" y2="440" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="642" y1="680" x2="642" y2="440" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="642" y1="440" x2="632" y2="440" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="632,440 641.0,434.8 641.0,445.2" fill="#000000"/>
-<line x1="1214" y1="668" x2="1122" y2="668" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<polygon points="1128,668 1137.0,662.8 1137.0,673.2" fill="#000000"/>
-<line x1="1122" y1="668" x2="1122" y2="1155" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<circle cx="1122" cy="668" r="3.6" fill="#000000"/>
-<line x1="1122" y1="668" x2="1122" y2="400" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="1214" y1="704" x2="1122" y2="704" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="1128,704 1137.0,698.8 1137.0,709.2" fill="#000000"/>
+<line x1="1122" y1="704" x2="1122" y2="1155" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="1122" cy="704" r="3.6" fill="#000000"/>
+<line x1="1122" y1="704" x2="1122" y2="400" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <line x1="1122" y1="400" x2="1214" y2="400" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,400 1205.0,394.8 1205.0,405.2" fill="#000000"/>
 <line x1="1122" y1="1155" x2="1214" y2="1155" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1214,1155 1205.0,1149.8 1205.0,1160.2" fill="#000000"/>
-<line x1="1122" y1="668" x2="970" y2="668" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<circle cx="970" cy="668" r="3.6" fill="#000000"/>
-<line x1="970" y1="668" x2="970" y2="470" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="1122" y1="704" x2="970" y2="704" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<circle cx="970" cy="704" r="3.6" fill="#000000"/>
+<line x1="970" y1="704" x2="970" y2="470" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="970,470 964.8,479.0 975.2,479.0" fill="#000000"/>
-<line x1="970" y1="668" x2="970" y2="900" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="970" y1="704" x2="970" y2="900" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="970,900 964.8,891.0 975.2,891.0" fill="#000000"/>
-<line x1="1214" y1="696" x2="1025" y2="696" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
-<polygon points="1031,696 1040.0,690.8 1040.0,701.2" fill="#000000"/>
-<line x1="1025" y1="696" x2="1025" y2="900" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<line x1="1214" y1="728" x2="1025" y2="728" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
+<polygon points="1031,728 1040.0,722.8 1040.0,733.2" fill="#000000"/>
+<line x1="1025" y1="728" x2="1025" y2="900" stroke="#000000" stroke-width="1.3" stroke-linecap="round"/>
 <polygon points="1025,900 1019.8,891.0 1030.2,891.0" fill="#000000"/>
 <text x="1147.0" y="244" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">divider[15:0]</text>
+<text x="531.0" y="502" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ctrl[15:0]</text>
 <text x="761.0" y="554" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">go</text>
-<text x="761.0" y="582" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">lsb</text>
-<text x="761.0" y="610" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">char_len[7:0]</text>
-<text x="761.0" y="634" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">tip</text>
-<text x="1018.0" y="662" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">last_bit</text>
-<text x="761.0" y="718" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ass</text>
-<text x="761.0" y="746" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ie</text>
-<text x="761.0" y="784" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">tx_latch[3:0]</text>
-<text x="507.0" y="814" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">PWDATA[31:0]</text>
+<text x="761.0" y="578" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">lsb</text>
+<text x="761.0" y="602" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">char_len[7:0]</text>
+<text x="761.0" y="674" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">tip</text>
+<text x="1018.0" y="698" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">last_bit</text>
+<text x="761.0" y="626" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ass</text>
+<text x="761.0" y="650" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">ie</text>
+<text x="761.0" y="758" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">tx_latch[3:0]</text>
+<text x="754.0" y="814" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">PWDATA[31:0]</text>
 <text x="514.0" y="844" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">PSTRB[3:0]</text>
+<text x="570.0" y="880" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="9.5" fill="#000000" text-anchor="middle" xml:space="preserve">apb_read</text>
 </svg>
