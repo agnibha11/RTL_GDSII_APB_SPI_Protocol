@@ -445,7 +445,7 @@ The DRC report is empty and the final summary reads **0 violations — PASS**. T
 | **Max clock** | **2.5 GHz (400 ps period)** |
 | Die area | 19.27 µm × 19.27 µm |
 | Core area | 293.01 µm² |
-| Utilization | ~69–71% |
+| Utilization | 69% |
 | Flop count (clock sinks) | 229 |
 | Clock buffers | 28 |
 | Tap cells / fillers | 32 / 3390 |
