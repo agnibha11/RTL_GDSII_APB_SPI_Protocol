@@ -13,6 +13,44 @@ An earlier version of this project targeted the SkyWater 130nm planar node. It h
 
 ---
 
+## Table of Contents
+
+- [Why ASAP7 / 7nm FinFET](#why-asap7--7nm-finfet)
+- [RTL Architecture & Hardware Specifications](#rtl-architecture--hardware-specifications)
+  - [Top-Level Module (`spi_top`)](#top-level-module-spi_top)
+  - [Top-Level Pinout](#top-level-pinout)
+  - [Clock Generation — Strobes, Not Clocks](#clock-generation--strobes-not-clocks)
+  - [128-bit Datapath (`shifter.v`)](#128-bit-datapath-shifterv)
+  - [Transaction Lifecycle](#transaction-lifecycle)
+  - [Control Register (`SPI_CTRL`, offset `0x4`, 16-bit)](#control-register-spi_ctrl-offset-0x4-16-bit)
+- [Timing Constraints (`constraints.sdc`)](#timing-constraints-constraintssdc)
+- [Synthesis (Yosys + ABC)](#synthesis-yosys--abc)
+- [Floorplan & Power Delivery Network](#floorplan--power-delivery-network)
+  - [Die & Core](#die--core)
+  - [Tap Cells](#tap-cells)
+  - [PDN Architecture](#pdn-architecture)
+- [Placement & I/O Pin Assignment](#placement--io-pin-assignment)
+  - [I/O Pin Strategy](#io-pin-strategy)
+  - [Global & Detailed Placement](#global--detailed-placement)
+- [Clock Tree Synthesis (TritonCTS)](#clock-tree-synthesis-tritoncts)
+- [Global Routing (FastRoute) & Optimization](#global-routing-fastroute--optimization)
+- [Detailed Routing (TritonRoute)](#detailed-routing-tritonroute)
+  - [Guide Coverage](#guide-coverage)
+- [Physical Signoff & Power Integrity](#physical-signoff--power-integrity)
+  - [Filler Insertion](#filler-insertion)
+  - [Sign-off Parasitic Extraction (OpenRCX)](#sign-off-parasitic-extraction-openrcx)
+  - [Sign-off Timing](#sign-off-timing)
+  - [Power (SPEF-accurate)](#power-spef-accurate)
+  - [IR Drop & Electromigration](#ir-drop--electromigration)
+  - [Sign-off Spatial Heatmaps](#sign-off-spatial-heatmaps)
+- [GDSII Generation (KLayout)](#gdsii-generation-klayout)
+- [Physical Verification / DRC Sign-off](#physical-verification--drc-sign-off)
+- [Results at a Glance](#results-at-a-glance)
+- [Toolchain](#toolchain)
+
+
+---
+
 ## Why ASAP7 / 7nm FinFET
 
 - **FinFET electrostatics.** The tri-gate FinFET structure wraps the gate around a thin silicon fin on three sides. That gives dramatically tighter channel control, sharper sub-threshold slope, and far lower leakage per unit drive than a planar 130nm transistor. In practice this is what lets the design run an order of magnitude faster while still sipping power.
